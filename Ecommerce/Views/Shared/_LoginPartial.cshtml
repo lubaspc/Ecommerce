@@ -15,11 +15,18 @@
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account",
+
+        <ul class="nav navbar-nav navbar-right mr-auto">
+            <li>
+                @Html.ActionLink("Registrarse", "Register", "Account",
                 routeValues: null,
-                htmlAttributes: new { id = "registerLink", @class= "nav-link"})</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, 
-                htmlAttributes: new { id = "loginLink" , @class= "nav-link"})</li>
-    </ul>
+                htmlAttributes: new { id = "registerLink", @class = "nav-link" })
+            </li>
+            <li>
+                @Html.ActionLink("Iniciar sesion", "Login", "Account", routeValues: null,
+                htmlAttributes: new { id = "loginLink", @class = "nav-link" })
+            </li>
+        </ul>
+
+    
 }
