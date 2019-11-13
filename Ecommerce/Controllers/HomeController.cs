@@ -28,13 +28,5 @@ namespace Ecommerce.Controllers
             ViewBag.catalogos = db.Catalogos.ToList();
             return View();
         }
-
-<<<<<<< HEAD
-=======
-        public ActionResult Catalog(var)
-        {
-
-        }
->>>>>>> parent of a1b03cd... cambios 2
     }
 }
