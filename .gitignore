@@ -6,3 +6,5 @@
 /Ecommerce/bin/Ecommerce.pdb
 /Ecommerce/obj/Debug/
 .vs/Ecommerce/config/applicationhost.config
+/.vs/Ecommerce/v15/Server/sqlite3/db.lock
+/.vs/Ecommerce/v15/Server/sqlite3
