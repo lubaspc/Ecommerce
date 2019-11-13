@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ecommerce.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,7 @@ namespace Ecommerce.Controllers
 {
     public class HomeController : Controller
     {
+        ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
         {
             return View();
@@ -20,11 +22,16 @@ namespace Ecommerce.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Tienda()
         {
-            ViewBag.Message = "Your contact page.";
-
+            var productos = db.Productos.ToList();
+            ViewBag.catalogos = db.Catalogos.ToList();
             return View();
+        }
+
+        public ActionResult Catalog(var)
+        {
+
         }
     }
 }
