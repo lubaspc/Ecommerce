@@ -10,12 +10,12 @@
     @Styles.Render("~/Content/app.css")
 
 </head>
-<body>
-    <nav class="navbar bg-primary navbar-expand-lg navbar-light color-white">
-        <a href="@Url.Action("Index", "Home")" class = "navbar-brand" title="List View">
-            <img alt="List View" src="@Url.Content("~/Content/img/logo.png")" width="80px">
+<body style="height:100vh" class="bg-secondary">
+    <nav class="navbar bg-primary navbar-expand-lg navbar-dark px-5">
+        <a href="@Url.Action("Index", "Home")" class="navbar-brand" title="List View">
+            <img alt="List View" src="@Url.Content("~/Content/img/logo.png")" class="img-logo">
         </a>
-       
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -24,20 +24,13 @@
             <ul class="navbar-nav mr-auto">
 
                 <li class="nav-item active">
-                    @Html.ActionLink("Inicio", "Index", "Home", new object { }, new { @class = "nav-link color-white" })
+                    @Html.ActionLink("Inicio", "Index", "Home", new object { }, new { @class = "nav-link" })
                 </li>
                 <li class="nav-item">
-                    @Html.ActionLink("Nosotros", "About", "Home", new object { }, new { @class = "nav-link color-white" })
+                    @Html.ActionLink("Nosotros", "About", "Home", new object { }, new { @class = "nav-link" })
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle color-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Categorias
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">@Html.ActionLink("Todos los productos", "Contact", "Home", new object { }, new { @class = "nav-link" })</a>
-                        <a class="dropdown-item" href="#">@Html.ActionLink("Mas vendidos", "Contact", "Home", new object { }, new { @class = "nav-link" })</a>
-                        <a class="dropdown-item" href="#">@Html.ActionLink("Ofertas", "Contact", "Home", new object { }, new { @class = "nav-link" })</a>
-                    </div>
+                <li class="nav-item">
+                    @Html.ActionLink("Catalogo", "Tienda", "Home", new object { }, new { @class = "nav-link" })
                 </li>
 
             </ul>
@@ -46,20 +39,21 @@
             </ul>
         </div>
     </nav>
-   
-    <div class="container-fluid">
-        @RenderBody()
-        <hr />
-        <footer class="footer">
-            <div class="row justify-content-center">
-                <div class="col-10 text-center">
-                    <hr class="style-two" />
-                    <p>&copy; Organic bread S.A de C.V - @DateTime.Now.Year - Todos los derechos reservados </p>
-                </div>
-            </div>
-        </footer>
-    </div>
 
+    <div class="container-fluid bg-secondary p-0">
+        @RenderBody()
+        
+
+    </div>
+   
+    <footer class="footer">
+        <div class="row justify-content-center">
+            <div class="col-10 text-center">
+                <hr class="style-two" />
+                <p>&copy; Organic bread S.A de C.V - @DateTime.Now.Year - Todos los derechos reservados </p>
+            </div>
+        </div>
+    </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
