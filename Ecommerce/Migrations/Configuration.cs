@@ -14,10 +14,10 @@
 
         protected override void Seed(Ecommerce.Models.ApplicationDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
-            //  to avoid creating duplicate seed data.
+            context.Catalogos.AddOrUpdate(new Models.Catalogos
+            {
+                name = "Pan"
+            });
         }
 
     }

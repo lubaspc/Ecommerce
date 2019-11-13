@@ -8,6 +8,9 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/app.css")
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+          crossorigin="anonymous">
 
 </head>
 <body style="height:100vh" class="bg-secondary">
@@ -42,10 +45,10 @@
 
     <div class="container-fluid bg-secondary p-0">
         @RenderBody()
-        
+
 
     </div>
-   
+
     <footer class="footer">
         <div class="row justify-content-center">
             <div class="col-10 text-center">
@@ -56,6 +59,7 @@
     </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script src="https://kit.fontawesome.com/d9e9a292ac.js" crossorigin="anonymous"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
