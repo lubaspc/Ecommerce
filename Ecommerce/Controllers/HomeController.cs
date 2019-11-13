@@ -22,10 +22,20 @@ namespace Ecommerce.Controllers
             return View();
         }
 
-        public ActionResult Tienda()
+        public ActionResult Tienda(int? Id)
         {
-            var productos = db.Productos.ToList();
+            List<Productos> productos;
+            if (Id.HasValue)
+            {
+                productos = db.Catalogos.Find(Id).Productos;
+            }
+            else
+            {
+               productos = db.Productos.ToList();
+            }
+            
             ViewBag.catalogos = db.Catalogos.ToList();
+            ViewBag.productos = productos;
             return View();
         }
     }
