@@ -30,6 +30,7 @@ namespace Ecommerce.Controllers
         }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
     }
@@ -40,10 +41,15 @@ namespace Ecommerce.Controllers
         {
 
 =======
+=======
+>>>>>>> parent of a1b03cd... cambios 2
 
         public ActionResult Catalog(var)
         {
 
+<<<<<<< HEAD
+>>>>>>> parent of a1b03cd... cambios 2
+=======
 >>>>>>> parent of a1b03cd... cambios 2
         }
     }
