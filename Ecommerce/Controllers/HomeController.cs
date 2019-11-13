@@ -29,6 +29,7 @@ namespace Ecommerce.Controllers
             return View();
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
     }
@@ -38,6 +39,12 @@ namespace Ecommerce.Controllers
         public ActionResult Catalog(var)
         {
 
+=======
+
+        public ActionResult Catalog(var)
+        {
+
+>>>>>>> parent of a1b03cd... cambios 2
         }
     }
 }
