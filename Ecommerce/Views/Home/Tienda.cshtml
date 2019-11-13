@@ -1,5 +1,5 @@
-﻿@model IEnumerable<Ecommerce.Models.Productos>
-
+﻿
+@using Ecommerce.Models
 @{
     ViewBag.Title = "Tienda";
 }
@@ -8,10 +8,10 @@
     <h1>Catalogo</h1>
 </div>
 <ul class="nav justify-content-between px-5">
-    @foreach (var catalog in ViewBag.catalogos)
+    @foreach (Catalogos catalog in ViewBag.catalogos)
     {
     <li class="nav-item">
-        <a href="@Url.Action("Index", "Home",)" class="navbar-brand" title="List View">  
+        <a href="@Url.Action("CatalogShow", "Home", new { id=catalog.Id })" class="navbar-brand" title="List View">  
             <img alt="List View" src="@Url.Content("~/Content/img/logo.png")" class="img-logo">
         </a>
     </li>

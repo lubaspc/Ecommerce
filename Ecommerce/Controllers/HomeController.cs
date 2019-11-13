@@ -28,10 +28,6 @@ namespace Ecommerce.Controllers
             ViewBag.catalogos = db.Catalogos.ToList();
             return View();
         }
-
-        public ActionResult Catalog(var)
-        {
-
-        }
     }
+
 }
