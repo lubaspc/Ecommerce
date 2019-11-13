@@ -1,0 +1,344 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-center">Productos</h2>
+
+<p>
+    <a data-toggle="modal" data-target="#modal1" class="btn btn-info text-white">Crear producto</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Descripcion
+            </th>
+            <th>
+                Imagen
+            </th>
+            <th>
+                Detalles
+            </th>
+            <th>
+                Porciones
+            </th>
+            <th>
+                Sabor
+            </th>
+            <th>
+                Marca
+            </th>
+            <th>
+                Precio
+            </th>
+            <th>
+                Descuento
+            </th>
+            <th>
+                Estatus
+            </th>
+            <th>
+                Oferta
+            </th>
+            <th>
+                Precio final
+            </th>
+            <th>
+                Stock
+            </th>
+            <th>
+                Opciones
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                1
+            </td>
+            <td>
+                Pan champan
+            </td>
+            <td>
+                Pan hecho con champiñones
+            </td>
+            <td>
+                imagen
+            </td>
+            <td>
+                Elaborado artesanalmente
+            </td>
+            <td>
+                20
+            </td>
+            <td>
+                Champiñones
+            </td>
+            <td>
+                Champan
+            </td>
+            <td>
+                30.0
+            </td>
+            <td>
+                20%
+            </td>
+            <td>
+                Activo
+            </td>
+            <td>
+                120.0
+            </td>
+            <td>
+                230.0
+            </td>
+            <td>
+                100
+            </td>
+            <td>
+                @{
+                    <a data-toggle="modal" data-target="#modal2" class="btn btn-default"><img src="~/Content/img/modificar.jpg" width="25px" /></a>
+                    <a data-toggle="modal" data-target="#ModalEliminar" class="btn btn-default"><img src="~/Content/img/eliminar.jpg" width="25px" /></a>
+                }
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="modal fade" data-backdrop="static" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Agregar producto</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" asp-controller="Categorias" asp-action="GetPost">
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-2">Nombre</label>
+                            <div class="col-md-10">
+                                <input placeholder="Nombre" class="form-control" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2">Descripcion</label>
+                            <div class="col-md-10">
+                                <input placeholder="Descripcion" class="form-control" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2">Imagen</label>
+                            <div class="col-md-4">
+                                <button placeholder="Imagen">Subir archivo</button>
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2">Detalles</label>
+                            <div class="col-md-10">
+                                <input placeholder="Detalles" class="form-control" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2">Porciones</label>
+                            <div class="col-md-10">
+                                <input placeholder="Porciones" class="form-control" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2">Sabor</label>
+                            <div class="col-md-10">
+                                <input placeholder="Sabor" class="form-control" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2">Marca</label>
+                            <div class="col-md-10">
+                                <input placeholder="Marca" class="form-control" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2">Precio</label>
+                            <div class="col-md-10">
+                                <input placeholder="Precio" class="form-control" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2">Descuento</label>
+                            <div class="col-md-10">
+                                <input placeholder="Descuento" class="form-control" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2">Estatus</label>
+                            <div class="col-md-10">
+                                <input placeholder="Estatus" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2">Oferta</label>
+                            <div class="col-md-10">
+                                <input placeholder="Oferta" class="form-control" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        
+                            <div class="form-group">
+                                <label class="col-md-2">Precio final</label>
+                                <div class="col-md-4">
+                                    <input placeholder="Precio final" class="form-control" />
+                                    <span class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2">Stock</label>
+                                <div class="col-md-4">
+                                    <input placeholder="Stock" class="form-control" />
+                                    <span class="text-danger"></span>
+                                </div>
+                            </div>
+                    </div>     
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" data-backdrop="static" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Editar producto</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" asp-controller="Categorias" asp-action="GetPost">
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-2">Nombre</label>
+                            <div class="col-md-10">
+                                <input placeholder="Nombre" class="form-control" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2">Descripcion</label>
+                            <div class="col-md-10">
+                                <input placeholder="Descripcion" class="form-control" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2">Imagen</label>
+                            <div class="col-md-4">
+                                <button placeholder="Imagen">Subir archivo</button>
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2">Detalles</label>
+                            <div class="col-md-10">
+                                <input placeholder="Detalles" class="form-control" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2">Porciones</label>
+                            <div class="col-md-10">
+                                <input placeholder="Porciones" class="form-control" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2">Sabor</label>
+                            <div class="col-md-10">
+                                <input placeholder="Sabor" class="form-control" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2">Marca</label>
+                            <div class="col-md-10">
+                                <input placeholder="Marca" class="form-control" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2">Precio</label>
+                            <div class="col-md-10">
+                                <input placeholder="Precio" class="form-control" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2">Descuento</label>
+                            <div class="col-md-10">
+                                <input placeholder="Descuento" class="form-control" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2">Estatus</label>
+                            <div class="col-md-10">
+                                <input placeholder="Estatus" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2">Oferta</label>
+                            <div class="col-md-10">
+                                <input placeholder="Oferta" class="form-control" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2">Precio final</label>
+                            <div class="col-md-4">
+                                <input placeholder="Precio final" class="form-control" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2">Stock</label>
+                            <div class="col-md-4">
+                                <input placeholder="Stock" class="form-control" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
