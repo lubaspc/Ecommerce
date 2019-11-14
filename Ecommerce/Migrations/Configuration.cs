@@ -4,6 +4,7 @@
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using Ecommerce.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Ecommerce.Models.ApplicationDbContext>
     {
@@ -14,11 +15,12 @@
 
         protected override void Seed(Ecommerce.Models.ApplicationDbContext context)
         {
-            context.Catalogos.AddOrUpdate(new Models.Catalogos
-            {
-                name = "Pan"
-            });
+            SeedCatago(context);
         }
 
+        private void SeedCatago(ApplicationDbContext db)
+        {
+            db.Catalogos.AddOrUpdate(new Catalogos { name = "Dulce" });
+        }
     }
 }

@@ -35,7 +35,7 @@ namespace Ecommerce.Controllers
             }
             
             ViewBag.catalogos = db.Catalogos.ToList();
-            ViewBag.productos = productos;
+            ViewBag.productos = productos; 
             return View();
         }
     }
