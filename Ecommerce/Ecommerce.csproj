@@ -214,6 +214,7 @@
     <Content Include="Content\img\eliminar.jpg" />
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\modificar.jpg" />
+    <Content Include="Content\img\panaderia2.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />

@@ -1,6 +1,63 @@
-﻿body {
+﻿@font-face {
+  font-family: 'Ubuntu';
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: local('Ubuntu Light Italic'), local('Ubuntu-LightItalic'), url(https://fonts.gstatic.com/s/ubuntu/v14/4iCp6KVjbNBYlgoKejZftVyPN4Q.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Ubuntu Italic'), local('Ubuntu-Italic'), url(https://fonts.gstatic.com/s/ubuntu/v14/4iCu6KVjbNBYlgoKej70l0w.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: local('Ubuntu Medium Italic'), local('Ubuntu-MediumItalic'), url(https://fonts.gstatic.com/s/ubuntu/v14/4iCp6KVjbNBYlgoKejYHtFyPN4Q.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Ubuntu Bold Italic'), local('Ubuntu-BoldItalic'), url(https://fonts.gstatic.com/s/ubuntu/v14/4iCp6KVjbNBYlgoKejZPslyPN4Q.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local('Ubuntu Light'), local('Ubuntu-Light'), url(https://fonts.gstatic.com/s/ubuntu/v14/4iCv6KVjbNBYlgoC1CzjsGyI.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Ubuntu Regular'), local('Ubuntu-Regular'), url(https://fonts.gstatic.com/s/ubuntu/v14/4iCs6KVjbNBYlgoKfw7z.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local('Ubuntu Medium'), local('Ubuntu-Medium'), url(https://fonts.gstatic.com/s/ubuntu/v14/4iCv6KVjbNBYlgoCjC3jsGyI.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Ubuntu Bold'), local('Ubuntu-Bold'), url(https://fonts.gstatic.com/s/ubuntu/v14/4iCv6KVjbNBYlgoCxCvjsGyI.ttf) format('truetype');
+}
+body {
   padding: 0;
-  margin: 0;
+  margin: 0 ;
+  font-family: 'Ubuntu', sans-serif;
 }
 a {
   text-decoration: none;
@@ -9,8 +66,25 @@ a {
   width: 4rem;
   height: 100%;
 }
+.bg-pan1 {
+  background-image: url(img/pandaderia.jpg);
+  background-position: center center;
+  background-size: cover;
+  height: 100vh;
+}
+.bg-pan2 {
+  background-image: url(img/panaderia2.jpg);
+  background-position: center center;
+  background-size: cover;
+}
 .nav-link {
   color: black !important;
+}
+.nav-link:hover {
+  color: white;
+  text-align: center;
+  background: #c67000;
+  border: 2px solid black;
 }
 .bg-primary {
   background-color: #f0e1ab !important;
@@ -42,4 +116,21 @@ hr.style-two {
 }
 .color-blue {
   color: blue !important;
+}
+.c-black {
+  color: black!important;
+}
+.border-black {
+  border: 1px solid #000000 !important;
+}
+.btn-primary {
+  background: #ff9f0e;
+  color: black;
+  border: 1px solid #c67000;
+  height: auto;
+}
+.btn-primary:hover {
+  background: #c67000;
+  color: black;
+  border: 1px solid #c67000;
 }

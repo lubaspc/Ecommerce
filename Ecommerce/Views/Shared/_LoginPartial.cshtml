@@ -10,11 +10,6 @@
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-
-        <li>
-            <a class="nav-link" href="@Url.Action("Index", "Carrito")">
-                <i class="fas fa-shopping-cart fa-2x"></i></a>
-        </li>
     </ul>
     }
 }
@@ -31,10 +26,7 @@ else
         @Html.ActionLink("Iniciar sesion", "Login", "Account", routeValues: null,
         htmlAttributes: new { id = "loginLink", @class = "nav-link" })
     </li>
-    <li>
-        <a class="nav-link" href="@Url.Action("Index", "Carrito")">
-            <i class="fas fa-shopping-cart fa-2x"></i></a>
-    </li>
+    
 </ul>
 
     
