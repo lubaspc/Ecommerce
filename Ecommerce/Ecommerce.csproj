@@ -221,6 +221,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\alex_scripts\proveedor_script.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -324,6 +325,8 @@
     <Content Include="Views\Shared\_LayoutProvedores.cshtml" />
     <Content Include="Views\User\HomeAdmin.cshtml" />
     <Content Include="Views\Proveedores\Index.cshtml" />
+    <Content Include="Views\Proveedores\Crear.cshtml" />
+    <Content Include="Views\Proveedores\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
