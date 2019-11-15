@@ -1,0 +1,130 @@
+﻿@model Ecommerce.Models.Provedores
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Compras proveedor</h2>
+<div class="text-right">
+    <p>
+        <form>
+            <button class="btn btn-success" formaction="/Proveedores/Crear">Agregar</button>
+        </form>
+    </p>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            Id
+        </th>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Dirección
+        </th>
+        <th>
+            Telefono
+        </th>
+        <th>
+            Forma de Pago
+        </th>
+        <th>
+            Credito(dias)
+        </th>
+        <th>
+            $CreditoMaximo
+        </th>
+        <th></th>
+
+    </tr>
+
+
+    <tr>
+        <td>
+            01
+        </td>
+        <td>
+            FI Factory Ingredents
+        </td>
+        <td>
+            <a href="#" data-toggle="modal" data-target="#direccion"> Ver</a>
+            <div id="direccion" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">FI Factory Ingredents</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <ul class="list-inline">
+                                    <li>Estado: Estado de Mexico</li>
+                                    <li>Codigo Postal: 50050</li>
+                                    <li>Municipio: Toluca</li>
+                                    <li>Colonia: Santa Barbara</li>
+                                    <li>Calle: Manuel Alas</li>
+                                    <li>N° Interior: 202</li>
+                                    <li>N° Exterior: 202</li>
+                                    <li>Referencia: Una casa roja dentro de un callejon</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </td>
+        <td>
+            72284567
+        </td>
+        <td>
+            Credito
+        </td>
+        <td>
+            15
+        </td>
+        <td>
+            150000
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { /* id=item.PrimaryKey */ }) |
+            <a href="#" data-toggle="modal" data-target="#confirmacion_el"> Eliminar</a>
+            <div id="confirmacion_el" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Eliminar Proveedor</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="text-left">
+                                    <label>¿Seguro que desea eliminar este proveedor?</label>
+                                    <p>
+                                        <br />
+                                        <button class="btn btn-danger">Eliminar</button>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </td>
+    </tr>
+
+
+</table>

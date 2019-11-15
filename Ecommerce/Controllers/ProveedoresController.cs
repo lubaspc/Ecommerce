@@ -13,5 +13,14 @@ namespace Ecommerce.Controllers
         {
             return View();
         }
+
+        public ActionResult Crear()
+        {
+            return View();
+        }
+        public ActionResult Edit()
+        {
+            return View();
+        }
     }
 }
