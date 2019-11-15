@@ -9,12 +9,12 @@ namespace Ecommerce.Models
     public class Ventas
     {
         public int Id { get; set; }
-        public ApplicationUser Cliente { get; set; }
-        public List<DetalleVenta> DetalleVentas { get; set; }
+        public virtual ApplicationUser Cliente { get; set; }
+        public virtual ICollection<DetalleVenta> DetalleVentas { get; set; }
         [Required]
-        public MetodosPago MetodoPago { get; set; }
+        public virtual MetodosPago MetodoPago { get; set; }
         public DateTime FechaVenta { get; set; }
-        public int status { get; set; }
+        public int Status { get; set; }
 
     }
 }

@@ -9,8 +9,8 @@ namespace Ecommerce.Models
     {
 
         public int Id{ get; set; }
-        public Productos Producto{ get; set; }
-        public Ventas Ventas { get; set; }
+        public virtual Productos Producto{ get; set; }
+        public virtual Ventas Ventas { get; set; }
         public int Cantidad { get; set; }
         public int Porcentaje_Descuento { get; set; }
         public int Porcentaje_Incrmento { get; set; }

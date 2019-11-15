@@ -24,10 +24,11 @@ namespace Ecommerce.Controllers
 
         public ActionResult Tienda(int? Id)
         {
-            List<Productos> productos;
+            ICollection<Productos> productos;
             if (Id.HasValue)
             {
-                productos = db.Catalogos.Find(Id).Productos;
+                var catalog = db.Catalogos.Find(Id);
+                productos = catalog.Productos;
             }
             else
             {
@@ -35,7 +36,7 @@ namespace Ecommerce.Controllers
             }
             
             ViewBag.catalogos = db.Catalogos.ToList();
-            ViewBag.productos = productos; 
+            ViewBag.productos = productos.ToList(); 
             return View();
         }
     }

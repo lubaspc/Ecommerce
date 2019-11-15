@@ -27,9 +27,9 @@ namespace Ecommerce.Models
        
         public double Precio_final { get; set; }
 
-        public List<Catalogos> Categorias { set; get; }
-        public List<DetalleVenta> DetalleVentas { set; get; }
-        public List<DetalleCompras> DetalleCompra { set; get; }
+        public virtual ICollection<Catalogos> Catalogos { set; get; }
+        public virtual ICollection<DetalleVenta> DetalleVentas { set; get; }
+        public virtual ICollection<DetalleCompras> DetalleCompra { set; get; }
 
     }
 }

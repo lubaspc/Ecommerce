@@ -21,7 +21,7 @@ namespace Ecommerce.Models
         public string Titular { get; set; }
         [Required]
         public virtual Direccion Direccion { get; set; }
-        public List<Ventas> Ventas { get; set; }
+        public virtual ICollection<Ventas> Ventas { get; set; }
 
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
@@ -52,7 +52,21 @@ namespace Ecommerce.Models
         public DbSet<MetodosPago> MetodosPagos{ get; set; }
         public DbSet<Compras> Compras{ get; set; }
         public DbSet<Provedores> Provedores{ get; set; }
-       
+
+
+        /*protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Productos>()
+                .HasMany(p => Catalogos)
+                .WithMany()
+                .Map(m =>
+                {
+                    m.MapLeftKey("ProductID");
+                    m.MapRightKey("RelatedID");
+                    m.ToTable("product_related");
+                });
+        }*/
+
         public static ApplicationDbContext Create()
         {
           

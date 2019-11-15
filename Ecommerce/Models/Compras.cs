@@ -7,11 +7,11 @@ namespace Ecommerce.Models
     public class Compras
     {
         public int Id { get; set; }
-        public List<DetalleCompras> DetallesCompras { get; set; }
+        public virtual ICollection<DetalleCompras> DetallesCompras { get; set; }
         [Required]
-        public MetodosPago MetodosPago { get; set; }
+        public virtual MetodosPago MetodosPago { get; set; }
         [Required]
-        public Provedores Provedores { get; set; }
+        public virtual Provedores Provedores { get; set; }
         public DateTime FechaCompra { get; set; }
         public double Total { get; set; }
     }

@@ -12,7 +12,7 @@ namespace Ecommerce.Models
         public int Telefono { get; set; }
         public double Credito { get; set; }
         public double CreditoMax { get; set; }
-        public List<Compras> Compras { get; set; }
+        public virtual ICollection<Compras> Compras { get; set; }
         public virtual Direccion Direccion { get; set; }
     }
 }

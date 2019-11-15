@@ -7,10 +7,11 @@ namespace Ecommerce.Models
 {
     public class Catalogos
     {
+
         public int Id { get; set; }
         public string name { get; set; }
 
-        public List<Productos> Productos {get; set;}
+        public virtual ICollection<Productos> Productos {get; set;}
         
     }
 }
