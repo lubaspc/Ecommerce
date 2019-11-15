@@ -107,8 +107,8 @@ hr.style-two {
   position: center;
 }
 .footer {
-  left: 0;
-  display: contents;
+  position: absolute;
+  bottom: 0;
   width: 100%;
 }
 .color-white {
