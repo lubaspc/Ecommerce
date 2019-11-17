@@ -14,15 +14,10 @@ namespace Ecommerce.Models
     public class ApplicationUser : IdentityUser
     {
       
-        public bool Hombre { get; set; }
+        public String Sexo { get; set; }
         public DateTime FechaNaciemiento { get; set; }
-        public int NoTarjeta { get; set; }
-        public int TipoTarjeta { get; set; }
-        public string Titular { get; set; }
-        [Required]
         public virtual Direccion Direccion { get; set; }
         public virtual ICollection<Ventas> Ventas { get; set; }
-
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
