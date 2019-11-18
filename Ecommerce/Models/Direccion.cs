@@ -17,7 +17,6 @@ namespace Ecommerce.Models
         public string Referencia { get; set; }
         [Required]
         public virtual Provedores Provedores { get; set; }
-        public virtual ApplicationUser User { get; set; }
         
     }
 }
