@@ -11,107 +11,107 @@ using Ecommerce.Models;
 
 namespace Ecommerce.Controllers
 {
-    public class ProductosController : Controller
+    public class CatalogosController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Productos
+        // GET: Catalogos
         public async Task<ActionResult> Index()
         {
-            return View(await db.Productos.ToListAsync());
+            return View(await db.Catalogos.ToListAsync());
         }
 
-        // GET: Productos/Details/5
+        // GET: Catalogos/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Productos productos = await db.Productos.FindAsync(id);
-            if (productos == null)
+            Catalogos catalogos = await db.Catalogos.FindAsync(id);
+            if (catalogos == null)
             {
                 return HttpNotFound();
             }
-            return View(productos);
+            return View(catalogos);
         }
 
-        // GET: Productos/Create
+        // GET: Catalogos/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Productos/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Catalogos/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Nombre,Descripcion,Url_image,Sabor,stock,Marca,Costo_unitario,Porcentage_descuento,Status,Precio_final")] Productos productos)
+        public async Task<ActionResult> Create([Bind(Include = "Id,name")] Catalogos catalogos)
         {
             if (ModelState.IsValid)
             {
-                db.Productos.Add(productos);
+                db.Catalogos.Add(catalogos);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(productos);
+            return View(catalogos);
         }
 
-        // GET: Productos/Edit/5
+        // GET: Catalogos/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Productos productos = await db.Productos.FindAsync(id);
-            if (productos == null)
+            Catalogos catalogos = await db.Catalogos.FindAsync(id);
+            if (catalogos == null)
             {
                 return HttpNotFound();
             }
-            return View(productos);
+            return View(catalogos);
         }
 
-        // POST: Productos/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Catalogos/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Nombre,Descripcion,Url_image,Sabor,stock,Marca,Costo_unitario,Porcentage_descuento,Status,Precio_final")] Productos productos)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,name")] Catalogos catalogos)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(productos).State = EntityState.Modified;
+                db.Entry(catalogos).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(productos);
+            return View(catalogos);
         }
 
-        // GET: Productos/Delete/5
+        // GET: Catalogos/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Productos productos = await db.Productos.FindAsync(id);
-            if (productos == null)
+            Catalogos catalogos = await db.Catalogos.FindAsync(id);
+            if (catalogos == null)
             {
                 return HttpNotFound();
             }
-            return View(productos);
+            return View(catalogos);
         }
 
-        // POST: Productos/Delete/5
+        // POST: Catalogos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Productos productos = await db.Productos.FindAsync(id);
-            db.Productos.Remove(productos);
+            Catalogos catalogos = await db.Catalogos.FindAsync(id);
+            db.Catalogos.Remove(catalogos);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

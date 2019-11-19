@@ -6,6 +6,6 @@
         public string Nombre { get; set; }
 
         public virtual Ventas Ventas { get; set; }
-        public virtual Compras Compras { get; set; }
+        
     }
 }
