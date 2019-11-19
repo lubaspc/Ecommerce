@@ -111,7 +111,6 @@ hr.style-two {
 }
 .footer {
   position: absolute;
-  bottom: 0;
   width: 100%;
 }
 .color-white {
@@ -136,4 +135,27 @@ hr.style-two {
   background: #c67000;
   color: black;
   border: 1px solid #c67000;
+}
+.catalog-categories {
+  margin-top: 2rem;
+  -webkit-box-shadow: 0px 0px 48px -15px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 48px -15px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 48px -15px rgba(0, 0, 0, 0.75);
+  background-color: #ff9f0e;
+}
+.link-catalog {
+  color: white;
+}
+.link-catalog:hover {
+  color: black;
+  text-decoration: solid #c67000;
+}
+.agregar-carrito {
+  text-align: center;
+  color: #c67000;
+  text-decoration: none;
+  border: 2px solid black;
+  border-radius: 1rem;
+  padding: 3px 8px;
+  background-color: white;
 }
