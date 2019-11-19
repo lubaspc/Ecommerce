@@ -351,7 +351,8 @@
             prove1.Id = 1;
             prove1.Nombre = "Alejandro";
             prove1.Telefono = "7224124088";
-            prove1.Credito = 150000;
+            prove1.Credito = 10;
+            prove1.CreditoMax = 150000;
             
 
             prove1.Direccion = new Direccion
@@ -365,6 +366,27 @@
                 NoInterior = 202,
                 Referencia = "Puerta negra"
             };
+            Provedores prove2 = new Provedores();
+            prove2.Id = 2;
+            prove2.Nombre = "CHARLY";
+            prove2.Telefono = "7171717171";
+            prove2.Credito = 15;
+            prove2.CreditoMax = 200000;
+
+
+            prove2.Direccion = new Direccion
+            {
+                Calle = "LA VIRGEN",
+                CodigoPostal = 50050,
+                Colonia = "SANTA CATARINA",
+                Estado = "VERACRUZ",
+                Municipio = "CAMPECHE",
+                NoExterior = 101,
+                NoInterior = 101,
+                Referencia = "Puerta roja"
+            };
+            db.Provedores.AddOrUpdate(prove1);
+            db.Provedores.AddOrUpdate(prove2);
         }
    
     }
