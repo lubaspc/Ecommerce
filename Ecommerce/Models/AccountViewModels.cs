@@ -81,19 +81,21 @@ namespace Ecommerce.Models
         [Compare("Password", ErrorMessage = "No coninciden las contraseña")]
         public string ConfirmPassword { get; set; }
 
-        public String Sexo { get; set; }
+
+
+        public bool Male { get; set; }
+
+        public String Nombre { get; set; }
 
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         [DataType(DataType.Date)]
         public DateTime FechaNaciemiento { get; set; }
-
-
-
-        public String Nombre { get; set; }
         public bool Active { get; set; }
-       
+
         [Required]
         public Direccion Direccion { get; set; }
+
+
     }
 
     public class ResetPasswordViewModel

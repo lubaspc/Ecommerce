@@ -151,7 +151,7 @@ namespace Ecommerce.Controllers
         {
             if (ModelState.IsValid)                 
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Male= model.Male, Nombre= model.Nombre, FechaNaciemiento= model.FechaNaciemiento, Active=true, Direccion = model.Direccion };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
