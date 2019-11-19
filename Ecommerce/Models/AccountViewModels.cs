@@ -86,11 +86,14 @@ namespace Ecommerce.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         [DataType(DataType.Date)]
         public DateTime FechaNaciemiento { get; set; }
-        public String Estado { get; set; }
-        public String Municipio { get; set; }
-        public String Direccion { get; set; }
-        public String CodigoPostal { get; set; }
-        public String Status { get; set; }
+
+
+
+        public String Nombre { get; set; }
+        public bool Active { get; set; }
+       
+        [Required]
+        public Direccion Direccion { get; set; }
     }
 
     public class ResetPasswordViewModel

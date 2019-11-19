@@ -6,13 +6,15 @@ namespace Ecommerce.Models
 {
     public class Provedores
     {
-       
+
         public int Id { get; set; }
         public string Nombre { get; set; }
         public int Telefono { get; set; }
         public double Credito { get; set; }
         public double CreditoMax { get; set; }
         public virtual ICollection<Compras> Compras { get; set; }
+
+        [Required]
         public virtual Direccion Direccion { get; set; }
     }
 }
