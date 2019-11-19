@@ -15,7 +15,6 @@ namespace Ecommerce.Models
         public int NoInterior { get; set; }
         public int NoExterior { get; set; }
         public string Referencia { get; set; }
-        [Required]
         public virtual Provedores Provedores { get; set; }
         public virtual ApplicationUser User { get; set; }
         
