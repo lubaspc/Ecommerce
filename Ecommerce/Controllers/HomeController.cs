@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace Ecommerce.Controllers
 {
@@ -12,6 +15,30 @@ namespace Ecommerce.Controllers
         ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                var iduser = User.Identity.GetUserId();
+
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+
+                if (userManager.IsInRole(iduser, "Control Productos"))
+                {
+                    return RedirectToAction("Index", "Producto");
+                }
+                else if (userManager.IsInRole(iduser, "Control Provedores"))
+                {
+                    return RedirectToAction("Index", "Proveedores");
+                }
+                else if (userManager.IsInRole(iduser, "Administrador"))
+                {
+                    return RedirectToAction("Index", "User");
+                }
+
+            }
+            else {
+                return View();
+            }
+
             return View();
         }
 

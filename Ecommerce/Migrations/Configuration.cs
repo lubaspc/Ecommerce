@@ -135,8 +135,8 @@
             userProd.Nombre = "Diana";
             userProd.Email = "diana@gmail.com";
             userProd.Male = false;
-            userProd.FechaNaciemiento = new DateTime(1960, 8, 8, 0, 0, 0);
-            userProd.Active = true;
+            userProd.FechaNaciemiento = new DateTime(1960, 8, 8, 0, 0, 0); 
+            userProd.Active = true;  
 
             userProd.Direccion = new Direccion
             {
