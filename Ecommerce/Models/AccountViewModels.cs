@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Ecommerce.Models
@@ -67,7 +68,7 @@ namespace Ecommerce.Models
         [Required]
         [EmailAddress]
         [Display(Name = "Correo electronico")]
-        public string Email { get; set; }
+         public string Email { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "la {0} no tiene caracteres suficientes {2}.", MinimumLength = 6)]
@@ -79,6 +80,20 @@ namespace Ecommerce.Models
         [Display(Name = "Confirmar Contraseña")]
         [Compare("Password", ErrorMessage = "No coninciden las contraseña")]
         public string ConfirmPassword { get; set; }
+
+        public String Sexo { get; set; }
+
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        [DataType(DataType.Date)]
+        public DateTime FechaNaciemiento { get; set; }
+
+
+
+        public String Nombre { get; set; }
+        public bool Active { get; set; }
+       
+        [Required]
+        public Direccion Direccion { get; set; }
     }
 
     public class ResetPasswordViewModel

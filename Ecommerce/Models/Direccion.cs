@@ -5,7 +5,7 @@ namespace Ecommerce.Models
 {
     public class Direccion
     {
-       [Key]
+        [Key]
         public int Id { get; set; }
         public string Estado { get; set; }
         public string Municipio { get; set; }
@@ -16,7 +16,8 @@ namespace Ecommerce.Models
         public int NoExterior { get; set; }
         public string Referencia { get; set; }
         public virtual Provedores Provedores { get; set; }
+
         public virtual ApplicationUser User { get; set; }
-        
+
     }
 }

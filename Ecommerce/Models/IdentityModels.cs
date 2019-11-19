@@ -13,16 +13,17 @@ namespace Ecommerce.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-      
-        public bool Hombre { get; set; }
-        public DateTime FechaNaciemiento { get; set; }
-        public int NoTarjeta { get; set; }
-        public int TipoTarjeta { get; set; }
-        public string Titular { get; set; }
-        [Required]
-        public virtual Direccion Direccion { get; set; }
-        public virtual ICollection<Ventas> Ventas { get; set; }
 
+        public bool Male { get; set; }
+
+        public String Nombre { get; set; }
+        public DateTime FechaNaciemiento { get; set; }
+        public bool Active { get; set; }
+        
+        [Required]
+        public Direccion Direccion { get; set; }
+
+        public virtual ICollection<Ventas> Ventas { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
