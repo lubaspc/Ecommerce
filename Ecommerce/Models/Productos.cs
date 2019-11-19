@@ -18,7 +18,8 @@ namespace Ecommerce.Models
         public string Url_image { get; set; }
         [StringLength(120)]
         public string Sabor { get; set; }
-
+        [Range(0,100000,ErrorMessage ="El numero debe ser mayor a cero")]
+        public int stock { get; set; }
         [StringLength(120)] 
         public string Marca { get; set; }
         public double Costo_unitario { get; set; }
