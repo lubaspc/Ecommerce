@@ -4,149 +4,201 @@
 }
 
 <div class="pt-5 vh-100 bg-pan2">
-    <div class="text-center">
-        <h2 class="text-white">@ViewBag.Title.</h2>
-    </div>
+    
 
-    <div class="row justify-content-center align-content-center">
+    <div class="row justify-content-center">
         <div class="col-md-6 shadow bg-semitanparente">
-            <div class="row justify-content-center align-content-center text-center">
+            <div class="row text-left p-4">
                 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
                     @Html.AntiForgeryToken()
-                    <h4 class="text-white">Crear cuenta</h4>
-                    <hr />
+
                     @Html.ValidationSummary("", new { @class = "text-danger" })
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Email, new { @class = "control-label" })
 
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-
+                <div class="container">
+                    <div class="row text-center justify-content-center">
+                        <div class="col-12">
+                            <h4 class="text-white">Registrarse</h4>
+                        </div>
+                        
+                        <hr />
                     </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Nombre, new { @class = "control-label" })
-
-                        @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control" })
-                    </div>
-
-
-                    @Html.DropDownListFor(m => m.Male, new SelectList(
-                            new[]
-                            {
-                                new { Value = "true" , Text = "Hombre" },
-                                new { Value = "false", Text = "Mujer" },
-                            },
-                            "Value",
-                            "Text",
-                            Model
-                    ), new { @class = "form-control" })
-
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Password, new { @class = " control-label" })
-
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.ConfirmPassword, new { @class = " control-label" })
-
-                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-
-                    </div>
-
-
-
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.FechaNaciemiento, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(m => m.FechaNaciemiento, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "Fecha de Nacimiento" } })
-                            @Html.ValidationMessageFor(m => m.FechaNaciemiento, "", new { @class = "text-danger" })
+                    <div class="row">
+                        <div class="col-12 text-left">
+                            <h5 class="text-white">Información Personal</h5>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Direccion.Calle, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(m => m.Direccion.Calle, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "Calle" } })
-                            @Html.ValidationMessageFor(m => m.Direccion.Calle, "", new { @class = "text-danger" })
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Nombre, new { @class = "control-label" })
+
+                                @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control" })
+                            </div>
+
+                        </div>
+
+                        <div class="col-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Email, new { @class = "control-label" })
+
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            @Html.Label("Sexo", new { @class = "control-label" })
+
+                            @Html.DropDownListFor(m => m.Male, new SelectList(
+                                    new[]
+                                    {
+                                        new { Value = "true" , Text = "Hombre" },
+                                        new { Value = "false", Text = "Mujer" },
+                                    },
+                                    "Value",
+                                    "Text",
+                                    Model
+                            ), new { @class = "form-control" })
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Direccion.CodigoPostal, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(m => m.Direccion.CodigoPostal, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "Codigo Postal" } })
-                            @Html.ValidationMessageFor(m => m.Direccion.CodigoPostal, "", new { @class = "text-danger" })
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.FechaNaciemiento, htmlAttributes: new { @class = "control-label" })
+                                
+                                    @Html.EditorFor(m => m.FechaNaciemiento, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "Fecha de Nacimiento" } })
+                                    @Html.ValidationMessageFor(m => m.FechaNaciemiento, "", new { @class = "text-danger" })
+                                
+                            </div>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Direccion.Colonia, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(m => m.Direccion.Colonia, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "Colonia" } })
-                            @Html.ValidationMessageFor(m => m.Direccion.Colonia, "", new { @class = "text-danger" })
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Password, new { @class = " control-label" })
+
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.ConfirmPassword, new { @class = " control-label" })
+
+                                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+
+                            </div>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Direccion.Estado, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(m => m.Direccion.Estado, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "Estado" } })
-                            @Html.ValidationMessageFor(m => m.Direccion.Estado, "", new { @class = "text-danger" })
+                    <div class="row">
+                        <div class="col-12 text-left">
+                            <h5 class="text-white">Dirección</h5>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Direccion.Municipio, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(m => m.Direccion.Municipio, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "Municipio" } })
-                            @Html.ValidationMessageFor(m => m.Direccion.Municipio, "", new { @class = "text-danger" })
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Direccion.Estado, htmlAttributes: new { @class = "control-label" })
+                                
+                                    @Html.EditorFor(m => m.Direccion.Estado, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "Estado" } })
+                                    @Html.ValidationMessageFor(m => m.Direccion.Estado, "", new { @class = "text-danger" })
+                                
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Direccion.Municipio, htmlAttributes: new { @class = "control-label" })
+                             
+                                    @Html.EditorFor(m => m.Direccion.Municipio, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "Municipio" } })
+                                    @Html.ValidationMessageFor(m => m.Direccion.Municipio, "", new { @class = "text-danger" })
+                              
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Direccion.CodigoPostal, htmlAttributes: new { @class = "control-label" })
+                                
+                                    @Html.EditorFor(m => m.Direccion.CodigoPostal, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "Codigo Postal" } })
+                                    @Html.ValidationMessageFor(m => m.Direccion.CodigoPostal, "", new { @class = "text-danger" })
+                                
+                            </div>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Direccion.NoExterior, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(m => m.Direccion.NoExterior, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "No. Exterior" } })
-                            @Html.ValidationMessageFor(m => m.Direccion.NoExterior, "", new { @class = "text-danger" })
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Direccion.Colonia, htmlAttributes: new { @class = "control-label" })
+                                
+                                    @Html.EditorFor(m => m.Direccion.Colonia, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "Colonia" } })
+                                    @Html.ValidationMessageFor(m => m.Direccion.Colonia, "", new { @class = "text-danger" })
+                              
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Direccion.Calle, htmlAttributes: new { @class = "control-label" })
+                              
+                                    @Html.EditorFor(m => m.Direccion.Calle, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "Calle" } })
+                                    @Html.ValidationMessageFor(m => m.Direccion.Calle, "", new { @class = "text-danger" })
+                               
+                            </div>
+                        </div>
+
+                        <div class="col-2">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Direccion.NoExterior, htmlAttributes: new { @class = "control-label" })
+                               
+                                    @Html.EditorFor(m => m.Direccion.NoExterior, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "No. Exterior" } })
+                                    @Html.ValidationMessageFor(m => m.Direccion.NoExterior, "", new { @class = "text-danger" })
+                              
+                            </div>
+                        </div>
+
+                        <div class="col-2">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Direccion.NoInterior, htmlAttributes: new { @class = "control-label" })
+                                
+                                    @Html.EditorFor(m => m.Direccion.NoInterior, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "No. Interior" } })
+                                    @Html.ValidationMessageFor(m => m.Direccion.NoInterior, "", new { @class = "text-danger" })
+                               
+                            </div>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Direccion.NoInterior, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(m => m.Direccion.NoInterior, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "No. Interior" } })
-                            @Html.ValidationMessageFor(m => m.Direccion.NoInterior, "", new { @class = "text-danger" })
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Direccion.Referencia, htmlAttributes: new { @class = "control-label" })
+                               
+                                    @Html.EditorFor(m => m.Direccion.Referencia, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "Referencia" } })
+                                    @Html.ValidationMessageFor(m => m.Direccion.Referencia, "", new { @class = "text-danger" })
+                              
+                            </div>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Direccion.Referencia, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(m => m.Direccion.Referencia, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "Referencia" } })
-                            @Html.ValidationMessageFor(m => m.Direccion.Referencia, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+                    
+                            <div class="form-group mt-5">
+                                <input type="submit" class="btn btn-primary form-control text-center" value="Registrar" />
+                            </div>
+                     
 
-                    /*
-                    userAdmin.Direccion = new Direccion
-            {
-                Calle = "10 de mayo",
-                CodigoPostal = 46192,
-                Colonia = "San Pedro",
-                Estado = "Mexico",
-                Municipio = "Chimalhuacan",
-                NoExterior = 1,
-                NoInterior = 1,
-                Referencia = "Puerta negra"
-            };*/
+                    
 
+                </div>
 
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary form-control" value="Registrar" />
-            </div>
-        }
+                    
+                }
             </div>
         </div>
     </div>

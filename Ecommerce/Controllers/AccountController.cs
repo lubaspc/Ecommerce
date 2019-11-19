@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Ecommerce.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Ecommerce.Controllers
 {
@@ -155,6 +156,18 @@ namespace Ecommerce.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+
+                    using (ApplicationDbContext db = new ApplicationDbContext()) {
+                        var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
+                        var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+
+                        var clienteid = userManager.FindByEmail(model.Email).Id;
+                        userManager.AddToRole(clienteid, "Cliente");
+
+                    }
+                    
+
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
   
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
