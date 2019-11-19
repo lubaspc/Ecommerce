@@ -8,9 +8,13 @@ namespace Ecommerce.Models
     {
 
         public int Id { get; set; }
+        [Required]
         public string Nombre { get; set; }
-        public int Telefono { get; set; }
+        [Required]
+        public string Telefono { get; set; }
+        [Required]
         public double Credito { get; set; }
+        [Required]
         public double CreditoMax { get; set; }
         public virtual ICollection<Compras> Compras { get; set; }
         [Required]

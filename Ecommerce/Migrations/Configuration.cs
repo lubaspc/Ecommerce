@@ -20,6 +20,7 @@
         {
             SeedCatagoProductos(context);
             SeedUsersAndRoles(context);
+            SeedProveedores(context);
         }
 
         private void SeedCatagoProductos(ApplicationDbContext db)
@@ -64,7 +65,7 @@
                 Catalogos = new List<Catalogos> { sal }
             }) ;
         }
-
+        
         
         private void SeedUsersAndRoles(ApplicationDbContext db) {
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
@@ -198,7 +199,27 @@
 
 
         }
+        private void SeedProveedores(ApplicationDbContext db)
+        {
+            Provedores prove1 = new Provedores();
+            prove1.Id = 1;
+            prove1.Nombre = "Alejandro";
+            prove1.Telefono = "7224124088";
+            prove1.Credito = 150000;
+            
 
+            prove1.Direccion = new Direccion
+            {
+                Calle = "Catarina",
+                CodigoPostal = 46192,
+                Colonia = "Santa Barbara",
+                Estado = "ESTADO DE MEXICO",
+                Municipio = "TOLUCA",
+                NoExterior = 202,
+                NoInterior = 202,
+                Referencia = "Puerta negra"
+            };
+        }
    
     }
 }
