@@ -17,8 +17,7 @@ namespace Ecommerce.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
+            ViewBag.productos = db.Productos.ToList();
             return View();
         }
 
@@ -28,6 +27,7 @@ namespace Ecommerce.Controllers
             if (Id.HasValue)
             {
                 var catalog = db.Catalogos.Find(Id);
+                
                 productos = catalog.Productos;
             }
             else
