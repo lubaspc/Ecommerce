@@ -4,20 +4,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace Ecommerce.Controllers
 {
     public class CarritoController : Controller
     {
+        ApplicationDbContext db = new ApplicationDbContext();
         // GET: Carrito
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult Comprar(string id)
+        public ActionResult Comprar(int id)
         {
-            Productos productos = new Productos();
+            Productos productos = db.Productos.Find(id);
             if (Session["carro"] == null)
             {
                 List<Carrito> carro = new List<Carrito>();
@@ -41,7 +43,7 @@ namespace Ecommerce.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Eliminar(string id)
+        public ActionResult Eliminar(int id)
         {
             List<Carrito> carro = (List<Carrito>)Session["carro"];
             int index = isExist(id);
@@ -50,7 +52,25 @@ namespace Ecommerce.Controllers
             return RedirectToAction("Index");
         }
 
-        private int isExist(String id)
+        public ActionResult Cantidad(int Id, bool Mas)
+        {
+            List<Carrito> carro = (List<Carrito>)Session["carro"];
+            int index = isExist(Id);
+            if (index != -1)
+            {
+                if (Mas)
+                {
+                    carro[index].Cantidad++;
+                }
+                else
+                {
+                    carro[index].Cantidad--;
+                }
+            }
+            return RedirectToAction("Index");
+        }
+
+        private int isExist(int id)
         {
             List<Carrito> carro = (List<Carrito>)Session["carro"];
             for (int i = 0; i < carro.Count; i++)
@@ -60,5 +80,8 @@ namespace Ecommerce.Controllers
             }
             return -1;
         }
+
+       
+
     }
 }

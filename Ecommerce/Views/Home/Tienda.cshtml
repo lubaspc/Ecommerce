@@ -2,35 +2,41 @@
 @{
     ViewBag.Title = "Tienda";
 }
+    <div class="bg-pan2">
+        <div class="text-center pt-5">
+            <h1 class="text-white"  >Catalogo</h1>
+        </div>
+        <div class="catalog-categories">
+            <ul class="nav justify-content-between px-5">
+                @foreach (Catalogos catalog in ViewBag.catalogos)
+                {
+                    <li class="nav-item">
+                        <a href="@Url.Action("Tienda", "Home",
+                          new { Id = catalog.Id } )"
+                           class="navbar-brand link-catalog" title="List View">
+                            <h3>@catalog.name</h3>
+                        </a>
+                    </li>
+                }
 
-<div class="text-center">
-    <h1>Catalogo</h1>
-</div>
-<ul class="nav justify-content-between px-5">
-    @foreach (Catalogos catalog in ViewBag.catalogos)
-    {
-    <li class="nav-item">
-        <a href="@Url.Action("Tienda", "Home",new { Id = catalog.Id } )" class="navbar-brand" title="List View">  
-            <img alt="List View" src="@Url.Content("~/Content/img/logo.png")" class="img-logo">
-        </a>
-    </li>
-    }
-
-</ul>
-<div class="container p-5">
-    <div class="row">
-        @foreach(Productos producto in ViewBag.productos)
-        {
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="card" style="width: 100%;">
-                <img src="~/Content/@producto.Url_image" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="@Url.Action("Comprar", "Carrito", new { id = producto.Id })">Comprar ahora</a>
-                </div>
+            </ul>
+        </div>
+        <div class="container p-5 my-5 bg-semitanparente">
+            <div class="row">
+                @foreach (Productos producto in ViewBag.productos)
+                {
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                        <div class="card" style="width: 100%;">
+                            <img src="~/Content/@producto.Url_image" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">@producto.Nombre</h5>
+                                <p class="card-text">Desciprcion: @producto.Descripcion</p>
+                                <p class="card-text">Costo Final: @producto.Precio_final</p>
+                                <a class="agregar-carrito" href="@Url.Action("Comprar", "Carrito", new { id = producto.Id })">Comprar ahora</a>
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
-        }
     </div>
-</div>

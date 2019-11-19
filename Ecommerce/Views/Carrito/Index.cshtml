@@ -3,42 +3,59 @@
 @{
     ViewBag.Title = "Carrito";
 }
-
-    <h3>Carrito de compra</h3>
-    <table cellpadding="2" cellspacing="2" border="1">
-        <tr>
-            <th>Opción</th>
-            <th>Id</th>
-            <th>Nombre</th>
-            <th>Foto</th>
-            <th>Prrecio</th>
-            <th>Cantidad</th>
-            <th>Sub Total</th>
-        </tr>
-        @if ((List<Carrito>)Session["carro"] != null)
-        {
-            foreach (Carrito item in (List<Carrito>)Session["carro"])
+    <div class="text-center pt-5">
+        <h3>Carrito de compra</h3>
+        <div class="row justify-content-end px-5">
+            @if (Request.IsAuthenticated)
             {
-                <tr>
-                    <td><a href="@Url.Action("Eliminar", "Carrito", new { id = item.Productos.Id })">Eliminar</a></td>
-                    <td>@item.Productos.Id</td>
-                    <td>@item.Productos.Nombre</td>
-                    <td><img src="~/Content/@item.Productos.Url_image" width="60" /> </td>
-                    <td>@item.Productos.Precio_final</td>
-                    <td>@item.Cantidad</td>
-                    <td>@(item.Productos.Precio_final* item.Cantidad)</td>
-                </tr>
+            <div class="justify-self-end mb-5">
+                <a class="btn btn-primary" href="@Url.Action("RealisarCompra", "Carrito")">
+                    Realisar Compra
+                </a>
+            </div>
             }
-
-            <tr>
-                <td align="right" colspan="6">Sum</td>
-                <td>
-                    @{
-                        List<Carrito> carro = (List<Carrito>)Session["carro"];
-                        var total = carro.Sum(item => item.Productos.Precio_final * item.Cantidad);
+            <table class="table table-dark pt-5 table-responsive-lg">
+                <tr>
+                    <th>Opción</th>
+                    <th>Nombre</th>
+                    <th>Foto</th>
+                    <th>Prrecio</th>
+                    <th>Cantidad</th>
+                    <th>Sub Total</th>
+                </tr>
+                @if ((List<Carrito>)Session["carro"] != null)
+                {
+                    foreach (Carrito item in (List<Carrito>)Session["carro"])
+                    {
+                        <tr>
+                            <td><a href="@Url.Action("Eliminar", "Carrito", new { id = item.Productos.Id })">Eliminar</a></td>
+                            <td>@item.Productos.Nombre</td>
+                            <td><img src="~/Content/@item.Productos.Url_image" width="60" /> </td>
+                            <td>@item.Productos.Precio_final</td>
+                            <td>@item.Cantidad
+                                <a href="@Url.Action("Cantidad","Carrito",new {Id = item.Productos.Id, mas = true })">
+                                <i class="fas fa-plus"></i> </a>
+                            @if (item.Cantidad > 1)
+                            {
+                                 <a href="@Url.Action("Cantidad","Carrito",new {Id = item.Productos.Id, mas = false })">
+                                <i class="fas fa-minus"></i></a>
+                            }
+                            </td>
+                            <td>@(item.Productos.Precio_final * item.Cantidad)</td>
+                        </tr>
                     }
-                    @total
-                </td>
-            </tr>
-        }
-    </table>
+
+                    <tr>
+                        <td align="right" colspan="6">Sum</td>
+                        <td>
+                            @{
+                                List<Carrito> carro = (List<Carrito>)Session["carro"];
+                                var total = carro.Sum(item => item.Productos.Precio_final * item.Cantidad);
+                            }
+                            @total
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
