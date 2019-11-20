@@ -55,7 +55,7 @@
                         <!-- Modal content-->
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title">FI Factory Ingredents</h4>
+                                <h4 class="modal-title">@item.Nombre</h4>
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
                             <div class="modal-body">
@@ -92,7 +92,7 @@
                 @item.CreditoMax
             </td>
             <td>
-                @Html.ActionLink("Editar", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Modificar", "Edit", new { /* id=item.PrimaryKey */ }) |
                 <a href="#" data-toggle="modal" data-target="#confirmacion_el"> Eliminar</a>
                 <div id="confirmacion_el" class="modal fade" role="dialog">
                     <div class="modal-dialog">

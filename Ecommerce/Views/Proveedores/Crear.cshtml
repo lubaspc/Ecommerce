@@ -41,25 +41,19 @@
 
         <div class="form-group">
             <div class="row">
-                <div class="col-md-3">
-                    <select class="form-control" id="tipo_pago">
-                        <option disabled selected onload="hide_credito()" value="">--Forma de Pago--</option>
-                        <option onclick="show_credito()" value="Credito">Credito</option>
-                        <option onclick="hide_credito()" value="Contado">Contado</option>
-                    </select>
+             
+                <div class="col-md-1">
+                    <label id="tp_lcd_txt">Credito(Dias):</label>
                 </div>
                 <div class="col-md-2">
-                    <label style="display : none;" id="tp_lcd_txt">Credito(Dias):</label>
-                </div>
-                <div class="col-md-2">
-                    @Html.EditorFor(model => model.Credito, new { htmlAttributes = new { @style = "display : none;", @id = "tp_lcd_ta", @placeholder = "ej. 15", @class = "form-control" } })
+                    @Html.EditorFor(model => model.Credito, new { htmlAttributes = new { @id = "tp_lcd_ta", @placeholder = "ej. 15", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Credito, "", new { @class = "text-danger" })
                 </div>
-                <div class="col-md-2">
-                    <label style="display : none;" id="tp_lc_txt">$Credito Maximo:</label>
+                <div class="col-md-1">
+                    <label id="tp_lc_txt">$Credito Maximo:</label>
                 </div>
                 <div class="col-md-2">
-                    @Html.EditorFor(model => model.CreditoMax, new { htmlAttributes = new { @style = "display : none;", @id = "tp_lc_ta", @placeholder = "ej. 15000", @class = "form-control" } })
+                    @Html.EditorFor(model => model.CreditoMax, new { htmlAttributes = new {  @id = "tp_lc_ta", @placeholder = "ej. 15000", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.CreditoMax, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -68,18 +62,19 @@
         <div class="form-group">
             <div class="row">
 
-                <div class="col-md-3">
-                    <select class="form-control" id="estado_sel">
-                        <option disabled selected onload="hide_municipio()" value="">--Estado--</option>
-                        <option onclick="show_municipio(1)" value="Estado de Mexico">Estado de México</option>
-                        <option onclick="show_municipio(2)" value="Baja California">Baja California</option>
-                        <option onclick="show_municipio(3)" value="Queretaro">Queretaro</option>
-                        <option onclick="show_municipio(4)" value="Campeche">Campeche</option>
-                    </select>
+                <div class="col-md-1">
+                    <label id="tp_lc_txt">Estado:</label>
                 </div>
-                <div class="col-md-3">
-                    <select style="display: none;" id="municipio_sel" class="form-control">
-                    </select>
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.Direccion.Estado, new { htmlAttributes = new {  @id = "tp_lc_ta", @placeholder = "ej. Estado de Mexico", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Direccion.Estado, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-1">
+                    <label id="tp_lc_txt">Municipio:</label>
+                </div>
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.Direccion.Municipio, new { htmlAttributes = new {@placeholder = "ej. Toluca",@id = "tp_lc_ta", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Direccion.Municipio, "", new { @class = "text-danger" })
                 </div>
 
             </div>
@@ -91,14 +86,14 @@
                 <div class="col-md-1">
                     <label>Colonia:</label>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     @Html.EditorFor(model => model.Direccion.Colonia, new { htmlAttributes = new { @placeholder = "ej. Seminario", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Direccion.Colonia, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-1">
                     <label>Calle:</label>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     @Html.EditorFor(model => model.Direccion.Calle, new { htmlAttributes = new { @placeholder = "ej. Morelos", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Direccion.Calle, "", new { @class = "text-danger" })
                 </div>
@@ -130,7 +125,7 @@
                     @Html.ValidationMessageFor(model => model.Direccion.Colonia, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-1">
-                    <label>Referencia:</label>
+                    <label >Referencia:</label>
                 </div>
                 <div class="col-md-8">
                     @Html.EditorFor(model => model.Direccion.Referencia, new { htmlAttributes = new { @placeholder = "ej. una casa roja, dentro de un callejon", @class = "form-control " } })
@@ -150,4 +145,3 @@
 <div>
     @Html.ActionLink("Regresar a la lista", "Index")
 </div>
-<script src="~/Scripts/alex_scripts/proveedor_script.js"></script>

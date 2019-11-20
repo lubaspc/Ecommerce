@@ -351,7 +351,8 @@
             prove1.Id = 1;
             prove1.Nombre = "Alejandro";
             prove1.Telefono = "7224124088";
-            prove1.Credito = 150000;
+            prove1.Credito = 15;
+            prove1.CreditoMax = 15000;
             
 
             prove1.Direccion = new Direccion
@@ -365,6 +366,28 @@
                 NoInterior = 202,
                 Referencia = "Puerta negra"
             };
+            
+            Provedores prove2 = new Provedores();
+            prove2.Id = 2;
+            prove2.Nombre = "FI Factory Ingredents";
+            prove2.Telefono = "72284567";
+            prove2.Credito = 15;
+            prove2.CreditoMax = 15000;
+
+
+            prove2.Direccion = new Direccion
+            {
+                Calle = "Manuel Alas",
+                CodigoPostal = 50050,
+                Colonia = "Santa Barbara",
+                Estado = "ESTADO DE MEXICO",
+                Municipio = "TOLUCA",
+                NoExterior = 202,
+                NoInterior = 202,
+                Referencia = "Una casa roja dentro de un callejon"
+            };
+            db.Provedores.AddOrUpdate(prove1);
+            db.Provedores.AddOrUpdate(prove2);
         }
    
     }
