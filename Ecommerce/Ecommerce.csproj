@@ -329,6 +329,7 @@
     <Content Include="Views\Account\EditorForTemplates\DateTime.cshtml" />
     <Content Include="Views\Account\EditorForTemplates\bool.cshtml" />
     <Content Include="Views\User\_ModalPartial.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
