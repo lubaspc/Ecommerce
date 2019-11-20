@@ -23,14 +23,17 @@ namespace Ecommerce.Controllers
 
                 if (userManager.IsInRole(iduser, "Control Productos"))
                 {
+                    Session["Rol"] = "Control Productos";
                     return RedirectToAction("Index", "Producto");
                 }
                 else if (userManager.IsInRole(iduser, "Control Provedores"))
                 {
+                    Session["Rol"] = "Control Provedores";
                     return RedirectToAction("Index", "Proveedores");
                 }
                 else if (userManager.IsInRole(iduser, "Administrador"))
                 {
+                    Session["Rol"] = "Administrador";
                     return RedirectToAction("Index", "User");
                 }
 
