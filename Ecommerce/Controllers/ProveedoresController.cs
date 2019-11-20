@@ -13,7 +13,7 @@ namespace Ecommerce.Controllers
         // GET: Proveedores
         public ActionResult Index()
         {
-            ViewBag.proveedores = db.Provedores;
+            ViewBag.proveedores = db.Provedores.ToList();
             return View();
         }
 
