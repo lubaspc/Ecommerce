@@ -336,6 +336,7 @@
     <Content Include="Views\Catalogos1\Details.cshtml" />
     <Content Include="Views\Catalogos1\Edit.cshtml" />
     <Content Include="Views\Catalogos1\Index.cshtml" />
+    <Content Include="Views\Carrito\terminarCompra.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

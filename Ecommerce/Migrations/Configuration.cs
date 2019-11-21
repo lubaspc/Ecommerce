@@ -21,6 +21,7 @@
             SeedCatagoProductos(context);
             SeedUsersAndRoles(context);
             SeedProveedores(context);
+            context.MetodosPagos.AddOrUpdate(new MetodosPago { Id = 1, Nombre = "Efectivo" });
         }
 
         private void SeedCatagoProductos(ApplicationDbContext db)
@@ -44,7 +45,6 @@
             db.Catalogos.AddOrUpdate(cupido);
             db.Catalogos.AddOrUpdate(Diademuertos);
             db.Catalogos.AddOrUpdate(Navideno);
-
 
             Productos producto1 = new Productos
             {
