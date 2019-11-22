@@ -16,6 +16,8 @@ namespace Ecommerce.Models
         [Required]
         public virtual Provedores Provedores { get; set; }
         public DateTime FechaCompra { get; set; }
+        public int Status { get; set; }
+        public int TipoPago { get; set; }
         public double Total { get; set; }
 
     }

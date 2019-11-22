@@ -15,10 +15,10 @@ namespace Ecommerce.Models
         public int STATUS_PAGADO => 2;
         public int STATUS_ENTREGADO => 3;
         public int Id { get; set; }
-        public virtual ApplicationUser Cliente { get; set; }
+        public virtual Clientes Cliente { get; set; }
         public virtual ICollection<DetalleVenta> DetalleVentas { get; set; }
-        public DateTime FechaVenta { get; set; }
         public int Status { get; set; }
-
+        public int TipoPago { get; set; }
+        public DateTime FechaVenta { get; set; }
     }
 }
