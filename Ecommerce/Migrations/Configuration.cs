@@ -21,7 +21,6 @@
             SeedCatagoProductos(context);
             SeedUsersAndRoles(context);
             SeedProveedores(context);
-            context.MetodosPagos.AddOrUpdate(new MetodosPago { Id = 1, Nombre = "Efectivo" });
         }
 
         private void SeedCatagoProductos(ApplicationDbContext db)
@@ -237,7 +236,7 @@
             userCliente.FechaNaciemiento = new DateTime(1997,2,5,0,0,0);
             userCliente.Active = true;
 
-            userCliente.Direccion = new Direccion
+            userCliente.Direccion = new Clientes
             {
                 Calle = "5 de mayo",
                 CodigoPostal = 46190,
@@ -261,7 +260,7 @@
             userAdmin.FechaNaciemiento = new DateTime(1997, 2, 9, 0, 0, 0);
             userAdmin.Active = true;
 
-            userAdmin.Direccion = new Direccion
+            userAdmin.Direccion = new Clientes
             {
                 Calle = "10 de mayo",
                 CodigoPostal = 46192,
@@ -285,7 +284,7 @@
             userProd.FechaNaciemiento = new DateTime(1960, 8, 8, 0, 0, 0); 
             userProd.Active = true;  
 
-            userProd.Direccion = new Direccion
+            userProd.Direccion = new Clientes
             {
                 Calle = "25 de mayo",
                 CodigoPostal = 46194,
@@ -310,7 +309,7 @@
             userProv.FechaNaciemiento = new DateTime(1960, 8, 29, 0, 0, 0);
             userProv.Active = true;
 
-            userProv.Direccion = new Direccion
+            userProv.Direccion = new Clientes
             {
                 Calle = "30 de mayo",
                 CodigoPostal = 46196,
@@ -355,17 +354,7 @@
             prove1.CreditoMax = 150000;
             
 
-            prove1.Direccion = new Direccion
-            {
-                Calle = "Catarina",
-                CodigoPostal = 46192,
-                Colonia = "Santa Barbara",
-                Estado = "ESTADO DE MEXICO",
-                Municipio = "TOLUCA",
-                NoExterior = 202,
-                NoInterior = 202,
-                Referencia = "Puerta negra"
-            };
+           
             Provedores prove2 = new Provedores();
             prove2.Id = 2;
             prove2.Nombre = "CHARLY";
@@ -373,18 +362,6 @@
             prove2.Credito = 15;
             prove2.CreditoMax = 200000;
 
-
-            prove2.Direccion = new Direccion
-            {
-                Calle = "LA VIRGEN",
-                CodigoPostal = 50050,
-                Colonia = "SANTA CATARINA",
-                Estado = "VERACRUZ",
-                Municipio = "CAMPECHE",
-                NoExterior = 101,
-                NoInterior = 101,
-                Referencia = "Puerta roja"
-            };
             db.Provedores.AddOrUpdate(prove1);
             db.Provedores.AddOrUpdate(prove2);
         }

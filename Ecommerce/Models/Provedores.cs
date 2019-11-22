@@ -17,7 +17,6 @@ namespace Ecommerce.Models
         [Required]
         public double CreditoMax { get; set; }
         public virtual ICollection<Compras> Compras { get; set; }
-        [Required]
-        public virtual Direccion Direccion { get; set; }
+
     }
 }

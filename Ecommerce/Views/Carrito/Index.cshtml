@@ -17,10 +17,7 @@
                 <div class="collapse bg-semitanparente" id="collapseMetodos">
                     <div class="card card-body">
                         <select name="metodoPago">
-                            @foreach(MetodosPago metodo in ViewBag.metodos)
-                            {
-                                <option value="@metodo.Id">@metodo.Nombre</option>
-                            }
+                            <option value="!">Efectivo</option>
                         </select>
                         <a class="btn btn-primary" href="@Url.Action("TerminarCompra", "Carrito")">
                             Finalizar compra

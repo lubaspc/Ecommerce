@@ -13,7 +13,9 @@ namespace Ecommerce.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-
+        public int ADMIN => 1;
+        public int EMPLEADO => 2; 
+        public int CLIENTE => 1;
         public bool Male { get; set; }
 
         public String Nombre { get; set; }
@@ -21,7 +23,7 @@ namespace Ecommerce.Models
         public bool Active { get; set; }
         
         [Required]
-        public Direccion Direccion { get; set; }
+        public Clientes Direccion { get; set; }
 
         public virtual ICollection<Ventas> Ventas { get; set; }
 
@@ -44,13 +46,12 @@ namespace Ecommerce.Models
         {
            
         }
-        public DbSet<Direccion> Direccion { get; set; }
+        public DbSet<Clientes> Direccion { get; set; }
         public DbSet<Productos> Productos { get; set; }
         public DbSet<Catalogos> Catalogos { get; set; }
         public DbSet<DetalleCompras> DetalleCompras { get; set; }
         public DbSet<DetalleVenta> DetalleVentas{ get; set; }
         public DbSet<Ventas> Ventas { get; set; }
-        public DbSet<MetodosPago> MetodosPagos{ get; set; }
         public DbSet<Compras> Compras{ get; set; }
         public DbSet<Provedores> Provedores{ get; set; }
 

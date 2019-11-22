@@ -186,14 +186,13 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Carrito.cs" />
     <Compile Include="Models\Catalogos.cs" />
-    <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Compras.cs" />
     <Compile Include="Models\DetalleCompras.cs" />
     <Compile Include="Models\DetalleVenta.cs" />
-    <Compile Include="Models\Direccion.cs" />
+    <Compile Include="Models\Clientes.cs" />
+    <Compile Include="Models\Empledos.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\MetodosPago.cs" />
     <Compile Include="Models\ProductoCatalogo.cs" />
     <Compile Include="Models\Productos.cs" />
     <Compile Include="Models\Provedores.cs" />

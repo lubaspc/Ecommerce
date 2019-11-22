@@ -17,7 +17,7 @@ namespace Ecommerce.Controllers
         // GET: Carrito
         public ActionResult Index()
         {
-            ViewBag.metodos = db.MetodosPagos.ToList();
+          
             return View();
         }
 
@@ -109,7 +109,6 @@ namespace Ecommerce.Controllers
             Ventas venta = new Ventas
             {
                 Cliente = user,
-                MetodoPago = db.MetodosPagos.ToList()[0],
                 Status = 1,
                 DetalleVentas = detalle,
                 FechaVenta = DateTime.Now,
