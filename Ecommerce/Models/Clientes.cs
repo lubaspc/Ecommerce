@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -27,6 +28,7 @@ namespace Ecommerce.Models
         [DefaultValue(true)]
         public bool Active { get; set; }
 
+        public virtual ICollection<Ventas> Ventas { get; set; }
 
     }
 }
