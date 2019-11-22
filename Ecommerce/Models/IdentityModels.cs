@@ -13,20 +13,7 @@ namespace Ecommerce.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-        public int ADMIN => 1;
-        public int EMPLEADO => 2; 
-        public int CLIENTE => 1;
-        public bool Male { get; set; }
-
-        public String Nombre { get; set; }
-        public DateTime FechaNaciemiento { get; set; }
-        public bool Active { get; set; }
-        
-        [Required]
-        public Clientes Direccion { get; set; }
-
-        public virtual ICollection<Ventas> Ventas { get; set; }
-
+       
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
