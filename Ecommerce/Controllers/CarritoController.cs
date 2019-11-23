@@ -108,7 +108,7 @@ namespace Ecommerce.Controllers
             var user = userManager.FindById(User.Identity.GetUserId());
             Ventas venta = new Ventas
             {
-                Cliente = user,
+                //Cliente = user,
                 Status = 1,
                 DetalleVentas = detalle,
                 FechaVenta = DateTime.Now,
