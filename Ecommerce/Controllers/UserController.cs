@@ -38,8 +38,6 @@ namespace Ecommerce.Controllers
 
             var resul = userManager.Update(user);
 
-
-
             return RedirectToAction("Index", "User");
         }
 

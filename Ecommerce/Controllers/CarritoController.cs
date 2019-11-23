@@ -5,6 +5,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Web.Security;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Ecommerce.Controllers
 {
@@ -14,6 +17,7 @@ namespace Ecommerce.Controllers
         // GET: Carrito
         public ActionResult Index()
         {
+          
             return View();
         }
 
@@ -79,6 +83,43 @@ namespace Ecommerce.Controllers
                     return i;
             }
             return -1;
+        }
+
+        public ActionResult TerminarCompra()
+        {
+            List<Carrito> carro = (List<Carrito>)Session["carro"];
+            double total = 0;
+            ICollection<DetalleVenta> detalle = new List<DetalleVenta>();
+            foreach (Carrito car in carro)
+            {
+                Productos producto = db.Productos.Find(car.Productos.Id);
+                total += (car.Productos.Precio_final * car.Cantidad);
+                DetalleVenta dventa = new DetalleVenta
+                {
+                    Cantidad = car.Cantidad,
+                    Porcentaje_Descuento = 0,
+                    Porcentaje_Incrmento = 0,
+                    Producto = producto,
+                    Subtotal = (car.Productos.Precio_final * car.Cantidad),
+                };
+                detalle.Add(dventa);
+            }
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            var user = userManager.FindById(User.Identity.GetUserId());
+            Ventas venta = new Ventas
+            {
+                Cliente = user,
+                Status = 1,
+                DetalleVentas = detalle,
+                FechaVenta = DateTime.Now,
+
+            };
+            carro.Clear();
+            db.Ventas.Add(venta);
+            db.SaveChangesAsync();
+            Session["carro"] = carro;
+          
+            return RedirectToAction("Index");
         }
 
        
