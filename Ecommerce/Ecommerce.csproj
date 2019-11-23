@@ -193,6 +193,7 @@
     <Compile Include="Models\Empleados.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MetodosPago.cs" />
     <Compile Include="Models\ProductoCatalogo.cs" />
     <Compile Include="Models\Productos.cs" />
     <Compile Include="Models\Provedores.cs" />

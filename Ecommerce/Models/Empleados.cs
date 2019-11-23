@@ -24,6 +24,7 @@ namespace Ecommerce.Models
         public int NoInterior { get; set; }
         public int NoExterior { get; set; }
         public string Referencia { get; set; }
+        public bool Registro_Completo { get; set; }
         [DefaultValue(true)]
         public bool Active { get; set; }
         public bool Registro_completo { get; set; }
