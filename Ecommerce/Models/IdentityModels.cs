@@ -13,18 +13,7 @@ namespace Ecommerce.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-
-        public bool Male { get; set; }
-
-        public String Nombre { get; set; }
-        public DateTime FechaNaciemiento { get; set; }
-        public bool Active { get; set; }
-        
-        [Required]
-        public Direccion Direccion { get; set; }
-
-        public virtual ICollection<Ventas> Ventas { get; set; }
-
+       
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -44,13 +33,12 @@ namespace Ecommerce.Models
         {
            
         }
-        public DbSet<Direccion> Direccion { get; set; }
+        public DbSet<Cliente> Direccion { get; set; }
         public DbSet<Productos> Productos { get; set; }
         public DbSet<Catalogos> Catalogos { get; set; }
         public DbSet<DetalleCompras> DetalleCompras { get; set; }
         public DbSet<DetalleVenta> DetalleVentas{ get; set; }
         public DbSet<Ventas> Ventas { get; set; }
-        public DbSet<MetodosPago> MetodosPagos{ get; set; }
         public DbSet<Compras> Compras{ get; set; }
         public DbSet<Provedores> Provedores{ get; set; }
 
@@ -73,5 +61,7 @@ namespace Ecommerce.Models
           
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<Ecommerce.Models.Empleados> Empleados { get; set; }
     }
 }
