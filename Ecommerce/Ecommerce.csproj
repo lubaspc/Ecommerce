@@ -173,12 +173,12 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\Catalogos1Controller.cs" />
+    <Compile Include="Controllers\EmpleadosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -186,11 +186,11 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Carrito.cs" />
     <Compile Include="Models\Catalogos.cs" />
-    <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Compras.cs" />
     <Compile Include="Models\DetalleCompras.cs" />
     <Compile Include="Models\DetalleVenta.cs" />
-    <Compile Include="Models\Direccion.cs" />
+    <Compile Include="Models\Cliente.cs" />
+    <Compile Include="Models\Empleados.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MetodosPago.cs" />
@@ -320,22 +320,25 @@
     <Content Include="Views\Home\Tienda.cshtml" />
     <Content Include="Views\Carrito\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
-    <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutProducts.cshtml" />
     <Content Include="Views\Shared\_LayoutProvedores.cshtml" />
-    <Content Include="Views\User\HomeAdmin.cshtml" />
     <Content Include="Views\Proveedores\Index.cshtml" />
     <Content Include="Views\Proveedores\Crear.cshtml" />
     <Content Include="Views\Proveedores\Edit.cshtml" />
     <Content Include="Views\Account\EditorForTemplates\DateTime.cshtml" />
     <Content Include="Views\Account\EditorForTemplates\bool.cshtml" />
-    <Content Include="Views\User\_ModalPartial.cshtml" />
-    <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\Catalogos1\Create.cshtml" />
     <Content Include="Views\Catalogos1\Delete.cshtml" />
     <Content Include="Views\Catalogos1\Details.cshtml" />
     <Content Include="Views\Catalogos1\Edit.cshtml" />
     <Content Include="Views\Catalogos1\Index.cshtml" />
+    <Content Include="Views\Carrito\terminarCompra.cshtml" />
+    <Content Include="Views\Empleados\Create.cshtml" />
+    <Content Include="Views\Empleados\Delete.cshtml" />
+    <Content Include="Views\Empleados\Details.cshtml" />
+    <Content Include="Views\Empleados\Edit.cshtml" />
+    <Content Include="Views\Empleados\Index.cshtml" />
+    <Content Include="Views\Shared\_LoginAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
