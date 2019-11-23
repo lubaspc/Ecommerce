@@ -63,17 +63,17 @@
             <div class="row">
 
                 <div class="col-md-1">
-                    <label id="tp_lc_txt">Estado:</label>
+                    <label>Estado:</label>
                 </div>
                 <div class="col-md-2">
-                    @Html.EditorFor(model => model.Direccion.Estado, new { htmlAttributes = new { @Value = "ESTADO DE MEXICO", @id = "tp_lc_ta", @placeholder = "ej. 15000", @class = "form-control" } })
+                    @Html.EditorFor(model => model.Direccion.Estado, new { htmlAttributes = new { @Value = "Estado de Mexico",@placeholder = "ej. Seminario", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Direccion.Estado, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-1">
-                    <label id="tp_lc_txt">Municipio:</label>
+                    <label>Municipio:</label>
                 </div>
                 <div class="col-md-2">
-                    @Html.EditorFor(model => model.Direccion.Municipio, new { htmlAttributes = new { @Value = "TOLUCA", @id = "tp_lc_ta", @placeholder = "ej. 15000", @class = "form-control" } })
+                    @Html.EditorFor(model => model.Direccion.Municipio, new { htmlAttributes = new {@Value = "Toluca", @placeholder = "ej. Seminario", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Direccion.Municipio, "", new { @class = "text-danger" })
                 </div>
 
