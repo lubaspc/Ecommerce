@@ -33,7 +33,7 @@ namespace Ecommerce.Models
         {
            
         }
-        public DbSet<Cliente> Direccion { get; set; }
+        public DbSet<Cliente> Cliente { get; set; }
         public DbSet<Productos> Productos { get; set; }
         public DbSet<Catalogos> Catalogos { get; set; }
         public DbSet<DetalleCompras> DetalleCompras { get; set; }
@@ -41,6 +41,7 @@ namespace Ecommerce.Models
         public DbSet<Ventas> Ventas { get; set; }
         public DbSet<Compras> Compras{ get; set; }
         public DbSet<Provedores> Provedores{ get; set; }
+        public DbSet<Empleados> Empleados { get; set; }
 
 
         /*protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -62,6 +63,5 @@ namespace Ecommerce.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<Ecommerce.Models.Empleados> Empleados { get; set; }
     }
 }
