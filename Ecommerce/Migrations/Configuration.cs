@@ -259,12 +259,12 @@
             {
                 detalle1
             };
-            compra2.Id = 1;
-            compra2.Status = compra1.STATUS_PEDIDO;
-            compra2.TipoPago = compra1.CREDITO;
+            compra2.Id = 2;
+            compra2.Status = compra2.STATUS_PAGADO;
+            compra2.TipoPago = compra2.DEBITO;
             compra2.Provedores = prove1;
-            compra2.FechaCompra = new DateTime(2019, 11, 23);
-            compra2.Total = 400000;
+            compra2.FechaCompra = new DateTime(2018, 10, 22);
+            compra2.Total = 300000;
             compra2.DetallesCompras = new List<DetalleCompras>
             {
                 detalle1
@@ -273,6 +273,7 @@
             db.Provedores.AddOrUpdate(prove2);
             db.DetalleCompras.AddOrUpdate(detalle1);
             db.Compras.AddOrUpdate(compra1);
+            db.Compras.AddOrUpdate(compra2);
         }
     }
 }

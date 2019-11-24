@@ -6,12 +6,27 @@
 }
 
 <h2>Historial de compras</h2>
+@using (@Html.BeginForm("Index", "Home", FormMethod.Get))
+{
+    <b> Buscar:</b>
+    @Html.RadioButton("searchBy", "Status", true) <text>
+        Estado</text>
+    @Html.RadioButton("searchBy", "TipoPago") <text>
+        Tipo de Pago</text>
+    @Html.RadioButton("searchBy", "FechaCompra", true) <text>
+        Fecha de Compra</text>
+    @Html.RadioButton("searchBy", "Provedor.Nombre") <text>
+        Nombre de proveedor</text>
+    <br />
+    @Html.TextBox("Buscar")
+    <input type="submit" value="search" />
 
+}
 <div class="text-right">
 
     <form>
         <p>
-            <button class="btn btn-success" formaction="/Compras/Crear">Agregar</button>
+            <button class="btn btn-success" formaction="/DetallesCompra/Index">Agregar</button>
         </p>
     </form>
 
@@ -19,66 +34,62 @@
 <table class="table">
     <tr>
         <th>
-            Fecha de Compra
+            @Html.ActionLink("Fecha de Compra", "Index", new { sortBy = ViewBag.NameSort, searchBy = Request["searchBy"], search = Request["search"] })
         </th>
         <th>
-            Nombre del proveedor
+            @Html.ActionLink("Nombre del proveedor", "Index", new { sortBy = ViewBag.NameSort, searchBy = Request["searchBy"], search = Request["search"] })
         </th>
         <th>
+            @Html.ActionLink("Estado", "Index", new { sortBy = ViewBag.NameSort, searchBy = Request["searchBy"], search = Request["search"] })
+        </th>
+        <th>
+            @Html.ActionLink("Tipo de Pago", "Index", new { sortBy = ViewBag.NameSort, searchBy = Request["searchBy"], search = Request["search"] })
 
-            @Html.ActionLink("Estado", "OrderbyStatus")
-        </th>
-        <th>
-            Tipo de Pago
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Total)
         </th>
-        <th></th>
+
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.FechaCompra)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Provedores.Nombre)
-    </td>
-    <td>
-        @if (item.Status == 1)
-        {
-           @: Pedido
-        }
-        else if (item.Status == 2)
-        {
-           @: Pagado
-        }
-        else
-        {
-            @:Recibido
-        }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaCompra)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Provedores.Nombre)
+            </td>
+            <td>
+                @if (item.Status == 1)
+                {
+                    @: Pedido
+                }
+                else if (item.Status == 2)
+                {
+                    @: Pagado
+                }
+                else
+                {
+                    @:Recibido
+                }
 
-    </td>
-    <td>
-        @if (item.TipoPago == 1)
-        {
-            @: Debito
-        }
-        else
-        {
-            @:Credito
-        }
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Total)
-    </td>
-    <td>
-        @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
-        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-    </td>
-</tr>
-}
+            </td>
+            <td>
+                @if (item.TipoPago == 1)
+                {
+                    @: Debito
+                }
+                else
+                {
+                    @:Credito
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total)
+            </td>
+        </tr>
+    }
 
 </table>
