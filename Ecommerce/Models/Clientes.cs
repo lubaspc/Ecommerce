@@ -27,7 +27,6 @@ namespace Ecommerce.Models
         public string No_targeta { get; set; }
         [DefaultValue(true)]
         public bool Active { get; set; }
-
         public virtual ICollection<Ventas> Ventas { get; set; }
 
     }
