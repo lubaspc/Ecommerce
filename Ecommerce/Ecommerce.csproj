@@ -177,6 +177,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
+    <Compile Include="Controllers\Productos1Controller.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
     <Compile Include="Global.asax.cs">
@@ -339,6 +340,11 @@
     <Content Include="Views\Empleados\Edit.cshtml" />
     <Content Include="Views\Empleados\Index.cshtml" />
     <Content Include="Views\Shared\_LoginAdmin.cshtml" />
+    <Content Include="Views\Productos1\Create.cshtml" />
+    <Content Include="Views\Productos1\Delete.cshtml" />
+    <Content Include="Views\Productos1\Details.cshtml" />
+    <Content Include="Views\Productos1\Edit.cshtml" />
+    <Content Include="Views\Productos1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
