@@ -25,9 +25,10 @@ namespace Ecommerce.Models
         public double Costo_unitario { get; set; }
         public int Porcentage_descuento { get; set; }
         public int Status { get; set; }
-       
+        [Required]
+        public DateTime Fecha_caducidad { get; set; }
         public double Precio_final { get; set; }
-
+        public Int32 Cantidad_ventas { get; set; }
         public virtual ICollection<Catalogos> Catalogos { set; get; }
         public virtual ICollection<DetalleVenta> DetalleVentas { set; get; }
         public virtual ICollection<DetalleCompras> DetalleCompra { set; get; }

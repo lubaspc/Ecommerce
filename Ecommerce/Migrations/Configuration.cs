@@ -18,8 +18,146 @@
 
         protected override void Seed(Ecommerce.Models.ApplicationDbContext context)
         {
-            //SeedCatagoProductos(context);
-            SeedProveedores(context);
+            SeedCatagoProductos(context);
+            //SeedProveedores(context);
+            SeedEmpleados(context);
+        }
+
+        private void SeedEmpleados(ApplicationDbContext db) {
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+
+            roleManager.Create(new IdentityRole("Administrador"));
+            roleManager.Create(new IdentityRole("Empleado"));
+
+
+            var user_rh = new ApplicationUser { UserName = "Andrea", Email = "andreaRH@gmail.com" };
+            var rh = userManager.Create(user_rh, "pruebaRH");
+
+            if (rh.Succeeded) {
+
+                userManager.AddToRole(user_rh.Id, "Empleado");
+
+                Empleados w_rh = new Empleados();
+                w_rh.Id_users = user_rh.Id;
+                w_rh.Nombre = "Andrea Escobar Cazares";
+                w_rh.Sexo = false;
+                w_rh.Salario = 9000;
+                w_rh.Puesto = "Administrador de recursos humanos";
+                w_rh.Area = "Recursos Humanos";
+                w_rh.Fecha_Nacimeinto = new DateTime(1988, 8, 29);
+                w_rh.Estado = "Mexico";
+                w_rh.Municipio = "Chimalhuaacan";
+                w_rh.CodigoPostal = 51680;
+                w_rh.Colonia = "Los Patos";
+                w_rh.Calle = "5 de mayo";
+                w_rh.NoInterior = 1;
+                w_rh.NoExterior = 1;
+                w_rh.Referencia = "Puerta azul";
+                w_rh.Registro_Completo= true;
+                w_rh.Active = true;
+
+                db.Empleados.AddOrUpdate(w_rh);
+            }
+
+            
+
+            var user_fi = new ApplicationUser();
+            user_fi.Email = "alejandroFI@gmail.com";
+            user_fi.UserName = "Alejandro";
+            var fi = userManager.Create(user_fi, "pruebaFI");
+
+            if (fi.Succeeded)
+            {
+
+                userManager.AddToRole(user_fi.Id, "Empleado");
+
+                Empleados w_rh = new Empleados();
+                w_rh.Id_users = user_fi.Id;
+                w_rh.Nombre = "Alejandro Orihuela Becerril";
+                w_rh.Sexo = true;
+                w_rh.Salario = 10500;
+                w_rh.Puesto = "Control finanzas";
+                w_rh.Area = "Finanzas";
+                w_rh.Fecha_Nacimeinto = new DateTime(1985, 6, 15);
+                w_rh.Estado = "Mexico";
+                w_rh.Municipio = "Metepec";
+                w_rh.CodigoPostal = 52156;
+                w_rh.Colonia = "Metepec";
+                w_rh.Calle = "15 de mayo";
+                w_rh.NoInterior = 5;
+                w_rh.NoExterior = 2;
+                w_rh.Referencia = "Puerta negra";
+                w_rh.Registro_Completo = true;
+                w_rh.Active = true;
+
+                db.Empleados.AddOrUpdate(w_rh);
+            }
+
+            var user_al = new ApplicationUser();
+            user_al.Email = "humbertoAL@gmail.com";
+            user_al.UserName = "Humberto";
+            var al = userManager.Create(user_al, "pruebaAL");
+
+            if (al.Succeeded)
+            {
+
+                userManager.AddToRole(user_al.Id, "Empleado");
+
+                Empleados w_rh = new Empleados();
+                w_rh.Id_users = user_al.Id;
+                w_rh.Nombre = "Humberto Segura Guzman";
+                w_rh.Sexo = true;
+                w_rh.Salario = 8500;
+                w_rh.Puesto = "Control de almacen";
+                w_rh.Area = "Almacen";
+                w_rh.Fecha_Nacimeinto = new DateTime(1995, 10, 30);
+                w_rh.Estado = "Mexico";
+                w_rh.Municipio = "Metepec";
+                w_rh.CodigoPostal = 52156;
+                w_rh.Colonia = "Metepec";
+                w_rh.Calle = "25 de mayo";
+                w_rh.NoInterior = 2;
+                w_rh.NoExterior = 5;
+                w_rh.Referencia = "Puerta amarilla";
+                w_rh.Registro_Completo = true;
+                w_rh.Active = true;
+
+                db.Empleados.AddOrUpdate(w_rh);
+            }
+
+            var user_ad = new ApplicationUser();
+            user_ad.Email = "vianyAD@gmail.com";
+            user_ad.UserName = "Vianey";
+            var ad = userManager.Create(user_ad, "pruebaAD");
+
+            if (ad.Succeeded)
+            {
+
+                userManager.AddToRoles(user_ad.Id, "Administrador", "Empleado");
+
+                Empleados w_rh = new Empleados();
+                w_rh.Id_users = user_ad.Id;
+                w_rh.Nombre = "Vianey Jaimes Martinez";
+                w_rh.Sexo = false;
+                w_rh.Salario = 11500;
+                w_rh.Puesto = "Director Administrativo";
+                w_rh.Area = "Direccion";
+                w_rh.Fecha_Nacimeinto = new DateTime(1987, 1, 25);
+                w_rh.Estado = "Mexico";
+                w_rh.Municipio = "Metepec";
+                w_rh.CodigoPostal = 52789;
+                w_rh.Colonia = "Metepec";
+                w_rh.Calle = "25 de enero";
+                w_rh.NoInterior = 9;
+                w_rh.NoExterior = 9;
+                w_rh.Referencia = "Puerta morada";
+                w_rh.Registro_Completo = true;
+                w_rh.Active = true;
+
+                db.Empleados.AddOrUpdate(w_rh);
+            }
+
         }
 
         private void SeedCatagoProductos(ApplicationDbContext db)
@@ -53,9 +191,12 @@
                 Sabor = "dulce",
                 Marca = "Propia",
                 Costo_unitario = 6.5,
-                Porcentage_descuento = 0,
+                Porcentage_descuento = 5,
                 Status = 1,
                 Precio_final = 8,
+                stock = 30,
+                Cantidad_ventas = 3,
+                Fecha_caducidad = new DateTime(1988, 8, 29),
                 Catalogos = new List<Catalogos> { dulce, trigo }
             };
 
@@ -71,6 +212,9 @@
                 Porcentage_descuento = 0,
                 Status = 1,
                 Precio_final = 12,
+                stock = 30,
+                Cantidad_ventas = 3,
+                Fecha_caducidad = new DateTime(1988, 8, 29),
                 Catalogos = new List<Catalogos> { sal, trigo }
 
 
@@ -88,6 +232,9 @@
                 Porcentage_descuento = 0,
                 Status = 1,
                 Precio_final = 10,
+                stock = 30,
+                Cantidad_ventas = 3,
+                Fecha_caducidad = new DateTime(1988, 8, 29),
                 Catalogos = new List<Catalogos> { champinon, sal }
             };
 
@@ -103,6 +250,9 @@
                 Porcentage_descuento = 0,
                 Status = 1,
                 Precio_final = 12,
+                stock = 30,
+                Cantidad_ventas = 3,
+                Fecha_caducidad = new DateTime(1988, 8, 29),
                 Catalogos = new List<Catalogos> { champinon, trigo }
             };
 
@@ -118,6 +268,9 @@
                 Porcentage_descuento = 0,
                 Status = 1,
                 Precio_final = 20,
+                stock = 30,
+                Cantidad_ventas = 3,
+                Fecha_caducidad = new DateTime(1988, 8, 29),
                 Catalogos = new List<Catalogos> { trigo, champinon }
 
             };
@@ -134,6 +287,9 @@
                 Porcentage_descuento = 0,
                 Status = 1,
                 Precio_final = 15,
+                stock = 30,
+                Cantidad_ventas = 3,
+                Fecha_caducidad = new DateTime(1988, 8, 29),
                 Catalogos = new List<Catalogos> { linaza, champinon }
             };
 
@@ -149,6 +305,9 @@
                 Porcentage_descuento = 0,
                 Status = 1,
                 Precio_final = 9,
+                stock = 30,
+                Cantidad_ventas = 3,
+                Fecha_caducidad = new DateTime(1988, 8, 29),
                 Catalogos = new List<Catalogos> { linaza, dulce }
             };
 
@@ -164,6 +323,9 @@
                 Porcentage_descuento = 0,
                 Status = 1,
                 Precio_final = 15,
+                stock = 30,
+                Cantidad_ventas = 3,
+                Fecha_caducidad = new DateTime(1988, 8, 29),
                 Catalogos = new List<Catalogos> { trigo, champinon }
             };
 
@@ -179,6 +341,9 @@
                 Porcentage_descuento = 0,
                 Status = 1,
                 Precio_final = 10,
+                stock = 30,
+                Cantidad_ventas = 3,
+                Fecha_caducidad = new DateTime(1988, 8, 29),
                 Catalogos = new List<Catalogos> { trigo }
             };
 
@@ -194,6 +359,9 @@
                 Porcentage_descuento = 0,
                 Status = 1,
                 Precio_final = 25,
+                stock = 30,
+                Cantidad_ventas = 10,
+                Fecha_caducidad = new DateTime(1988, 8, 29),
                 Catalogos = new List<Catalogos> { champinon, sal }
             };
 
@@ -213,26 +381,12 @@
        
         private void SeedProveedores(ApplicationDbContext db)
         {
-            Catalogos trigo = new Catalogos { Id = 4, name = "Trigo" };
-            Productos producto9 = new Productos
-            {
-                Id = 9,
-                Nombre = "Pan trigo",
-                Descripcion = "Pan horneado de trigo elaborado artesanalmente",
-                Url_image = "images/img10.jpg",
-                Sabor = "Trigo",
-                Marca = "Champan",
-                Costo_unitario = 6,
-                Porcentage_descuento = 0,
-                Status = 1,
-                Precio_final = 10,
-                Catalogos = new List<Catalogos> { trigo }
-            };
             Provedores prove1 = new Provedores();
             prove1.Id = 1;
             prove1.Nombre = "Alejandro";
             prove1.Telefono = "7224124088";
-            prove1.Correo = "alexseed2@hotmail.com";
+            prove1.Credito = 10;
+            prove1.CreditoMax = 150000;
             
 
            
@@ -240,40 +394,12 @@
             prove2.Id = 2;
             prove2.Nombre = "CHARLY";
             prove2.Telefono = "7171717171";
-            prove2.Correo = "cidhighwind97@hotmail.com";
-            
-            DetalleCompras detalle1 = new DetalleCompras();
-            detalle1.Id = 1;
-            detalle1.Productos = producto9;
-            detalle1.Cantidad = 200;
-            detalle1.Fecha_vencimiento = new DateTime(2019, 12, 23);
-            Compras compra1 = new Compras();
-            Compras compra2 = new Compras();
-            compra1.Id = 1;
-            compra1.Status = compra1.STATUS_PEDIDO;
-            compra1.TipoPago = compra1.CREDITO;
-            compra1.Provedores = prove1;
-            compra1.FechaCompra = new DateTime(2019, 11, 23);
-            compra1.Total = 400000;
-            compra1.DetallesCompras = new List<DetalleCompras>
-            {
-                detalle1
-            };
-            compra2.Id = 2;
-            compra2.Status = compra2.STATUS_PAGADO;
-            compra2.TipoPago = compra2.DEBITO;
-            compra2.Provedores = prove1;
-            compra2.FechaCompra = new DateTime(2018, 10, 22);
-            compra2.Total = 300000;
-            compra2.DetallesCompras = new List<DetalleCompras>
-            {
-                detalle1
-            };
+            prove2.Credito = 15;
+            prove2.CreditoMax = 200000;
+
             db.Provedores.AddOrUpdate(prove1);
             db.Provedores.AddOrUpdate(prove2);
-            db.DetalleCompras.AddOrUpdate(detalle1);
-            db.Compras.AddOrUpdate(compra1);
-            db.Compras.AddOrUpdate(compra2);
         }
+   
     }
 }
