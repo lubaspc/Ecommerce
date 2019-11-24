@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Ecommerce.Models
 {
-    public class Empledos
+    public class Empleados
     {
         public int Id { get; set; }
         public string Id_users { get; set; }
@@ -27,5 +27,6 @@ namespace Ecommerce.Models
         public bool Registro_Completo { get; set; }
         [DefaultValue(true)]
         public bool Active { get; set; }
+        public bool Registro_completo { get; set; }
     }
 }

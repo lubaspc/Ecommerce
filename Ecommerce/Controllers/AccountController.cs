@@ -152,21 +152,10 @@ namespace Ecommerce.Controllers
         {
             if (ModelState.IsValid)                 
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Male= model.Male, Nombre= model.Nombre, FechaNaciemiento= model.FechaNaciemiento, Active=true, Direccion = model.Direccion };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-
-                    using (ApplicationDbContext db = new ApplicationDbContext()) {
-                        var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
-                        var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
-
-                        var clienteid = userManager.FindByEmail(model.Email).Id;
-                        userManager.AddToRole(clienteid, "Cliente");
-
-                    }
-                    
-
 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
   

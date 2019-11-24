@@ -93,7 +93,7 @@ namespace Ecommerce.Models
         public bool Active { get; set; }
 
         [Required]
-        public Clientes Direccion { get; set; }
+        public Cliente Direccion { get; set; }
 
 
     }

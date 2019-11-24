@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ecommerce.Models
 {
-    public class Clientes
+    public class Cliente
     {
      
         [Key] 
@@ -25,6 +25,7 @@ namespace Ecommerce.Models
         public string Referencia { get; set; }
         public int Tipo_targeta { get; set; }
         public string No_targeta { get; set; }
+        
         [DefaultValue(true)]
         public bool Active { get; set; }
         public virtual ICollection<Ventas> Ventas { get; set; }
