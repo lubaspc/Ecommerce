@@ -71,6 +71,10 @@ namespace Ecommerce.Models
          public string Email { get; set; }
 
         [Required]
+        [Display(Name = "Nombre de usuario")]
+        public string UserName { get; set; }
+
+        [Required]
         [StringLength(100, ErrorMessage = "la {0} no tiene caracteres suficientes {2}.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Contraseña")]
@@ -80,21 +84,6 @@ namespace Ecommerce.Models
         [Display(Name = "Confirmar Contraseña")]
         [Compare("Password", ErrorMessage = "No coninciden las contraseña")]
         public string ConfirmPassword { get; set; }
-
-
-
-        public bool Male { get; set; }
-
-        public String Nombre { get; set; }
-
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
-        [DataType(DataType.Date)]
-        public DateTime FechaNaciemiento { get; set; }
-        public bool Active { get; set; }
-
-        [Required]
-        public Cliente Direccion { get; set; }
-
 
     }
 
