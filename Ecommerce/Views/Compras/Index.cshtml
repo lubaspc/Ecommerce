@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Ecommerce.Models.Compras>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutProvedores.cshtml";
+}
+
+<h2>Historial de compras</h2>
+
+<div class="text-right">
+
+    <form>
+        <p>
+            <button class="btn btn-success" formaction="/Compras/Crear">Agregar</button>
+        </p>
+    </form>
+
+</div>
+<table class="table">
+    <tr>
+        <th>
+            Fecha de Compra
+        </th>
+        <th>
+            Nombre del proveedor
+        </th>
+        <th>
+
+            @Html.ActionLink("Estado", "OrderbyStatus")
+        </th>
+        <th>
+            Tipo de Pago
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.FechaCompra)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Provedores.Nombre)
+    </td>
+    <td>
+        @if (item.Status == 1)
+        {
+           @: Pedido
+        }
+        else if (item.Status == 2)
+        {
+           @: Pagado
+        }
+        else
+        {
+            @:Recibido
+        }
+
+    </td>
+    <td>
+        @if (item.TipoPago == 1)
+        {
+            @: Debito
+        }
+        else
+        {
+            @:Credito
+        }
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Total)
+    </td>
+    <td>
+        @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+    </td>
+</tr>
+}
+
+</table>
