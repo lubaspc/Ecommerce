@@ -20,6 +20,144 @@
         {
             //SeedCatagoProductos(context);
             //SeedProveedores(context);
+            SeedEmpleados(context);
+        }
+
+        private void SeedEmpleados(ApplicationDbContext db) {
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+
+            roleManager.Create(new IdentityRole("Administrador"));
+            roleManager.Create(new IdentityRole("Empleado"));
+
+
+            var user_rh = new ApplicationUser { UserName = "Andrea", Email = "andreaRH@gmail.com" };
+            var rh = userManager.Create(user_rh, "pruebaRH");
+
+            if (rh.Succeeded) {
+
+                userManager.AddToRole(user_rh.Id, "Empleado");
+
+                Empleados w_rh = new Empleados();
+                w_rh.Id_users = user_rh.Id;
+                w_rh.Nombre = "Andrea Escobar Cazares";
+                w_rh.Sexo = false;
+                w_rh.Salario = 9000;
+                w_rh.Puesto = "Administrador de recursos humanos";
+                w_rh.Area = "Recursos Humanos";
+                w_rh.Fecha_Nacimeinto = new DateTime(1988, 8, 29);
+                w_rh.Estado = "Mexico";
+                w_rh.Municipio = "Chimalhuaacan";
+                w_rh.CodigoPostal = 51680;
+                w_rh.Colonia = "Los Patos";
+                w_rh.Calle = "5 de mayo";
+                w_rh.NoInterior = 1;
+                w_rh.NoExterior = 1;
+                w_rh.Referencia = "Puerta azul";
+                w_rh.Registro_Completo= true;
+                w_rh.Active = true;
+
+                db.Empleados.AddOrUpdate(w_rh);
+            }
+
+            
+
+            var user_fi = new ApplicationUser();
+            user_fi.Email = "alejandroFI@gmail.com";
+            user_fi.UserName = "Alejandro";
+            var fi = userManager.Create(user_fi, "pruebaFI");
+
+            if (fi.Succeeded)
+            {
+
+                userManager.AddToRole(user_fi.Id, "Empleado");
+
+                Empleados w_rh = new Empleados();
+                w_rh.Id_users = user_fi.Id;
+                w_rh.Nombre = "Alejandro Orihuela Becerril";
+                w_rh.Sexo = true;
+                w_rh.Salario = 10500;
+                w_rh.Puesto = "Control finanzas";
+                w_rh.Area = "Finanzas";
+                w_rh.Fecha_Nacimeinto = new DateTime(1985, 6, 15);
+                w_rh.Estado = "Mexico";
+                w_rh.Municipio = "Metepec";
+                w_rh.CodigoPostal = 52156;
+                w_rh.Colonia = "Metepec";
+                w_rh.Calle = "15 de mayo";
+                w_rh.NoInterior = 5;
+                w_rh.NoExterior = 2;
+                w_rh.Referencia = "Puerta negra";
+                w_rh.Registro_Completo = true;
+                w_rh.Active = true;
+
+                db.Empleados.AddOrUpdate(w_rh);
+            }
+
+            var user_al = new ApplicationUser();
+            user_al.Email = "humbertoAL@gmail.com";
+            user_al.UserName = "Humberto";
+            var al = userManager.Create(user_al, "pruebaAL");
+
+            if (al.Succeeded)
+            {
+
+                userManager.AddToRole(user_al.Id, "Empleado");
+
+                Empleados w_rh = new Empleados();
+                w_rh.Id_users = user_al.Id;
+                w_rh.Nombre = "Humberto Segura Guzman";
+                w_rh.Sexo = true;
+                w_rh.Salario = 8500;
+                w_rh.Puesto = "Control de almacen";
+                w_rh.Area = "Almacen";
+                w_rh.Fecha_Nacimeinto = new DateTime(1995, 10, 30);
+                w_rh.Estado = "Mexico";
+                w_rh.Municipio = "Metepec";
+                w_rh.CodigoPostal = 52156;
+                w_rh.Colonia = "Metepec";
+                w_rh.Calle = "25 de mayo";
+                w_rh.NoInterior = 2;
+                w_rh.NoExterior = 5;
+                w_rh.Referencia = "Puerta amarilla";
+                w_rh.Registro_Completo = true;
+                w_rh.Active = true;
+
+                db.Empleados.AddOrUpdate(w_rh);
+            }
+
+            var user_ad = new ApplicationUser();
+            user_ad.Email = "vianyAD@gmail.com";
+            user_ad.UserName = "Vianey";
+            var ad = userManager.Create(user_ad, "pruebaAD");
+
+            if (ad.Succeeded)
+            {
+
+                userManager.AddToRoles(user_ad.Id, "Administrador", "Empleado");
+
+                Empleados w_rh = new Empleados();
+                w_rh.Id_users = user_ad.Id;
+                w_rh.Nombre = "Vianey Jaimes Martinez";
+                w_rh.Sexo = false;
+                w_rh.Salario = 11500;
+                w_rh.Puesto = "Director Administrativo";
+                w_rh.Area = "Direccion";
+                w_rh.Fecha_Nacimeinto = new DateTime(1987, 1, 25);
+                w_rh.Estado = "Mexico";
+                w_rh.Municipio = "Metepec";
+                w_rh.CodigoPostal = 52789;
+                w_rh.Colonia = "Metepec";
+                w_rh.Calle = "25 de enero";
+                w_rh.NoInterior = 9;
+                w_rh.NoExterior = 9;
+                w_rh.Referencia = "Puerta morada";
+                w_rh.Registro_Completo = true;
+                w_rh.Active = true;
+
+                db.Empleados.AddOrUpdate(w_rh);
+            }
+
         }
 
         private void SeedCatagoProductos(ApplicationDbContext db)
