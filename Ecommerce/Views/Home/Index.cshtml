@@ -1,5 +1,8 @@
-﻿@{
+﻿@using Ecommerce.Models;
+@{
     ViewBag.Title = "Home Page";
+    var Sales = (List<Productos>)ViewBag.Sales;
+    var Offers = (List<Productos>)ViewBag.Offers;
 }
 <div class="container-fluid p-0 bg-pan1">
     <div class="container p-5 d-flex align-items-center h-100">
@@ -8,11 +11,15 @@
                 <div class="text-center">
                     <h3>Mas vendido</h3>
                 </div>
-                <div class="card bg-transparent" style="max-width: 100%;">
-                    <img src="~/Content/img/pan1.jpg" class="card-img-top" alt="...">
+                <div class="card mb-3" style="width: 100%; height:auto">
+                    <img src="~/Content/@Sales[0].Url_image" class="card-img-top" style="max-height:250px">
                     <div class="card-body">
-
-                        <a href="#" class="btn btn-primary form-control">Añadir al carrito</a>
+                        <h5 class="card-title">@Sales[0].Nombre</h5>
+                        <p class="card-text">Desciprcion: @Sales[0].Descripcion</p>
+                        <p class="card-text">Costo Final: @Sales[0].Precio_final</p>
+                        <a href="@Url.Action("Comprar", "Carrito", new { id = Sales[0].Id })" class="btn btn-success mx-auto d-block" style="margin-top:20px;width:130px;">
+                            <i class="fas fa-cart-plus fa-lg"></i>
+                        </a>                    
                     </div>
                 </div>
             </div>
@@ -23,11 +30,15 @@
                 <div class="text-center">
                     <h3>En oferta</h3>
                 </div>
-                <div class="card bg-transparent" style="max-width: 100%;">
-                    <img src="~/Content/img/pan2.jpg" class="card-img-top" alt="...">
+                <div class="card mb-3" style="width: 100%; height:auto">
+                    <img src="~/Content/@Offers[0].Url_image" class="card-img-top" style="max-height:250px">
                     <div class="card-body">
-
-                        <a href="#" class="btn btn-primary form-control">Añadir al carrito</a>
+                        <h5 class="card-title">@Offers[0].Nombre</h5>
+                        <p class="card-text">Desciprcion: @Offers[0].Descripcion</p>
+                        <p class="card-text">Costo Final: @Offers[0].Precio_final</p>
+                        <a href="@Url.Action("Comprar", "Carrito", new { id = Offers[0].Id })" class="btn btn-success mx-auto d-block" style="margin-top:20px;width:130px;">
+                            <i class="fas fa-cart-plus fa-lg"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -44,47 +55,20 @@
                     </div>
 
                     <div class="row">
+                   @for (int i = 1; i < 5 && i < Sales.Count; i++)
+                        {
                         <div class="col-md-3">
                             <div class="card" style="background-color: #f9f2e2">
                                 <div class="card-body">
-                                    <h5 class="card-title">Panecito</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">100% orgánico <br />$3.00</h6>
-                                    <img class="mx-auto d-block" src="https://place-hold.it/130" alt="Alternate Text" style="margin-top:15px" />
+                                    <h5 class="card-title">@Sales[i].Nombre</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">@Sales[i].Descripcion<br />$@Sales[i].Precio_final</h6>
+                                    <img class="mx-auto d-block" src="~/Content/@Sales[i].Url_image" alt="Alternate Text" style="margin-top:15px" />
 
-                                    <button type="button" class="btn btn-success mx-auto d-block" style="margin-top:20px;width:130px;"><i class="fas fa-cart-plus fa-lg"></i></button>
+                                    <a href="@Url.Action("Comprar", "Carrito", new { id = Sales[i].Id })" class="btn btn-success mx-auto d-block" style="margin-top:20px;width:130px;"><i class="fas fa-cart-plus fa-lg"></i></a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="card" style="background-color: #f9f2e2">
-                                <div class="card-body">
-                                    <h5 class="card-title">Panecito</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">100% orgánico <br />$3.00</h6>
-                                    <img class="mx-auto d-block" src="https://place-hold.it/130" alt="Alternate Text" style="margin-top:15px" />
-                                    <button type="button" class="btn btn-success mx-auto d-block" style="margin-top:20px;width:130px;"><i class="fas fa-cart-plus fa-lg"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card" style="background-color: #f9f2e2">
-                                <div class="card-body">
-                                    <h5 class="card-title">Panecito</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">100% orgánico <br />$3.00</h6>
-                                    <img class="mx-auto d-block" src="https://place-hold.it/130" alt="Alternate Text" style="margin-top:15px" />
-                                    <button type="button" class="btn btn-success mx-auto d-block" style="margin-top:20px;width:130px;"><i class="fas fa-cart-plus fa-lg"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card" style="background-color: #f9f2e2">
-                                <div class="card-body">
-                                    <h5 class="card-title">Panecito</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">100% orgánico <br />$3.00</h6>
-                                    <img class="mx-auto d-block" src="https://place-hold.it/130" alt="Alternate Text" style="margin-top:15px" />
-                                    <button type="button" class="btn btn-success mx-auto d-block" style="margin-top:20px;width:130px;"><i class="fas fa-cart-plus fa-lg"></i></button>
-                                </div>
-                            </div>
-                        </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -99,47 +83,23 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-3">
-                            <div class="card" style="background-color: #f9f2e2">
-                                <div class="card-body">
-                                    <h5 class="card-title">Panecito</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">¡Oferta especial! <br /><s>$4.00</s> $3.00<br /><b style="color:#49de5b">-25%</b></h6>
-                                    <img class="mx-auto d-block" src="https://place-hold.it/130" alt="Alternate Text" style="margin-top:15px" />
+                        @for (int i = 1; i < 5 && i < Offers.Count; i++)
+                        {
+                            <div class="col-md-3">
+                                <div class="card" style="background-color: #f9f2e2">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@Offers[i].Nombre</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">@Offers[i].Descripcion<br />$@Offers[i].Precio_final</h6>
+                                        <img class="mx-auto d-block" src="~/Content/@Offers[i].Url_image" alt="Alternate Text" style="margin-top:15px" />
 
-                                    <button type="button" class="btn btn-success mx-auto d-block" style="margin-top:20px;width:130px;"><i class="fas fa-cart-plus fa-lg"></i></button>
+                                        <a href="@Url.Action("Comprar", "Carrito", new { id = Offers[i].Id })" class="btn btn-success mx-auto d-block" style="margin-top:20px;width:130px;">
+                                            <i class="fas fa-cart-plus fa-lg"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card" style="background-color: #f9f2e2">
-                                <div class="card-body">
-                                    <h5 class="card-title">Panecito</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">¡Oferta especial! <br /><s>$4.00</s> $3.00<br /><b style="color:#49de5b">-25%</b></h6>
-                                    <img class="mx-auto d-block" src="https://place-hold.it/130" alt="Alternate Text" style="margin-top:15px" />
-                                    <button type="button" class="btn btn-success mx-auto d-block" style="margin-top:20px;width:130px;"><i class="fas fa-cart-plus fa-lg"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card" style="background-color: #f9f2e2">
-                                <div class="card-body">
-                                    <h5 class="card-title">Panecito</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">¡Oferta especial! <br /><s>$4.00</s> $3.00<br /><b style="color:#49de5b">-25%</b></h6>
-                                    <img class="mx-auto d-block" src="https://place-hold.it/130" alt="Alternate Text" style="margin-top:15px" />
-                                    <button type="button" class="btn btn-success mx-auto d-block" style="margin-top:20px;width:130px;"><i class="fas fa-cart-plus fa-lg"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card" style="background-color: #f9f2e2">
-                                <div class="card-body">
-                                    <h5 class="card-title">Panecito</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">¡Oferta especial! <br /><s>$4.00</s> $3.00<br /><b style="color:#49de5b">-25%</b></h6>
-                                    <img class="mx-auto d-block" src="https://place-hold.it/130" alt="Alternate Text" style="margin-top:15px" />
-                                    <button type="button" class="btn btn-success mx-auto d-block" style="margin-top:20px;width:130px;"><i class="fas fa-cart-plus fa-lg"></i></button>
-                                </div>
-                            </div>
-                        </div>
+                        }
+
                     </div>
                 </div>
             </div>

@@ -39,6 +39,10 @@ namespace Ecommerce.Controllers
 
             }
             else {
+                ViewBag.Sales = db.Productos.Where(p => p.Cantidad_ventas > 0).OrderBy(p => p.Cantidad_ventas).ToList();
+                ViewBag.Sale = db.Productos.Where(p => p.Cantidad_ventas > 0).OrderBy(p => p.Cantidad_ventas).First();
+                ViewBag.Offers = db.Productos.Where(p => p.Porcentage_descuento > 0).OrderBy(p => p.Porcentage_descuento).ToList();
+                ViewBag.Offer = db.Productos.Where(p => p.Porcentage_descuento > 0).OrderBy(p => p.Porcentage_descuento).First();
                 return View();
             }
 
