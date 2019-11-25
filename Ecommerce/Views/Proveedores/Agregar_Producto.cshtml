@@ -45,11 +45,11 @@
         </td>
 
         <td>
-            <form>
-                <p>
-                    <button type="submit" class="btn btn-success" formaction="/Proveedores/Agregar_Producto"><i class="fas fa-plus"></i></button>
-                </p>
-            </form>
+
+            @using (@Html.BeginForm("Agregar_Producto", "Proveedores", FormMethod.Get))
+            {
+                <button type="submit" class="btn btn-success" ><i class="fas fa-plus"></i></button>
+            }
         </td>
     </tr>
 }
