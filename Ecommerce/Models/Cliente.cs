@@ -23,7 +23,7 @@ namespace Ecommerce.Models
         public int NoInterior { get; set; }
         public int NoExterior { get; set; }
         public string Referencia { get; set; }
-        public int Tipo_targeta { get; set; }
+        public string Tipo_targeta { get; set; }
         public string No_targeta { get; set; }
         
         [DefaultValue(true)]

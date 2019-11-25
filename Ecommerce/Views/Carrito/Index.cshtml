@@ -19,8 +19,22 @@
                     <div class="collapse bg-semitanparente" id="collapseMetodos">
                         <div class="card card-body">
                             <select name="metodoPago">
-                                <option value="!">Efectivo</option>
+                                @foreach (KeyValuePair<int, string> metodo in ViewBag.metodo)
+                                {
+                                    <option value="@metodo.Key">@metodo.Value</option>
+                                }
                             </select>
+                            @if (ViewBag.cliente.Tipo_targeta == null)
+                            {
+                                <input type="text" name="targeta" />
+                                <input type="text" name="cvs" />
+                            }
+                            else
+                            {
+                                <label>ViewBag.cliente.Tipo_targeta</label>
+                                <input type="text" name="cvs" />
+                            }
+
                             <a class="btn btn-primary" href="@Url.Action("TerminarCompra", "Carrito")">
                                 Finalizar compra
                             </a>

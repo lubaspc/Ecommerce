@@ -181,6 +181,7 @@
     <Compile Include="Controllers\Productos1Controller.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
+    <Compile Include="Controllers\VentasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -349,9 +350,12 @@
     <Content Include="Views\Compras\Index.cshtml" />
     <Content Include="Views\Compras\Details.cshtml" />
     <Content Include="Views\Proveedores\Compra_proveedor.cshtml" />
+    <Content Include="Views\Ventas\Index.cshtml" />
+    <Content Include="Views\Ventas\DetalleVentas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\DetalleVentas\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
