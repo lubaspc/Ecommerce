@@ -43,95 +43,17 @@
             <div class="row">
                 
                 <div class="col-md-1">
-                    <label  id="tp_lcd_txt">Credito(Dias):</label>
+                    <label>Correo:</label>
                 </div>
                 <div class="col-md-2">
-                    @Html.EditorFor(model => model.Credito, new { htmlAttributes = new {  @id = "tp_lcd_ta", @placeholder = "ej. 15", @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Credito, "", new { @class = "text-danger" })
-                </div>
-                <div class="col-md-1">
-                    <label  id="tp_lc_txt">$Credito Maximo:</label>
-                </div>
-                <div class="col-md-2">
-                    @Html.EditorFor(model => model.CreditoMax, new { htmlAttributes = new {  @id = "tp_lc_ta", @placeholder = "ej. 15000", @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CreditoMax, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Correo, new { htmlAttributes = new {  @id = "tp_lcd_ta", @placeholder = "ej. 15", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Correo, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="row">
-                <div class="col-md-1">
-                    <label>Estado:</label>
-                </div>
-                <div class="col-md-2">
-                    @Html.EditorFor(model => model.Direccion.Estado, new { htmlAttributes = new { @placeholder = "ej. Seminario", @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Direccion.Estado, "", new { @class = "text-danger" })
-                </div>
-                <div class="col-md-1">
-                    <label>Municipio:</label>
-                </div>
-                <div class="col-md-2">
-                    @Html.EditorFor(model => model.Direccion.Municipio, new { htmlAttributes = new { @placeholder = "ej. Seminario", @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Direccion.Municipio, "", new { @class = "text-danger" })
-                </div>
+       
 
-            </div>
-
-        </div>
-
-        <div class="form-group">
-            <div class="row">
-                <div class="col-md-1">
-                    <label>Colonia:</label>
-                </div>
-                <div class="col-md-2">
-                    @Html.EditorFor(model => model.Direccion.Colonia, new { htmlAttributes = new { @placeholder = "ej. Seminario", @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Direccion.Colonia, "", new { @class = "text-danger" })
-                </div>
-                <div class="col-md-1">
-                    <label>Calle:</label>
-                </div>
-                <div class="col-md-2">
-                    @Html.EditorFor(model => model.Direccion.Calle, new { htmlAttributes = new { @placeholder = "ej. Morelos", @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Direccion.Calle, "", new { @class = "text-danger" })
-                </div>
-                <div class="col-md-1">
-                    <label>N°Interior:</label>
-                </div>
-                <div class="col-md-1">
-                    @Html.EditorFor(model => model.Direccion.NoInterior, new { htmlAttributes = new { @placeholder = "ej.112", @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Direccion.NoInterior, "", new { @class = "text-danger" })
-                </div>
-                <div class="col-md-1">
-                    <label>N°Exterior:</label>
-                </div>
-                <div class="col-md-1">
-                    @Html.EditorFor(model => model.Direccion.NoExterior, new { htmlAttributes = new { @placeholder = "ej.113", @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Direccion.NoExterior, "", new { @class = "text-danger" })
-                </div>
-
-            </div>
-
-        </div>
-        <div class="form-group">
-            <div class="row">
-                <div class="col-md-1">
-                    <label>C.P:</label>
-                </div>
-                <div class="col-md-2">
-                    @Html.EditorFor(model => model.Direccion.Colonia, new { htmlAttributes = new { @placeholder = "ej. 55522", @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Direccion.Colonia, "", new { @class = "text-danger" })
-                </div>
-                <div class="col-md-1">
-                    <label>Referencia:</label>
-                </div>
-                <div class="col-md-8">
-                    @Html.EditorFor(model => model.Direccion.Referencia, new { htmlAttributes = new { @placeholder = "ej. una casa roja, dentro de un callejon", @class = "form-control " } })
-                    @Html.ValidationMessageFor(model => model.Direccion.Referencia, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
 
         <div class="form-group">
 

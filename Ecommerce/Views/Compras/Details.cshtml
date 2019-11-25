@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Ecommerce.Models.DetalleCompras>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutProvedores.cshtml";
+}
+
+<h2>Detalles de compra</h2>
+
+<form>
+    <p>
+        <button class="btn btn-light" formaction="/Compras/Index">Regresar al historial</button>
+    </p>
+</form>
+<table class="table">
+    <tr>
+  
+        <th>
+            @Html.DisplayNameFor(model => model.Cantidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PorcentajeDescuento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PorcentajeIncremnto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubTotal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha_vencimiento)
+        </th>
+
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cantidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PorcentajeDescuento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PorcentajeIncremnto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubTotal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fecha_vencimiento)
+        </td>
+    </tr>
+}
+
+</table>
+

@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Ecommerce.Models;
+using System.IO;
 
 namespace Ecommerce.Controllers
 {
@@ -16,8 +17,27 @@ namespace Ecommerce.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Productos1
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string sortOrder)
         {
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "DateTime" ? "date_desc" : "DateTime";
+            var productos = from p in db.Productos
+                            select p;
+            switch (sortOrder) {
+                case "name_desc":
+                    productos = productos.OrderByDescending(p => p.Nombre);
+                    break;
+                case "DateTime":
+                    productos = productos.OrderBy(p => p.Fecha_caducidad);
+                    break;
+                case "date_desc":
+                    productos = productos.OrderByDescending(p => p.Fecha_caducidad);
+                    break;
+                default:
+                    productos = productos.OrderBy(p => p.Nombre);
+                    break;
+            }
+
             return View(await db.Productos.ToListAsync());
         }
 
@@ -47,10 +67,21 @@ namespace Ecommerce.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Nombre,Descripcion,Url_image,Sabor,stock,Marca,Costo_unitario,Porcentage_descuento,Status,Fecha_caducidad,Precio_final,Cantidad_ventas")] Productos productos)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Nombre,Descripcion,Url_image,Sabor,stock,Marca,Costo_unitario,Porcentage_descuento,Status,Fecha_caducidad,Precio_final,Cantidad_ventas")] Productos productos,HttpPostedFileBase file)
         {
+
+            
+            //var filename = Path.GetFileName(file.FileName);
+            //var path = Path.Combine(Server.MapPath("~/Content/img/"), filename);
+            //file.SaveAs(filename);
+            //productos.Url_image = string.Concat("Content/img/", filename);
             if (ModelState.IsValid)
             {
+                string fileName = Path.GetFileNameWithoutExtension(file.FileName);
+                string extension = Path.GetExtension(file.FileName);
+                productos.Url_image = "~/Content/img/" + fileName;
+                fileName = Path.Combine(Server.MapPath("~/Content/img/"), fileName);
+                file.SaveAs(fileName);
                 db.Productos.Add(productos);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
