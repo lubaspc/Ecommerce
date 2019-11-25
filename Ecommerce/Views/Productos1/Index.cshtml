@@ -5,15 +5,15 @@
     Layout = "~/Views/Shared/_LayoutProducts.cshtml";
 }
 
-<h2 class="text-center">Productos</h2>
+<h2>Index</h2>
 
 <p>
-    <a href="@Url.Action("Create", "Productos")" class="btn btn-primary">Crear nuevo producto</a>
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Nombre)
+            @Html.ActionLink("Nombre", "Index", new { sortOrder = ViewBag.NameSortParm })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Descripcion)
@@ -40,7 +40,13 @@
             @Html.DisplayNameFor(model => model.Status)
         </th>
         <th>
+            @Html.ActionLink("Fecha caducidad", "Index", new { sortOrder = ViewBag.DateSortParm })    
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Precio_final)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cantidad_ventas)
         </th>
         <th></th>
     </tr>
@@ -54,7 +60,7 @@
             @Html.DisplayFor(modelItem => item.Descripcion)
         </td>
         <td>
-           <img src="~/Content/@item.Url_image" style="height:100px; width:100%"/>
+            <img src="~/Content/@item.Url_image" style="height:100px; width:100%" />
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Sabor)
@@ -75,11 +81,18 @@
             @Html.DisplayFor(modelItem => item.Status)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Fecha_caducidad)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Precio_final)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }, new { @class="btn btn-warning" }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id }, new { @class="btn btn-danger" })
+            @Html.DisplayFor(modelItem => item.Cantidad_ventas)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>
 }

@@ -72,6 +72,9 @@ namespace Ecommerce.Controllers
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
+            
+            Cliente cliente = new Cliente { Nombre = "Sebastian"};
+            ViewBag.cliente = cliente;
             return View(model);
         }
 

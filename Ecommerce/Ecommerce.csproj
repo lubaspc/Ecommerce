@@ -173,12 +173,15 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\Catalogos1Controller.cs" />
+    <Compile Include="Controllers\ComprasController.cs" />
     <Compile Include="Controllers\EmpleadosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
+    <Compile Include="Controllers\Productos1Controller.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
+    <Compile Include="Controllers\VentasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -194,6 +197,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MetodosPago.cs" />
+    <Compile Include="Models\MixClienteUser.cs" />
     <Compile Include="Models\ProductoCatalogo.cs" />
     <Compile Include="Models\Productos.cs" />
     <Compile Include="Models\Provedores.cs" />
@@ -339,9 +343,20 @@
     <Content Include="Views\Empleados\Edit.cshtml" />
     <Content Include="Views\Empleados\Index.cshtml" />
     <Content Include="Views\Shared\_LoginAdmin.cshtml" />
+    <Content Include="Views\Productos1\Create.cshtml" />
+    <Content Include="Views\Productos1\Delete.cshtml" />
+    <Content Include="Views\Productos1\Details.cshtml" />
+    <Content Include="Views\Productos1\Edit.cshtml" />
+    <Content Include="Views\Productos1\Index.cshtml" />
+    <Content Include="Views\Compras\Index.cshtml" />
+    <Content Include="Views\Compras\Details.cshtml" />
+    <Content Include="Views\Proveedores\Compra_proveedor.cshtml" />
+    <Content Include="Views\Ventas\Index.cshtml" />
+    <Content Include="Views\Ventas\DetalleVentas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\DetalleVentas\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

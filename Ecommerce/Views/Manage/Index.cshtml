@@ -1,6 +1,9 @@
 ﻿@model Ecommerce.Models.IndexViewModel
+@using Ecommerce.Models
+
 @{
     ViewBag.Title = "Manage";
+    var user = ViewBag.cliente;
 }
 
 
@@ -20,7 +23,7 @@
                     <h5>Datos Personales</h5>
                 </div>
                 <div class="card-body">
-                    <p><b>Nombre: </b>Pepito Pérez Pérez</p>
+                    <p><b>Nombre: </b>@user.Nombre</p>
                     <p><b>Correo: </b>pperezp@toluca.tecnm.mx</p>
                     <p><b>Sexo: </b>Masculino</p>
                     <p><b>Fecha de Nacimiento: </b>01/01/97</p>

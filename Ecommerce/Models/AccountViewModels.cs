@@ -50,9 +50,10 @@ namespace Ecommerce.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Correo electronico")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "Nombre de Usuario")]
+        //[EmailAddress]
+        
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

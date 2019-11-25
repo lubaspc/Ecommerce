@@ -23,7 +23,18 @@
             <ul class="navbar-nav mr-auto">
 
                 <li class="nav-item active">
-                    @Html.ActionLink("Provedorees", "Index", "Proveedores", new object { }, new { @class = "nav-link" })
+                    <div class="dropdown">
+                        <button class="btn nav-link dropdown-toggle" type="button" data-toggle="dropdown">
+                            Proveedores
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Ver Provedorees", "Index", "Proveedores", new object { }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Ver Historial", "Index", "Compras", new object { }, new { @class = "nav-link" })</li>
+                            
+                        </ul>
+                    </div>
+                    
                 </li>
             </ul>
             <ul>

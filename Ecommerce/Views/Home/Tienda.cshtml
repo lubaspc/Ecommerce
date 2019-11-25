@@ -3,9 +3,7 @@
     ViewBag.Title = "Tienda";
 }
     <div class="bg-pan2">
-        <div class="text-center pt-5">
-            <h1 class="text-white"  >Catalogo</h1>
-        </div>
+
         <div class="catalog-categories">
             <ul class="nav justify-content-between px-5">
                 @foreach (Catalogos catalog in ViewBag.catalogos)
@@ -21,18 +19,23 @@
 
             </ul>
         </div>
+        <div class="text-center pt-5">
+            <h1 class="text-white">Catalogo</h1>
+        </div>
         <div class="container p-5 my-5 bg-semitanparente">
             <div class="row">
                 @foreach (Productos producto in ViewBag.productos)
                 {
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3 px-2 mb-3">
-                        <div class="card" style="width: 100%; height: 500px">
+                        <div class="card" style="width: 100%; height:auto ">
                             <img src="~/Content/@producto.Url_image" class="card-img-top" style="max-height:250px">
                             <div class="card-body">
                                 <h5 class="card-title">@producto.Nombre</h5>
                                 <p class="card-text">Desciprcion: @producto.Descripcion</p>
                                 <p class="card-text">Costo Final: @producto.Precio_final</p>
-                                <a class="agregar-carrito" href="@Url.Action("Comprar", "Carrito", new { id = producto.Id })">Comprar ahora</a>
+                                <a href="@Url.Action("Comprar", "Carrito", new { id = producto.Id })" class="btn btn-success mx-auto d-block" style="margin-top:20px;width:130px;">
+                                    <i class="fas fa-cart-plus fa-lg"></i>
+                                </a>
                             </div>
                         </div>
                     </div>

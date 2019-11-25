@@ -18,7 +18,7 @@
 
         protected override void Seed(Ecommerce.Models.ApplicationDbContext context)
         {
-            //SeedCatagoProductos(context);
+            SeedCatagoProductos(context);
             //SeedProveedores(context);
             SeedEmpleados(context);
         }
@@ -191,9 +191,12 @@
                 Sabor = "dulce",
                 Marca = "Propia",
                 Costo_unitario = 6.5,
-                Porcentage_descuento = 0,
+                Porcentage_descuento = 5,
                 Status = 1,
                 Precio_final = 8,
+                stock = 30,
+                Cantidad_ventas = 3,
+                Fecha_caducidad = new DateTime(1988, 8, 29),
                 Catalogos = new List<Catalogos> { dulce, trigo }
             };
 
@@ -209,6 +212,9 @@
                 Porcentage_descuento = 0,
                 Status = 1,
                 Precio_final = 12,
+                stock = 30,
+                Cantidad_ventas = 3,
+                Fecha_caducidad = new DateTime(1988, 8, 29),
                 Catalogos = new List<Catalogos> { sal, trigo }
 
 
@@ -226,6 +232,9 @@
                 Porcentage_descuento = 0,
                 Status = 1,
                 Precio_final = 10,
+                stock = 30,
+                Cantidad_ventas = 3,
+                Fecha_caducidad = new DateTime(1988, 8, 29),
                 Catalogos = new List<Catalogos> { champinon, sal }
             };
 
@@ -241,6 +250,9 @@
                 Porcentage_descuento = 0,
                 Status = 1,
                 Precio_final = 12,
+                stock = 30,
+                Cantidad_ventas = 3,
+                Fecha_caducidad = new DateTime(1988, 8, 29),
                 Catalogos = new List<Catalogos> { champinon, trigo }
             };
 
@@ -256,6 +268,9 @@
                 Porcentage_descuento = 0,
                 Status = 1,
                 Precio_final = 20,
+                stock = 30,
+                Cantidad_ventas = 3,
+                Fecha_caducidad = new DateTime(1988, 8, 29),
                 Catalogos = new List<Catalogos> { trigo, champinon }
 
             };
@@ -272,6 +287,9 @@
                 Porcentage_descuento = 0,
                 Status = 1,
                 Precio_final = 15,
+                stock = 30,
+                Cantidad_ventas = 3,
+                Fecha_caducidad = new DateTime(1988, 8, 29),
                 Catalogos = new List<Catalogos> { linaza, champinon }
             };
 
@@ -287,6 +305,9 @@
                 Porcentage_descuento = 0,
                 Status = 1,
                 Precio_final = 9,
+                stock = 30,
+                Cantidad_ventas = 3,
+                Fecha_caducidad = new DateTime(1988, 8, 29),
                 Catalogos = new List<Catalogos> { linaza, dulce }
             };
 
@@ -302,6 +323,9 @@
                 Porcentage_descuento = 0,
                 Status = 1,
                 Precio_final = 15,
+                stock = 30,
+                Cantidad_ventas = 3,
+                Fecha_caducidad = new DateTime(1988, 8, 29),
                 Catalogos = new List<Catalogos> { trigo, champinon }
             };
 
@@ -317,6 +341,9 @@
                 Porcentage_descuento = 0,
                 Status = 1,
                 Precio_final = 10,
+                stock = 30,
+                Cantidad_ventas = 3,
+                Fecha_caducidad = new DateTime(1988, 8, 29),
                 Catalogos = new List<Catalogos> { trigo }
             };
 
@@ -332,6 +359,9 @@
                 Porcentage_descuento = 0,
                 Status = 1,
                 Precio_final = 25,
+                stock = 30,
+                Cantidad_ventas = 10,
+                Fecha_caducidad = new DateTime(1988, 8, 29),
                 Catalogos = new List<Catalogos> { champinon, sal }
             };
 
@@ -355,18 +385,15 @@
             prove1.Id = 1;
             prove1.Nombre = "Alejandro";
             prove1.Telefono = "7224124088";
-            prove1.Credito = 10;
-            prove1.CreditoMax = 150000;
-            
-
-           
+            prove1.Correo = "alexseed2@hotmail.com";
+            DetalleCompras detalle1= new DetalleCompras{Id=1,Cantidad=100};
+            Compras compra1 = new Compras { Id = 1, Provedores = prove1, Total = 50000, Status = 1, TipoPago = 1, FechaCompra = new DateTime(2011, 6, 10),DetallesCompras={detalle1} };
+            prove1.Compras = new List<Compras> { compra1} ;
             Provedores prove2 = new Provedores();
             prove2.Id = 2;
             prove2.Nombre = "CHARLY";
             prove2.Telefono = "7171717171";
-            prove2.Credito = 15;
-            prove2.CreditoMax = 200000;
-
+            prove2.Correo = "charly@hotmail.com";
             db.Provedores.AddOrUpdate(prove1);
             db.Provedores.AddOrUpdate(prove2);
         }

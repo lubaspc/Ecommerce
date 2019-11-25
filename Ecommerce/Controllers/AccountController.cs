@@ -76,7 +76,7 @@ namespace Ecommerce.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -148,15 +148,26 @@ namespace Ecommerce.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(MixClienteUser model)
         {
             if (ModelState.IsValid)                 
             {
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email};
-                var result = await UserManager.CreateAsync(user, model.Password);
+                //Primero se crea el user de ASPUsers
+           
+                var user = new ApplicationUser { UserName = model.registerviewmodel.UserName, Email = model.registerviewmodel.Email};
+                
+
+                var result = await UserManager.CreateAsync(user, model.registerviewmodel.Password);
                 if (result.Succeeded)
                 {
-
+                    ApplicationDbContext db = new ApplicationDbContext();
+                    //Se crea el cliente en la tabla Clientes
+                    //Obteniendo ID de AspNetUsers
+                    model.cliente.Id_users = user.Id;
+                    model.cliente.Active = true;
+                    //var cliente = new Cliente { Id_users = user.Id, Nombre = model.cliente.Nombre, Sexo = model.cliente.Sexo, Fecha_Nacimeinto = model.cliente.Fecha_Nacimeinto, Estado = model.cliente.Estado, Municipio = model.cliente.Municipio, CodigoPostal = model.cliente.CodigoPostal, Colonia = model.cliente.Colonia, Calle = model.cliente.Calle, NoInterior = model.cliente.NoInterior, NoExterior = model.cliente.NoExterior, Referencia = model.cliente.Referencia, Tipo_targeta = model.cliente.Tipo_targeta, No_targeta = model.cliente.No_targeta, Active= true};
+                    db.Cliente.Add(model.cliente);
+                    await db.SaveChangesAsync();
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
   
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771

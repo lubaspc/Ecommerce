@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_LayoutProvedores.cshtml";
 }
 
-<h2>Compras proveedor</h2>
+<h2>Proveedores</h2>
 <div class="text-right">
 
     <form>
@@ -24,17 +24,11 @@
             Nombre
         </th>
         <th>
-            Dirección
-        </th>
-        <th>
             Telefono
         </th>
 
         <th>
-            Credito(dias)
-        </th>
-        <th>
-            $CreditoMaximo
+            Correo
         </th>
         <th></th>
 
@@ -50,85 +44,23 @@
                 @item.Nombre
             </td>
             <td>
-                <a href="#" data-toggle="modal" data-target="#direccion"> Ver</a>
-
-            </td>
-            <td>
                 @item.Telefono
             </td>
 
             <td>
-                @item.Credito
+                @item.Correo
             </td>
+ 
             <td>
-                @item.CreditoMax
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { /* id=item.PrimaryKey */ }) |
-                <a href="#" data-toggle="modal" data-target="#confirmacion_el"> Eliminar</a>
-                <div id="confirmacion_el" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">Eliminar Proveedor</h4>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container">
-                                    <div class="text-left">
-                                        <label>¿Seguro que desea eliminar este proveedor?</label>
-                                        <p>
-                                            <br />
-                                            <button class="btn btn-danger">Eliminar</button>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Comprar", "Compra_proveedor", new { id = item.Id })
             </td>
         </tr>
     }
 
 </table>
-@foreach (Provedores item in ViewBag.proveedores)
-{
-    <div id="direccion" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">@item.Nombre</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                        <ul class="list-inline">
 
-                            <li>Estado: @item.Direccion.Estado</li>
-                            <li>Codigo Postal: @item.Direccion.CodigoPostal</li>
-                            <li>Municipio: @item.Direccion.Municipio</li>
-                            <li>Colonia: @item.Direccion.Colonia</li>
-                            <li>Calle: @item.Direccion.Calle</li>
-                            <li>N° Interior: @item.Direccion.NoInterior</li>
-                            <li>N° Exterior: @item.Direccion.NoExterior</li>
-                            <li>Referencia: @item.Direccion.Referencia</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                </div>
 
-            </div>
 
-        </div>
-    </div>
-}
+
+
