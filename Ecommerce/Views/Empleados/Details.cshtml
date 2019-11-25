@@ -5,151 +5,147 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Details</h2>
+    <div>
+        <h4>Empleados</h4>
+        <hr />
+        <div class="container">
+            <div class="row justify-content-start mt-5">
+                <dl class="dl-horizontal">
+                   
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </dt>
 
-<div>
-    <h4>Empleados</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Id_users)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Nombre)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Id_users)
-        </dd>
+                    <dt> 
+                        @Html.DisplayNameFor(model => model.Sexo)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
+                    <dd>
+                        
+                        @Html.DisplayFor(model => model.Sexo)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Salario)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Sexo)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Salario)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Sexo)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Puesto)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Salario)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Puesto)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Salario)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Area)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Puesto)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Area)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Puesto)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Fecha_Nacimeinto)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Area)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Fecha_Nacimeinto)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Area)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Estado)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Fecha_Nacimeinto)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Estado)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Fecha_Nacimeinto)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Municipio)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Estado)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Municipio)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Estado)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CodigoPostal)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Municipio)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.CodigoPostal)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Municipio)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Colonia)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CodigoPostal)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Colonia)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CodigoPostal)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Calle)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Colonia)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Calle)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Colonia)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.NoInterior)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Calle)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.NoInterior)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Calle)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.NoExterior)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NoInterior)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.NoExterior)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.NoInterior)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Referencia)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NoExterior)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Referencia)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.NoExterior)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Active)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Referencia)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Active)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Referencia)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Registro_Completo)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Active)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Registro_Completo)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Active)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Registro_completo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Registro_completo)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+                </dl>
+            </div>
+        </div>
+    </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>

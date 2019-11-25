@@ -18,6 +18,7 @@ namespace Ecommerce.Controllers
         // GET: Empleados
         public async Task<ActionResult> Index()
         {
+            
             return View(await db.Empleados.ToListAsync());
         }
 
@@ -40,6 +41,16 @@ namespace Ecommerce.Controllers
         public ActionResult Create()
         {
             return View();
+        }
+
+        public ActionResult ModificaEstado(int id)
+        {
+            Empleados empleado = db.Empleados.Find(id);
+
+            empleado.Active = !empleado.Active;
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         // POST: Empleados/Create

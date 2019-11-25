@@ -5,126 +5,76 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
+<div class="container">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Id_users)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Sexo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Salario)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Puesto)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Area)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Fecha_Nacimeinto)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Estado)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Municipio)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CodigoPostal)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Colonia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Calle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NoInterior)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NoExterior)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Referencia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Active)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Registro_completo)
-        </th>
-        <th></th>
-    </tr>
+    <div class="row justify-content-end mt-5">
+        @Html.ActionLink("Agregar usuario", "Create", "Empleados", new object { }, new { @class = "btn btn-primary text-white" })
+    </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Id_users)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Sexo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Salario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Puesto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Area)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fecha_Nacimeinto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Estado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Municipio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CodigoPostal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Colonia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Calle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NoInterior)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NoExterior)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Referencia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Active)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Registro_completo)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    <div class="row justify-content-center mt-5">
 
-</table>
+        <div class="alert alert-warning" role="alert">
+            Los empleados con el icono <i class="fas fa-exclamation-circle" style="color: #ff9f0e"></i> no han concluido su registro. Para asignar los datos faltantes dirijase a la sección de Recursos humanos.
+        </div>
+
+        <table class="table">
+            <tr>
+                <th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Area)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Puesto)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Active)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @if (item.Registro_Completo)
+                        {
+                            <i class="fas fa-exclamation-circle" style="color: #ff9f0e"></i>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Area)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Puesto)
+                    </td>
+                    <td>
+                        <a href="@(item.Active ? Url.Action("ModificaEstado",new { id = item.Id}) : Url.Action("ModificaEstado",new { id= item.Id}))">
+                            @if (item.Active)
+                            {
+                                <i class="fas fa-toggle-on fa-2x" style="color: #ff9f0e"></i>
+                            }
+                            else
+                            {
+                                <i class="fas fa-toggle-off fa-2x" style="color: #ff9f0e"></i>
+                            }
+                        </a>
+
+                    </td>
+                    <td>
+                        @Html.ActionLink("Ver", "Details", new { id = item.Id }, new { @class = "btn btn-primary text-white" })
+                        @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-primary text-white" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
