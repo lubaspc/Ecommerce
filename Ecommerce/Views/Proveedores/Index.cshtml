@@ -53,8 +53,7 @@
  
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
-                <a href="#" id="Eliminar_btn"> Eliminar</a>
-                
+                @Html.ActionLink("Comprar", "Compra_proveedor", new { id = item.Id })
             </td>
         </tr>
     }

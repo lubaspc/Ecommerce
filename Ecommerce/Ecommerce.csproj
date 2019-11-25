@@ -347,6 +347,8 @@
     <Content Include="Views\Productos1\Edit.cshtml" />
     <Content Include="Views\Productos1\Index.cshtml" />
     <Content Include="Views\Compras\Index.cshtml" />
+    <Content Include="Views\Compras\Details.cshtml" />
+    <Content Include="Views\Proveedores\Compra_proveedor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

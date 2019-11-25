@@ -96,5 +96,17 @@ namespace Ecommerce.Controllers
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+        //GET
+        public async Task<ActionResult> Compra_proveedor(int? id)
+        {
+            Provedores provee = await db.Provedores.FindAsync(id);
+            ViewBag.Compra_proveedor = provee;
+
+            if (provee == null)
+            {
+                return HttpNotFound();
+            }
+            return View();
+        }
     }
 }

@@ -158,6 +158,20 @@ namespace Ecommerce.Controllers
             }
             return View(compras);
         }
-
+        // GET: Compras/Details
+        public async Task<ActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Compras compras = await db.Compras.FindAsync(id);
+            if (compras == null)
+            {
+                return HttpNotFound();
+            }
+            return View(compras.DetallesCompras.ToList());
+        }
+        
     }
 }
