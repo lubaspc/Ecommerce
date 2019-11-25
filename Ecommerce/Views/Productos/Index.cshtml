@@ -10,7 +10,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table-responsive">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Nombre)
@@ -19,7 +19,7 @@
             @Html.DisplayNameFor(model => model.Descripcion)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Url_image)
+            <img src="~/Content/@item.Url_image" style="height:70px; width:100%" />
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Sabor)
