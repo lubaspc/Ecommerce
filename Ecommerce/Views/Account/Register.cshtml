@@ -4,7 +4,7 @@
     ViewBag.Title = "Registrate";
 }
 
-<div class="pt-5 vh-100 bg-pan2">
+<div class="pt-5 vh-100 bg-pan2" >
     
 
     <div class="row justify-content-center">
@@ -75,8 +75,8 @@
                                     @Html.LabelFor(model => model.cliente.Sexo, new { @class = "control-label" })
                                     
                                         @Html.DropDownListFor(model => model.cliente.Sexo, new List<SelectListItem>{
-                                        new SelectListItem{ Text="Masculino", Value="M"},
-                                        new SelectListItem{ Text="Femenino", Value="F"}
+                                        new SelectListItem{ Text="Masculino", Value="true"},
+                                        new SelectListItem{ Text="Femenino", Value="false"}
                                         }, "--- Seleccione ---", new { @class = "form-control" })
                                     
                                 </div>
