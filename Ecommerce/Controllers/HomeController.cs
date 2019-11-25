@@ -79,7 +79,8 @@ namespace Ecommerce.Controllers
             }
             
             ViewBag.catalogos = db.Catalogos.ToList();
-            ViewBag.productos = productos.ToList(); 
+            ViewBag.productos = productos.ToList();
+            ViewBag.metodos = new MetodosPago().MetodoPago;
             return View();
         }
     }
