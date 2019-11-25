@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Ecommerce.Models;
+using System.IO;
 
 namespace Ecommerce.Controllers
 {
@@ -49,7 +50,7 @@ namespace Ecommerce.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(int[] Catalogos, HttpPostedFileBase file
+        public async Task<ActionResult> Create(int[] Catalogos, HttpPostedFileBase file,
             [Bind(Include = "Id,Nombre,Descripcion,Url_image,Sabor,activo,Marca,Costo_unitario,Porcentage_descuento,Status,Time_Mount,Time_Day,Precio_final,Cantidad_ventas")] Productos productos)
         {
             List<Catalogos> catalogosP = new List<Catalogos>();
@@ -61,11 +62,13 @@ namespace Ecommerce.Controllers
             if (ModelState.IsValid)
             {
                 string fileName = Path.GetFileNameWithoutExtension(file.FileName);
-                string extension = Path.GetExtension(file.FileName + ".jpg");
-                productos.Url_image = "img/" + fileName;
+                string extension = Path.GetExtension(file.FileName);
+                productos.Url_image = "img/" + fileName+".jpg";
                 fileName = Path.Combine(Server.MapPath("~/Content/img/"), fileName);
                 file.SaveAs(fileName);
                 productos.Catalogos = catalogosP;
+                productos.activo = true;
+                productos.Cantidad_ventas = 0;
                 db.Productos.Add(productos);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
