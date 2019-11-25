@@ -21,24 +21,23 @@ namespace Ecommerce.Controllers
         {
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "DateTime" ? "date_desc" : "DateTime";
-            var productos = from p in db.Productos
-                            select p;
+            var productos = from s in db.Productos select  s;
             switch (sortOrder) {
                 case "name_desc":
-                    productos = productos.OrderByDescending(p => p.Nombre);
+                    productos = productos.OrderByDescending(s => s.Nombre);
                     break;
                 case "DateTime":
-                    productos = productos.OrderBy(p => p.Fecha_caducidad);
+                    productos = productos.OrderBy(s => s.Fecha_caducidad);
                     break;
                 case "date_desc":
-                    productos = productos.OrderByDescending(p => p.Fecha_caducidad);
+                    productos = productos.OrderByDescending(s => s.Fecha_caducidad);
                     break;
                 default:
-                    productos = productos.OrderBy(p => p.Nombre);
+                    productos = productos.OrderBy(s => s.Nombre);
                     break;
             }
 
-            return View(await db.Productos.ToListAsync());
+            return View(await productos.AsNoTracking().ToListAsync());
         }
 
         // GET: Productos1/Details/5
