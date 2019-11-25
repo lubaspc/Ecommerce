@@ -385,18 +385,15 @@
             prove1.Id = 1;
             prove1.Nombre = "Alejandro";
             prove1.Telefono = "7224124088";
-            prove1.Credito = 10;
-            prove1.CreditoMax = 150000;
-            
-
-           
+            prove1.Correo = "alexseed2@hotmail.com";
+            DetalleCompras detalle1= new DetalleCompras{Id=1,Cantidad=100};
+            Compras compra1 = new Compras { Id = 1, Provedores = prove1, Total = 50000, Status = 1, TipoPago = 1, FechaCompra = new DateTime(2011, 6, 10),DetallesCompras={detalle1} };
+            prove1.Compras = new List<Compras> { compra1} ;
             Provedores prove2 = new Provedores();
             prove2.Id = 2;
             prove2.Nombre = "CHARLY";
             prove2.Telefono = "7171717171";
-            prove2.Credito = 15;
-            prove2.CreditoMax = 200000;
-
+            prove2.Correo = "charly@hotmail.com";
             db.Provedores.AddOrUpdate(prove1);
             db.Provedores.AddOrUpdate(prove2);
         }

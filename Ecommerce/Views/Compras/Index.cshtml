@@ -6,20 +6,18 @@
 }
 
 <h2>Historial de compras</h2>
-@using (@Html.BeginForm("Index", "Home", FormMethod.Get))
+@using (@Html.BeginForm("Index", "Compras", FormMethod.Get))
 {
-    <b> Buscar:</b>
-    @Html.RadioButton("searchBy", "Status", true) <text>
+    <b> Buscar por:</b>
+    @Html.RadioButton("searchBy", "Status", true,new { htmlAttributes = new { @class = "form-check-input" } }) <text>
         Estado</text>
-    @Html.RadioButton("searchBy", "TipoPago") <text>
+    @Html.RadioButton("searchBy", "TipoPago",new { htmlAttributes = new { @class = "form-check-input" } }) <text>
         Tipo de Pago</text>
-    @Html.RadioButton("searchBy", "FechaCompra", true) <text>
-        Fecha de Compra</text>
-    @Html.RadioButton("searchBy", "Provedor.Nombre") <text>
+    @Html.RadioButton("searchBy", "Provedor",new { htmlAttributes = new { @class = "form-check-input" } }) <text>
         Nombre de proveedor</text>
     <br />
-    @Html.TextBox("Buscar")
-    <input type="submit" value="search" />
+    @Html.TextBox("search")
+    <input type="submit" value="Buscar" class="btn btn-light"/>
 
 }
 <div class="text-right">
@@ -34,27 +32,33 @@
 <table class="table">
     <tr>
         <th>
-            @Html.ActionLink("Fecha de Compra", "Index", new { sortBy = ViewBag.NameSort, searchBy = Request["searchBy"], search = Request["search"] })
+            Id de Compra
         </th>
         <th>
-            @Html.ActionLink("Nombre del proveedor", "Index", new { sortBy = ViewBag.NameSort, searchBy = Request["searchBy"], search = Request["search"] })
+            @Html.ActionLink("Fecha de Compra", "Index", new { sortBy = ViewBag.FechaSort, searchBy = Request["searchBy"], search = Request["search"] })
         </th>
         <th>
-            @Html.ActionLink("Estado", "Index", new { sortBy = ViewBag.NameSort, searchBy = Request["searchBy"], search = Request["search"] })
+            @Html.ActionLink("Nombre del proveedor", "Index", new { sortBy = ViewBag.ProveedorSort, searchBy = Request["searchBy"], search = Request["search"] })
         </th>
         <th>
-            @Html.ActionLink("Tipo de Pago", "Index", new { sortBy = ViewBag.NameSort, searchBy = Request["searchBy"], search = Request["search"] })
-
+            @Html.ActionLink("Estado", "Index", new { sortBy = ViewBag.StatusSort, searchBy = Request["searchBy"], search = Request["search"] })
+        </th>
+        <th>
+            @Html.ActionLink("Tipo de Pago", "Index", new { sortBy = ViewBag.TipoPagoSort, searchBy = Request["searchBy"], search = Request["search"] })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Total)
         </th>
+        <th></th>
 
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FechaCompra)
             </td>
@@ -88,6 +92,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Total)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id })
             </td>
         </tr>
     }

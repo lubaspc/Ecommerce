@@ -173,6 +173,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\Catalogos1Controller.cs" />
+    <Compile Include="Controllers\ComprasController.cs" />
     <Compile Include="Controllers\EmpleadosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -345,6 +346,7 @@
     <Content Include="Views\Productos1\Details.cshtml" />
     <Content Include="Views\Productos1\Edit.cshtml" />
     <Content Include="Views\Productos1\Index.cshtml" />
+    <Content Include="Views\Compras\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
