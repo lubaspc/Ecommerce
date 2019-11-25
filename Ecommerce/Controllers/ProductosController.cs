@@ -43,11 +43,11 @@ namespace Ecommerce.Controllers
         }
 
         // POST: Productos/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Nombre,Descripcion,Url_image,Sabor,stock,Marca,Costo_unitario,Porcentage_descuento,Status,Precio_final")] Productos productos)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Nombre,Descripcion,Url_image,Sabor,activo,Marca,Costo_unitario,Porcentage_descuento,Status,Time_Mount,Time_Day,Precio_final,Cantidad_ventas")] Productos productos)
         {
             if (ModelState.IsValid)
             {
@@ -75,11 +75,11 @@ namespace Ecommerce.Controllers
         }
 
         // POST: Productos/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Nombre,Descripcion,Url_image,Sabor,stock,Marca,Costo_unitario,Porcentage_descuento,Status,Precio_final")] Productos productos)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Nombre,Descripcion,Url_image,Sabor,activo,Marca,Costo_unitario,Porcentage_descuento,Status,Time_Mount,Time_Day,Precio_final,Cantidad_ventas")] Productos productos)
         {
             if (ModelState.IsValid)
             {

@@ -194,9 +194,10 @@
                 Porcentage_descuento = 5,
                 Status = 1,
                 Precio_final = 8,
-                stock = 30,
+                activo = true,
                 Cantidad_ventas = 3,
-                Fecha_caducidad = new DateTime(1988, 8, 29),
+                Time_Mount = 12,
+                Time_Day = 31,
                 Catalogos = new List<Catalogos> { dulce, trigo }
             };
 
@@ -212,9 +213,10 @@
                 Porcentage_descuento = 0,
                 Status = 1,
                 Precio_final = 12,
-                stock = 30,
+                activo = true,
                 Cantidad_ventas = 3,
-                Fecha_caducidad = new DateTime(1988, 8, 29),
+                Time_Mount = 11,
+                Time_Day = 4,
                 Catalogos = new List<Catalogos> { sal, trigo }
 
 
@@ -232,9 +234,10 @@
                 Porcentage_descuento = 0,
                 Status = 1,
                 Precio_final = 10,
-                stock = 30,
+                activo = true,
                 Cantidad_ventas = 3,
-                Fecha_caducidad = new DateTime(1988, 8, 29),
+                Time_Mount = 1,
+                Time_Day = 1,
                 Catalogos = new List<Catalogos> { champinon, sal }
             };
 
@@ -250,9 +253,10 @@
                 Porcentage_descuento = 0,
                 Status = 1,
                 Precio_final = 12,
-                stock = 30,
+                activo = true,
                 Cantidad_ventas = 3,
-                Fecha_caducidad = new DateTime(1988, 8, 29),
+                Time_Mount = 3,
+                Time_Day = 3,
                 Catalogos = new List<Catalogos> { champinon, trigo }
             };
 
@@ -268,9 +272,10 @@
                 Porcentage_descuento = 0,
                 Status = 1,
                 Precio_final = 20,
-                stock = 30,
+                activo = true,
                 Cantidad_ventas = 3,
-                Fecha_caducidad = new DateTime(1988, 8, 29),
+                Time_Mount = 5,
+                Time_Day = 7,
                 Catalogos = new List<Catalogos> { trigo, champinon }
 
             };
@@ -287,9 +292,10 @@
                 Porcentage_descuento = 0,
                 Status = 1,
                 Precio_final = 15,
-                stock = 30,
+                activo = true,
                 Cantidad_ventas = 3,
-                Fecha_caducidad = new DateTime(1988, 8, 29),
+                Time_Mount = 3,
+                Time_Day = 23,
                 Catalogos = new List<Catalogos> { linaza, champinon }
             };
 
@@ -305,9 +311,10 @@
                 Porcentage_descuento = 0,
                 Status = 1,
                 Precio_final = 9,
-                stock = 30,
+                activo = true,
                 Cantidad_ventas = 3,
-                Fecha_caducidad = new DateTime(1988, 8, 29),
+                Time_Mount = 5,
+                Time_Day = 23,
                 Catalogos = new List<Catalogos> { linaza, dulce }
             };
 
@@ -323,9 +330,10 @@
                 Porcentage_descuento = 0,
                 Status = 1,
                 Precio_final = 15,
-                stock = 30,
+                activo = true,
                 Cantidad_ventas = 3,
-                Fecha_caducidad = new DateTime(1988, 8, 29),
+                Time_Mount = 10,
+                Time_Day = 23,
                 Catalogos = new List<Catalogos> { trigo, champinon }
             };
 
@@ -341,9 +349,10 @@
                 Porcentage_descuento = 0,
                 Status = 1,
                 Precio_final = 10,
-                stock = 30,
+                activo = true,
                 Cantidad_ventas = 3,
-                Fecha_caducidad = new DateTime(1988, 8, 29),
+                Time_Mount = 11,
+                Time_Day = 13,
                 Catalogos = new List<Catalogos> { trigo }
             };
 
@@ -359,9 +368,10 @@
                 Porcentage_descuento = 0,
                 Status = 1,
                 Precio_final = 25,
-                stock = 30,
+                activo = true,
                 Cantidad_ventas = 10,
-                Fecha_caducidad = new DateTime(1988, 8, 29),
+                Time_Mount = 12,
+                Time_Day = 31,
                 Catalogos = new List<Catalogos> { champinon, sal }
             };
 
