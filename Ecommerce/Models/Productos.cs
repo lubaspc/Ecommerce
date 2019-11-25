@@ -9,7 +9,7 @@ namespace Ecommerce.Models
     public class Productos
     {
         public int Id { set; get; }
-        [StringLength(120,ErrorMessage ="As eccedido el tamaño permitido")] [Required(ErrorMessage = "Es nesesario el nombre")]
+        [StringLength(120,ErrorMessage ="Has excedido el tamaño permitido")] [Required(ErrorMessage = "Es nesesario el nombre")]
         public string Nombre { get; set; }
         [StringLength(120)] 
         public string Descripcion { get; set; }
@@ -33,5 +33,6 @@ namespace Ecommerce.Models
         public virtual ICollection<DetalleVenta> DetalleVentas { set; get; }
         public virtual ICollection<DetalleCompras> DetalleCompra { set; get; }
 
+        
     }
 }

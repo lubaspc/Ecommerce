@@ -2,12 +2,12 @@
 
 @{
     ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    Layout = "~/Views/Shared/_LayoutProducts.cshtml";
 }
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create","Productos1",FormMethod.Post,new {enctype="multipart/form-data"}))
 {
     @Html.AntiForgeryToken()
     
@@ -34,8 +34,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Url_image, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Url_image, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Url_image, "", new { @class = "text-danger" })
+           <input type="file" name="file" id="file" required />
         </div>
     </div>
 

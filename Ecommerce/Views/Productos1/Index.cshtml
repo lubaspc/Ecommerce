@@ -13,7 +13,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Nombre)
+            @Html.ActionLink("Nombre", "Index", new { sortOrder = ViewBag.NameSortParm })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Descripcion)
@@ -40,7 +40,7 @@
             @Html.DisplayNameFor(model => model.Status)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Fecha_caducidad)
+            @Html.ActionLink("Fecha caducidad", "Index", new { sortOrder = ViewBag.DateSortParm })    
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Precio_final)
