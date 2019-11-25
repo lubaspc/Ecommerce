@@ -39,6 +39,8 @@ namespace Ecommerce.Controllers
         // GET: Productos/Create
         public ActionResult Create()
         {
+            List<Catalogos> Catalogos = db.Catalogos.ToList();
+            ViewBag.catalogos = Catalogos;
             return View();
         }
 
@@ -47,10 +49,23 @@ namespace Ecommerce.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Nombre,Descripcion,Url_image,Sabor,activo,Marca,Costo_unitario,Porcentage_descuento,Status,Time_Mount,Time_Day,Precio_final,Cantidad_ventas")] Productos productos)
+        public async Task<ActionResult> Create(int[] Catalogos, HttpPostedFileBase file
+            [Bind(Include = "Id,Nombre,Descripcion,Url_image,Sabor,activo,Marca,Costo_unitario,Porcentage_descuento,Status,Time_Mount,Time_Day,Precio_final,Cantidad_ventas")] Productos productos)
         {
+            List<Catalogos> catalogosP = new List<Catalogos>();
+            foreach (int catalog in Catalogos)
+            {
+                catalogosP.Add(db.Catalogos.Find(catalog));
+            }
+
             if (ModelState.IsValid)
             {
+                string fileName = Path.GetFileNameWithoutExtension(file.FileName);
+                string extension = Path.GetExtension(file.FileName + ".jpg");
+                productos.Url_image = "img/" + fileName;
+                fileName = Path.Combine(Server.MapPath("~/Content/img/"), fileName);
+                file.SaveAs(fileName);
+                productos.Catalogos = catalogosP;
                 db.Productos.Add(productos);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
