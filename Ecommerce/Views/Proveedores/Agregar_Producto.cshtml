@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Ecommerce.Models.Productos>
+
+@{
+    ViewBag.Title = "Agregar_Producto";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Seleccione los productos que desee comprar</h2>
+
+<div class="text-right">
+
+    <form>
+        <p>
+            <button class="btn btn-success" formaction="/Proveedores/Agregar_Producto">Listo</button>
+        </p>
+    </form>
+
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Costo_unitario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha_caducidad)
+        </th>
+
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Costo_unitario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fecha_caducidad)
+        </td>
+
+        <td>
+            <form>
+                <p>
+                    <button type="submit" class="btn btn-success" formaction="/Proveedores/Agregar_Producto"><i class="fas fa-plus"></i></button>
+                </p>
+            </form>
+        </td>
+    </tr>
+}
+
+</table>

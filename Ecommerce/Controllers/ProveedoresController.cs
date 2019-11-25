@@ -108,5 +108,12 @@ namespace Ecommerce.Controllers
             }
             return View();
         }
+
+        public async Task<ActionResult> Agregar_Producto()
+        {
+            var productos = db.Productos.AsQueryable();
+            
+            return View(await productos.ToListAsync());
+        }
     }
 }
