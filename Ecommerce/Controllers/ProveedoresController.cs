@@ -108,5 +108,21 @@ namespace Ecommerce.Controllers
             }
             return View();
         }
+
+        public async Task<ActionResult> Agregar_Producto(int? id)
+        {
+            var productos = db.Productos.AsQueryable();
+            if (id == null)
+            { 
+                return View(await productos.ToListAsync());
+            }
+           
+            ViewBag.Compra_detalle+=productos.Where(x => x.Id==id).FirstOrDefault();
+            foreach (DetalleCompras item in ViewBag.Compra_detalle)
+            {
+                productos = productos.Where(x => x.Id != item.Id);
+            }
+            return View(await productos.ToListAsync());
+        }
     }
 }
