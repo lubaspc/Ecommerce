@@ -356,6 +356,7 @@
     <Content Include="Views\Empleados\EditRH.cshtml" />
     <Content Include="Views\Empleados\EditorTemplates\DateTime.cshtml" />
     <Content Include="Views\Empleados\Home.cshtml" />
+    <Content Include="Views\Proveedores\Agregar_Producto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
