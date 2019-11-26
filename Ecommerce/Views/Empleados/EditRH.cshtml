@@ -8,7 +8,7 @@
 }
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Empleados", FormMethod.Post, new { role = "form" }))
 {
     @Html.AntiForgeryToken()
 

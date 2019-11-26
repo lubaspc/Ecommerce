@@ -15,17 +15,17 @@
 </head>
 <body>
     <nav class="navbar bg-primary navbar-expand-lg navbar-dark px-5">
-        <a href="@Url.Action("Index", "Empleados")" class="navbar-brand" title="List View">
+        <a href="@Url.Action("Home", "Empleados")" class="navbar-brand" title="List View">
             <img alt="List View" src="@Url.Content("~/Content/img/logo.png")" class="img-logo">
         </a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
 
-                <li class="nav-item active">
+                <li class="nav-item">
                     @Html.ActionLink("Almacen", "Index", "Producto", new object { }, new { @class = "nav-link" })
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item">
                     <div class="dropdown">
                         <button class="btn nav-link dropdown-toggle" type="button" data-toggle="dropdown">
                             Proveedores
@@ -38,8 +38,19 @@
                     </div>
 
                 </li>
+
                 <li class="nav-item">
-                    @Html.ActionLink("Empleados", "Index", "Empleados", new object { }, new { @class = "nav-link" })
+                    <div class="dropdown">
+                        <button class="btn nav-link dropdown-toggle" type="button" data-toggle="dropdown">
+                            Empleados
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Recursos Humanos", "IndexRH", "Empleados", new object {}, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Administracion", "Index", "Empleados", new object {}, new { @class = "nav-link" })</li>
+                        </ul>
+                    </div>
+
                 </li>
 
             </ul>
