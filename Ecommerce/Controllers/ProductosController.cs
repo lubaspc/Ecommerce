@@ -51,8 +51,9 @@ namespace Ecommerce.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(int[] Catalogos, HttpPostedFileBase file,
-            [Bind(Include = "Id,Nombre,Descripcion,Url_image,Sabor,activo,Marca,Costo_unitario,Porcentage_descuento,Status,Time_Mount,Time_Day,Precio_final,Cantidad_ventas")] Productos productos)
+            [Bind(Include = "Nombre,Descripcion,Sabor,Marca,Costo_unitario,Porcentage_descuento,,Time_Mount,Time_Day,Precio_final")] Productos productos)
         {
+            
             List<Catalogos> catalogosP = new List<Catalogos>();
             foreach (int catalog in Catalogos)
             {
@@ -63,23 +64,26 @@ namespace Ecommerce.Controllers
             {
                 string fileName = Path.GetFileNameWithoutExtension(file.FileName);
                 string extension = Path.GetExtension(file.FileName);
-                productos.Url_image = "~/Content/" + fileName+extension;
-                fileName = Path.Combine(Server.MapPath("~/Content/"), fileName+extension);
+                productos.Url_image = "img/" + fileName+extension;
+                fileName = Path.Combine(Server.MapPath("~/Content/img/"), fileName+extension);
                 file.SaveAs(fileName);
                 productos.Catalogos = catalogosP;
                 productos.activo = true;
                 productos.Cantidad_ventas = 0;
+                productos.stock = 1;
                 db.Productos.Add(productos);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                
             }
 
-            return View(productos);
+            return RedirectToAction("Index");
         }
 
         // GET: Productos/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
+            List<Catalogos> Catalogos = db.Catalogos.ToList();
+            ViewBag.catalogos = Catalogos;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -89,7 +93,9 @@ namespace Ecommerce.Controllers
             {
                 return HttpNotFound();
             }
+            
             return View(productos);
+            
         }
 
         // POST: Productos/Edit/5
@@ -97,15 +103,34 @@ namespace Ecommerce.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Nombre,Descripcion,Url_image,Sabor,activo,Marca,Costo_unitario,Porcentage_descuento,Status,Time_Mount,Time_Day,Precio_final,Cantidad_ventas")] Productos productos)
+        public async Task<ActionResult> Edit(int[] Catalogos,[Bind(Include = "Id,Nombre,Descripcion,Sabor,activo,Marca,Costo_unitario,Porcentage_descuento,Time_Mount,Time_Day,Precio_final")] Productos productos,HttpPostedFileBase file)
         {
+            List<Catalogos> catalogosP = new List<Catalogos>();
+            if (Catalogos != null)
+            {
+                foreach (int catalog in Catalogos)
+                {
+                    catalogosP.Add(db.Catalogos.Find(catalog));
+                }
+            }
+            if (file != null) {
+                string fileName = Path.GetFileNameWithoutExtension(file.FileName);
+                string extension = Path.GetExtension(file.FileName);
+                productos.Url_image = "img/" + fileName + extension;
+                fileName = Path.Combine(Server.MapPath("~/Content/img/"), fileName + extension);
+                file.SaveAs(fileName);
+            }
+          
             if (ModelState.IsValid)
             {
+               
+               
+
                 db.Entry(productos).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                
             }
-            return View(productos);
+            return RedirectToAction("Index");
         }
 
         // GET: Productos/Delete/5
@@ -142,5 +167,16 @@ namespace Ecommerce.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult Cambio(int id)
+        {
+            Productos prod = db.Productos.Find(id);
+            prod.activo = !prod.activo;
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
     }
+
 }
