@@ -63,8 +63,8 @@ namespace Ecommerce.Controllers
             {
                 string fileName = Path.GetFileNameWithoutExtension(file.FileName);
                 string extension = Path.GetExtension(file.FileName);
-                productos.Url_image = "img/" + fileName+".jpg";
-                fileName = Path.Combine(Server.MapPath("~/Content/img/"), fileName);
+                productos.Url_image = "~/Content/" + fileName+extension;
+                fileName = Path.Combine(Server.MapPath("~/Content/"), fileName+extension);
                 file.SaveAs(fileName);
                 productos.Catalogos = catalogosP;
                 productos.activo = true;
