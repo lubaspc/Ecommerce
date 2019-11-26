@@ -73,9 +73,27 @@ namespace Ecommerce.Controllers
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
             
-            Cliente cliente = new Cliente { Nombre = "Sebastian"};
+            //Cliente cliente = new Cliente { Nombre = "Sebastian"};
+            //Se obtiene el cliente para desplegar todos los datos
+            ApplicationDbContext db = new ApplicationDbContext();
+            string usid = User.Identity.GetUserId();
+            Cliente cliente = db.Cliente.Single(x => x.Id_users == usid);
             ViewBag.cliente = cliente;
             return View(model);
+        }
+        //
+        //GET: /Manage/Edit
+        public ActionResult Edit()
+        {
+            return View();
+        }
+        //
+        //POST: /Manage/Edit
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(Cliente cliente)
+        {
+            return RedirectToAction("Index", "Manage");
         }
 
         //
