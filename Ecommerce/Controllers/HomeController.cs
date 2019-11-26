@@ -21,20 +21,9 @@ namespace Ecommerce.Controllers
 
                 var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
 
-                if (userManager.IsInRole(iduser, "Control Productos"))
+                if (userManager.IsInRole(iduser, "Empleado"))
                 {
-                    Session["Rol"] = "Control Productos";
-                    return RedirectToAction("Index", "Producto");
-                }
-                else if (userManager.IsInRole(iduser, "Control Provedores"))
-                {
-                    Session["Rol"] = "Control Provedores";
-                    return RedirectToAction("Index", "Proveedores");
-                }
-                else if (userManager.IsInRole(iduser, "Administrador"))
-                {
-                    Session["Rol"] = "Administrador";
-                    return RedirectToAction("Index", "User");
+                    return RedirectToAction("Index", "Empleados");
                 }
                 else
                 {
