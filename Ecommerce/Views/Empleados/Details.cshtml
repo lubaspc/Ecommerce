@@ -150,9 +150,20 @@
                 </dl>
             </div>
         </div>
-        <p>
-            @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary text-white" })
-            @Html.ActionLink("Volver", "Index",new {}, new { @class = "btn btn-primary text-white" })
-        </p>
+
+        @if (ViewBag.privilegio == "RH")
+        {
+            <p>
+                @Html.ActionLink("Editar", "EditRH", new { id = Model.Id }, new { @class = "btn btn-primary text-white" })
+                @Html.ActionLink("Volver", "Index", new { }, new { @class = "btn btn-primary text-white" })
+            </p>
+        }
+        else if (ViewBag.privilegio == "AD") { 
+            <p>
+                @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary text-white" })
+                @Html.ActionLink("Volver", "Index", new { }, new { @class = "btn btn-primary text-white" })
+            </p>
+        }
+
     </div>
         
