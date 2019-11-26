@@ -4,9 +4,23 @@
     ViewBag.Title = "Carrito";
 }
     <div class="text-center pt-5 bg-pan1">
+
+        @if (ViewBag.message != null)
+        {
+            <div class="alert alert-success mx-5 shadow" role="alert">
+                <h3>Compra completa</h3>
+            </div>
+        }
+
         @if ((List<Carrito>)Session["carro"] != null)
         {
             <h3 class="text-white">Carrito de compra</h3>
+            if (!Request.IsAuthenticated)
+            {
+                <div class="alert alert-warning mx-5" role="alert">
+                    <h3>Es nesesario que inicies session para continuar</h3>
+                </div>
+            }
             <div class="row justify-content-end px-5">
                 @if (Request.IsAuthenticated)
                 {
@@ -22,22 +36,27 @@
                                 @foreach (KeyValuePair<int, string> metodo in ViewBag.metodo)
                                 {
                                     <option value="@metodo.Key">@metodo.Value</option>
+
+                                }
+                                @if (ViewBag.cliente.Tipo_targeta != null)
+                                {
+                                    <option type="text" name="targeta">Targeta @ViewBag.cliente.No_targeta</option>
                                 }
                             </select>
-                            @if (ViewBag.cliente.Tipo_targeta == null)
+                            @*@if (ViewBag.cliente.Tipo_targeta == null)
                             {
                                 <input type="text" name="targeta" />
                                 <input type="text" name="cvs" />
                             }
                             else
                             {
-                                <label>ViewBag.cliente.Tipo_targeta</label>
+                                <label>@ViewBag.cliente.Tipo_targeta CVS</label>
                                 <input type="text" name="cvs" />
-                            }
+                            }*@
 
-                            <a class="btn btn-primary" href="@Url.Action("TerminarCompra", "Carrito")">
-                                Finalizar compra
-                            </a>
+                            <button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#Modal">
+                                Terminar compra
+                            </button>
                         </div>
                     </div>
                 }
@@ -95,6 +114,31 @@
         }
         else
         {
-            <h3 class="text-white">Carrito de compra</h3>
+            <div class="">
+                <h3 class="text-white">Sin Productos en el carrito</h3>
+            </div>
         }
     </div>
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Terminar compra</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-primary" role="alert">
+                    Finalizar compra estas pro terminar la compra
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <a class="btn btn-primary" href="@Url.Action("TerminarCompra", "Carrito")">
+                    Finalizar compra
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

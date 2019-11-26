@@ -1,17 +1,19 @@
 ﻿@model IEnumerable<Ecommerce.Models.Empleados>
+@using Microsoft.AspNet.Identity.EntityFramework
+@using Ecommerce.Models;
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<div class="container">
+<div class="container-fluid">
 
-    <div class="row justify-content-end mt-5">
+    <div class="row justify-content-end mt-5 mr-5">
         @Html.ActionLink("Agregar usuario", "Create", "Empleados", new object { }, new { @class = "btn btn-primary text-white" })
     </div>
 
-    <div class="row justify-content-center mt-5">
+    <div class="row justify-content-center mt-5 mx-3">
 
         <div class="alert alert-warning" role="alert">
             Los empleados con el icono <i class="fas fa-exclamation-circle" style="color: #ff9f0e"></i> no han concluido su registro. Para asignar los datos faltantes dirijase a la sección de Recursos humanos.
@@ -22,6 +24,9 @@
                 <th></th>
                 <th>
                     @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    Roles
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Area)
@@ -40,13 +45,34 @@
             {
                 <tr>
                     <td>
-                        @if (item.Registro_Completo)
+                        @if (!item.Registro_Completo)
                         {
                             <i class="fas fa-exclamation-circle" style="color: #ff9f0e"></i>
                         }
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @foreach (ApplicationUser us in ViewBag.Usuarios)
+                        {
+                            if (us.Id.Equals(item.Id_users))
+                            {
+                                if (us.Roles.Count > 0)
+                                {
+
+                                    foreach (IdentityRole rol in ViewBag.Roles)
+                                    {
+                                            for (int i = 0; i < us.Roles.Count; i++)
+                                            {
+                                                @(rol.Id.Equals(us.Roles.ElementAt(i).RoleId) ? rol.Name + " " : "")
+                                            }
+                       
+                                    }
+                                }
+                            }
+
+                        }
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Area)
