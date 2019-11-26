@@ -19,7 +19,7 @@
         protected override void Seed(Ecommerce.Models.ApplicationDbContext context)
         {
             SeedCatagoProductos(context);
-            //SeedProveedores(context);
+            SeedProveedores(context);
             SeedEmpleados(context);
         }
 
@@ -396,9 +396,6 @@
             prove1.Nombre = "Alejandro";
             prove1.Telefono = "7224124088";
             prove1.Correo = "alexseed2@hotmail.com";
-            DetalleCompras detalle1= new DetalleCompras{Id=1,Cantidad=100};
-            Compras compra1 = new Compras { Id = 1, Provedores = prove1, Total = 50000, Status = 1, TipoPago = 1, FechaCompra = new DateTime(2011, 6, 10),DetallesCompras={detalle1} };
-            prove1.Compras = new List<Compras> { compra1} ;
             Provedores prove2 = new Provedores();
             prove2.Id = 2;
             prove2.Nombre = "CHARLY";

@@ -19,7 +19,7 @@
             @Html.DisplayNameFor(model => model.Descripcion)
         </th>
         <th>
-            <img src="~/Content/@item.Url_image" style="height:70px; width:100%" />
+            @Html.DisplayNameFor(model => model.Url_image)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Sabor)
@@ -63,7 +63,7 @@
             @Html.DisplayFor(modelItem => item.Descripcion)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Url_image)
+            <img src="~/Content/@item.Url_image" style="height:100px; width:100%" />
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Sabor)

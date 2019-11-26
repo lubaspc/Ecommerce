@@ -19,6 +19,11 @@ namespace Ecommerce.Controllers
 
         // GET: Empleados
 
+        public async Task<ActionResult> Home()
+        {
+            return View();
+        }
+
         public async Task<ActionResult> Index()
         {
             //Administrador de recursos humanos Director Administrativo
@@ -27,17 +32,43 @@ namespace Ecommerce.Controllers
             ViewBag.Usuarios = db.Users.ToList();
             ViewBag.Roles = db.Roles.ToList();
 
-            return View("indexRH",await db.Empleados.ToListAsync());
+            return View("index",await db.Empleados.ToListAsync());
+        }
+
+        public async Task<ActionResult> IndexRH()
+        {
+            //Administrador de recursos humanos Director Administrativo
+
+            return View("indexRH", await db.Empleados.ToListAsync());
         }
 
         // GET: Empleados/Details/5
         public async Task<ActionResult> Details(int? id)
         {
+            
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Empleados empleados = await db.Empleados.FindAsync(id);
+
+            if (User.Identity.IsAuthenticated)
+            {
+                var iduser = User.Identity.GetUserId();
+                Empleados user = db.Empleados.Where(p => p.Id_users.Equals(iduser)).First();
+
+                ViewBag.privilegio = "ninguno";
+                if (user.Area.Equals("Recursos Humanos")) {
+                    ViewBag.privilegio = "RH";
+                }else if (user.Puesto.Equals("Director Administrativo"))
+                {
+                    ViewBag.privilegio = "AD";
+                }
+
+
+            }
+
+                Empleados empleados = await db.Empleados.FindAsync(id);
             if (empleados == null)
             {
                 return HttpNotFound();
@@ -108,6 +139,25 @@ namespace Ecommerce.Controllers
         }
 
         // GET: Empleados/Edit/5
+
+        public async Task<ActionResult> EditRH(int? id)
+        {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Empleados empleados = await db.Empleados.FindAsync(id);
+
+            if (empleados == null)
+            {
+                return HttpNotFound();
+            }
+            return View("EditRH", empleados);
+        }
+
         public async Task<ActionResult> Edit(int? id)
         {
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
@@ -116,8 +166,8 @@ namespace Ecommerce.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Empleados empleados = await db.Empleados.FindAsync(id);
 
+            Empleados empleados = await db.Empleados.FindAsync(id);
             List <string> rolesA = new List <string>();
             List <string> rolesB = new List <string>();
 
@@ -132,7 +182,6 @@ namespace Ecommerce.Controllers
                 }
             }
             ViewBag.Usuarios = db.Users.ToList();
-            //ViewBag.Roles = db.Roles.ToList();
             ViewBag.rolesActuales = rolesA;
             ViewBag.rolesFaltantes = rolesB;
 
@@ -140,7 +189,7 @@ namespace Ecommerce.Controllers
             {
                 return HttpNotFound();
             }
-            return View("EditRH",empleados);
+            return View("Edit",empleados);
         }
 
         // POST: Empleados/Edit/5
@@ -195,7 +244,19 @@ namespace Ecommerce.Controllers
 
                 
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+
+                var iduser = User.Identity.GetUserId();
+                Empleados employee = db.Empleados.Where(p => p.Id_users.Equals(iduser)).First();
+
+                if (employee.Area.Equals("Recursos Humanos"))
+                {
+                    return RedirectToAction("IndexRH");
+                }
+                else if (employee.Puesto.Equals("Director Administrativo"))
+                {
+                    return RedirectToAction("Index");
+                }
+                
             }
             return View(empleados);
         }
