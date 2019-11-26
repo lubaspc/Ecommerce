@@ -5,13 +5,13 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-    <div>
-        <h4>Empleados</h4>
-        <hr />
-        <div class="container">
-            <div class="row justify-content-start mt-5">
+    <div class="container mt-5">
+        <div class="row">
+            <h5>Informacion general</h5>
+        </div>
+        <div class="row justify-content-start mt-1">
+            <div class="col-6">
                 <dl class="dl-horizontal">
-                   
                     <dt>
                         @Html.DisplayNameFor(model => model.Nombre)
                     </dt>
@@ -20,37 +20,13 @@
                         @Html.DisplayFor(model => model.Nombre)
                     </dd>
 
-                    <dt> 
+                    <dt>
                         @Html.DisplayNameFor(model => model.Sexo)
                     </dt>
 
                     <dd>
-                        
-                        @Html.DisplayFor(model => model.Sexo)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Salario)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.Salario)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Puesto)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.Puesto)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Area)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.Area)
+                        @(Model.Sexo ? "Hombre" : "Mujer")
+            
                     </dd>
 
                     <dt>
@@ -61,6 +37,47 @@
                         @Html.DisplayFor(model => model.Fecha_Nacimeinto)
                     </dd>
 
+                </dl>
+            </div>
+
+            <div class="col-6">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Area)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Area)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Puesto)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Puesto)
+                    </dd>
+
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Salario)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Salario)
+                    </dd>
+                </dl>
+            </div>
+
+        </div>
+
+        <div class="row mt-2">
+            <h5>Direccion</h5>
+        </div>
+
+        <div class="row justify-content-start mt-1">
+            <div class="col-6">
+                <dl class="dl-horizontal">
                     <dt>
                         @Html.DisplayNameFor(model => model.Estado)
                     </dt>
@@ -93,6 +110,11 @@
                         @Html.DisplayFor(model => model.Colonia)
                     </dd>
 
+                </dl>
+            </div>
+
+            <div class="col-6">
+                <dl class="dl-horizontal">
                     <dt>
                         @Html.DisplayNameFor(model => model.Calle)
                     </dt>
@@ -125,27 +147,12 @@
                         @Html.DisplayFor(model => model.Referencia)
                     </dd>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Active)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.Active)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Registro_Completo)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.Registro_Completo)
-                    </dd>
-
                 </dl>
             </div>
         </div>
-    </div>
         <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary text-white" })
+            @Html.ActionLink("Volver", "Index",new {}, new { @class = "btn btn-primary text-white" })
         </p>
+    </div>
+        

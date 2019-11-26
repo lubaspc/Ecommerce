@@ -353,6 +353,7 @@
     <Content Include="Views\Proveedores\Compra_proveedor.cshtml" />
     <Content Include="Views\Ventas\Index.cshtml" />
     <Content Include="Views\Ventas\DetalleVentas.cshtml" />
+    <Content Include="Views\Empleados\DisplayTemplates\DateTime.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
