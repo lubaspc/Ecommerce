@@ -24,6 +24,7 @@ namespace Ecommerce.Models
         public string Marca { get; set; }
         public double Costo_unitario { get; set; }
         public int Porcentage_descuento { get; set; }
+        public int stock { get; set; }
         public int Status { get; set; }
         [Range(0,12,ErrorMessage = "El mes debe estar entre 1 y 12")]
         public int Time_Mount { get; set; }

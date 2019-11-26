@@ -12,30 +12,38 @@ namespace Ecommerce.Controllers
 {
     public class ProveedoresController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Proveedores
         public ActionResult Historial_Compras()
         {
+            ApplicationDbContext db = new ApplicationDbContext();
+
             ViewBag.proveedores = db.Provedores.ToList();
+            db.Dispose();
             return View();
         }
         // GET: Proveedores
         public ActionResult Index()
         {
+            ApplicationDbContext db = new ApplicationDbContext();
+
             ViewBag.proveedores = db.Provedores.ToList();
+            db.Dispose();
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Crear([Bind(Include = "Id,Nombre,Telefono,Correo,Compras")] Provedores proveedor)
         {
+            ApplicationDbContext db = new ApplicationDbContext();
+
             if (ModelState.IsValid)
             {
                 db.Provedores.Add(proveedor);
                 await db.SaveChangesAsync();
+                db.Dispose();
                 return RedirectToAction("Index");
             }
-
+            db.Dispose();
             return View(proveedor);
         }
         public ActionResult Crear()
@@ -45,15 +53,19 @@ namespace Ecommerce.Controllers
         // GET: Provedores/Edit
         public async Task<ActionResult> Edit(int? id)
         {
+            ApplicationDbContext db = new ApplicationDbContext();
             if (id == null)
             {
+                db.Dispose();
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Provedores provedores = await db.Provedores.FindAsync(id);
             if (provedores == null)
             {
+                db.Dispose();
                 return HttpNotFound();
             }
+            db.Dispose();
             return View(provedores);
         }
         // POST: Productos/Edit/5
@@ -63,26 +75,35 @@ namespace Ecommerce.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Id,Nombre,Telefono,Correo,Compras")] Provedores proveedor)
         {
+            ApplicationDbContext db = new ApplicationDbContext();
+
             if (ModelState.IsValid)
             {
                 db.Entry(proveedor).State = EntityState.Modified;
                 await db.SaveChangesAsync();
+                db.Dispose();
                 return RedirectToAction("Index");
             }
+            db.Dispose();
             return View(proveedor);
         }
         // GET: Productos/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
+            ApplicationDbContext db = new ApplicationDbContext();
+
             if (id == null)
             {
+                db.Dispose();
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Provedores provedor = await db.Provedores.FindAsync(id);
             if (provedor == null)
             {
+                db.Dispose();
                 return HttpNotFound();
             }
+            db.Dispose();
             return View(provedor);
         }
 
@@ -90,6 +111,7 @@ namespace Ecommerce.Controllers
         //GET
         public async Task<ActionResult> Compra_proveedor(int? id)
         {
+
             if (id == null)
             {
                 if (Session["proveedores"]==null)
@@ -108,9 +130,12 @@ namespace Ecommerce.Controllers
             }
             else
             {
+                ApplicationDbContext db = new ApplicationDbContext();
+
                 Provedores provee = await db.Provedores.FindAsync(id);
                 Session["proveedores"] = provee;
                 ViewBag.Compra_proveedor = Session["proveedores"];
+                db.Dispose();
                 if (provee == null)
                 {
                     return HttpNotFound();
@@ -122,6 +147,8 @@ namespace Ecommerce.Controllers
         //GET
         public async Task<ActionResult> Agregar_Producto()
         {
+            ApplicationDbContext db = new ApplicationDbContext();
+
             var productos = db.Productos.AsQueryable();
             return View(await productos.ToListAsync());           
         }
@@ -129,10 +156,13 @@ namespace Ecommerce.Controllers
         [HttpPost, ActionName("Comprar")]
         public ActionResult Comprar()
         {
-            ICollection<DetalleCompras> compras_list = new List<DetalleCompras>();
+            ApplicationDbContext db = new ApplicationDbContext();
+
+            List<Carrito> detalle_proxy = (List<Carrito>)Session["detalle_compras"];
+            
             double total = 0;
-            List<DetalleCompras> detalle_proxy = (List<DetalleCompras>)Session["detalle_compras"];
-            foreach (DetalleCompras det_proxy in detalle_proxy)
+            ICollection<DetalleCompras> compras_list = new List<DetalleCompras>();
+            foreach (Carrito det_proxy in detalle_proxy)
             {
                 Productos producto = db.Productos.Find(det_proxy.Productos.Id);
                 total += (det_proxy.Productos.Costo_unitario * det_proxy.Cantidad);
@@ -146,63 +176,68 @@ namespace Ecommerce.Controllers
                     PorcentajeDescuento = 0,
                     PorcentajeIncremnto = 0,
                     Productos = producto,
-                    SubTotal = (det_proxy.Productos.Precio_final * det_proxy.Cantidad),
+                    SubTotal = (det_proxy.Productos.Precio_final * det_proxy.Cantidad)
                 };
                 compras_list.Add(dcompra);
             }
             Provedores prove = (Provedores)Session["proveedores"];
+            Provedores prueba = db.Provedores.Where(x => x.Id == prove.Id).FirstOrDefault();
             Compras compras = new Compras {
                 DetallesCompras = compras_list,
-                Provedores = prove,
+                Provedores = prueba,
                 FechaCompra = DateTime.Now,
                 Status= 1,
-                TipoPago=3,
+                TipoPago=2,
                 Total=total
             };
-            
-            db.Compras.Add(compras);
-            db.SaveChanges();
-            Session["proveedores"] = null;
             compras_list.Clear();
-            Session["carro"] = compras_list;
+            db.Compras.Add(compras);
+            db.SaveChangesAsync();
+            Session["proveedores"] = null;
+            
+            Session["detalle_compras"] = null;
+            db.Dispose();
             return Redirect("/Compras/Index");
         }
         //GET
         public async Task<ActionResult> Agregar_Compra(int? id)
         {
+            ApplicationDbContext db = new ApplicationDbContext();
+
             var productos = db.Productos.AsQueryable();
             if (id == null)
             {
-
+                db.Dispose();
                 return View(await productos.ToListAsync());
             }
 
             productos = productos.Where(x => x.Id == id);
             if (Session["detalle_compras"] == null)
             {
-                List<DetalleCompras> detalle_compras = new List<DetalleCompras>();
-                detalle_compras.Add(new DetalleCompras { Productos = productos.FirstOrDefault(), Cantidad = 1 });
-                Session["detalle_compras"] = detalle_compras;
+                List<Carrito> carrito = new List<Carrito>();
+                carrito.Add(new Carrito { Productos = productos.FirstOrDefault(), Cantidad = 1 });
+                Session["detalle_compras"] = carrito;
             }
             else
             {
-                List<DetalleCompras> detalle_compras = (List<DetalleCompras>)Session["detalle_compras"];
+                List<Carrito> carrito = (List<Carrito>)Session["detalle_compras"];
                 int index = isExist(id);
                 if (index != -1)
                 {
-                    detalle_compras[index].Cantidad++;
+                    carrito[index].Cantidad++;
                 }
                 else
                 {
-                    detalle_compras.Add(new DetalleCompras { Productos = productos.FirstOrDefault(), Cantidad = 1 });
+                    carrito.Add(new Carrito { Productos = productos.FirstOrDefault(), Cantidad = 1 });
                 }
-                Session["detalle_compras"] = detalle_compras;
+                Session["detalle_compras"] = carrito;
             }
+            db.Dispose();
             return RedirectToAction("Compra_proveedor");
         }
         public ActionResult Cantidad(int Id, int cantidad)
         {
-            List<DetalleCompras> compras= (List<DetalleCompras>)Session["detalle_compras"];
+            List<Carrito> compras= (List<Carrito>)Session["detalle_compras"];
             int index = isExist(Id);
             if (index != -1)
             {
@@ -212,7 +247,7 @@ namespace Ecommerce.Controllers
         }
         private int isExist(int? id)
         {
-            List<DetalleCompras> carro = (List<DetalleCompras>)Session["detalle_compras"];
+            List<Carrito> carro = (List<Carrito>)Session["detalle_compras"];
             for (int i = 0; i < carro.Count; i++)
             {
                 if (carro[i].Productos.Id.Equals(id))

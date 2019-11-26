@@ -13,11 +13,11 @@ namespace Ecommerce.Controllers
 {
     public class ComprasController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Compras
         public async Task<ActionResult> Index(string searchBy, string search,string sortBy)
         {
-            ViewBag.StatusSort = String.IsNullOrEmpty(sortBy) ? "Status desc" : "";
+              ApplicationDbContext db = new ApplicationDbContext();
+        ViewBag.StatusSort = String.IsNullOrEmpty(sortBy) ? "Status desc" : "";
             ViewBag.TipoPagoSort = sortBy == "TipoPago" ? "TipoPago desc" : "TipoPago";
             ViewBag.FechaSort = sortBy == "Fecha" ? "Fecha desc" : "Fecha";
             ViewBag.ProveedorSort = sortBy == "Proveedor" ? "Proveedor desc" : "Proveedor";
@@ -126,6 +126,7 @@ namespace Ecommerce.Controllers
         public async Task<ActionResult> Edit(int? id)
         {
             List<SelectListItem> lst = new List<SelectListItem>();
+            ApplicationDbContext db = new ApplicationDbContext();
 
             lst.Add(new SelectListItem() { Text = "PEDIDO", Value = "1" });
             lst.Add(new SelectListItem() { Text = "PAGADO", Value = "2" });
@@ -141,6 +142,7 @@ namespace Ecommerce.Controllers
             {
                 return HttpNotFound();
             }
+            db.Dispose();
             return View(compras);
         }
         // POST: Productos/Edit/5
@@ -150,27 +152,36 @@ namespace Ecommerce.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Id,DetallesCompras,Provedores,FechaCompra,Status,TipoPago,Total")] Compras compras)
         {
+            ApplicationDbContext db = new ApplicationDbContext();
+
             if (ModelState.IsValid)
             {
                 db.Entry(compras).State = EntityState.Modified;
                 await db.SaveChangesAsync();
+                db.Dispose();
                 return RedirectToAction("Index");
             }
             return View(compras);
         }
         // GET: Compras/Details
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
+            ApplicationDbContext db = new ApplicationDbContext();
+
             if (id == null)
             {
+                db.Dispose();
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Compras compras = await db.Compras.FindAsync(id);
-            if (compras == null)
+            ViewBag.Detalles_Compra= db.Compras.Find(id).DetallesCompras.ToList();
+            db.Dispose();
+            if (ViewBag.Detalles_Compra == null)
             {
+                
                 return HttpNotFound();
             }
-            return View(compras.DetallesCompras.ToList());
+
+            return View();
         }
         
     }

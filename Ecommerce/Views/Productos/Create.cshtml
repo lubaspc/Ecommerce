@@ -2,7 +2,7 @@
 @using Ecommerce.Models
 @{
     ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_LayoutProducts.cshtml";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <h2>Create</h2>
@@ -46,7 +46,7 @@
         </div>
     </div>
 
-    <div class="form-group" visible="false">
+    <div class="overflow-hidden" id="activo">
         @Html.LabelFor(model => model.activo, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             <div class="checkbox">
@@ -80,7 +80,7 @@
         </div>
     </div>
 
-    <div class="form-group">
+    <div class="overflow-hidden" id="status">
         @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
@@ -112,7 +112,7 @@
         </div>
     </div>
 
-    <div class="form-group" visible ="false">
+    <div class="overflow-hidden" id="cant_ventas">
         @Html.LabelFor(model => model.Cantidad_ventas, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.Cantidad_ventas, new { htmlAttributes = new { @class = "form-control" } })
@@ -142,6 +142,13 @@
     </div>
 </div>
 }
+<script>
+    
+    document.getElementById("status").style.display = "none";
+    document.getElementById("activo").style.display = "none";
+    document.getElementById("cant_ventas").style.display = "none";
+    
+</script>
 
 <div>
     @Html.ActionLink("Back to List", "Index")

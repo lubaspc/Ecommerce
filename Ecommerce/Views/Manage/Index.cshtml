@@ -3,7 +3,7 @@
 
 @{
     ViewBag.Title = "Manage";
-    var user = ViewBag.cliente;
+    var cliente = ViewBag.cliente;
 }
 
 
@@ -13,7 +13,7 @@
         <div class="col-md-4"></div>
         <div class="col-md-4"></div>
         <div class="col-md-4">
-            <button type="button" class="btn btn-success btn-lg btn-block"><i class="fas fa-edit"></i>  Modificar información</button>
+            <a href="/Manage/Edit" class="btn btn-success btn-lg btn-block"><i class="fas fa-edit"></i>  Modificar información</a>
         </div>
     </div>
     <div class="row" style="margin-top:20px;">
@@ -23,10 +23,10 @@
                     <h5>Datos Personales</h5>
                 </div>
                 <div class="card-body">
-                    <p><b>Nombre: </b>@user.Nombre</p>
-                    <p><b>Correo: </b>pperezp@toluca.tecnm.mx</p>
-                    <p><b>Sexo: </b>Masculino</p>
-                    <p><b>Fecha de Nacimiento: </b>01/01/97</p>
+                    <p><b>Nombre: </b>@cliente.Nombre</p>
+                    <p><b>Correo: </b></p>
+                    <p><b>Sexo: </b>@cliente.Sexo</p>
+                    <p><b>Fecha de Nacimiento: </b>@cliente.Fecha_Nacimeinto</p>
                     <p><b>Contraseña: </b>**********</p>
 
                 </div>
