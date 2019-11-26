@@ -1,10 +1,9 @@
 ﻿@using Ecommerce.Models;
-@model Ecommerce.Models.Empleados
+@model Ecommerce.Models.DetalleCompras
 @{
     ViewBag.Title = "Compra proveedor";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-
 <h2>Compra proveedor</h2>
 <div class="form-horizontal">
     <div class="row">
@@ -27,15 +26,7 @@
 
 
     </div>
-    <div class="row">
-        <div class="col-md-1">
-            <label>Total:</label>
-        </div>
-        <div class="col-md-4">
-            @ViewBag.Compra_total
-        </div>
 
-    </div>
     <div class="text-right">
         <form>
             <p>
@@ -48,47 +39,79 @@
     <tr>
 
         <th>
+            Productos
+        </th>
+        <th>
             Cantidad
         </th>
         <th>
-            Productos
+            Costo Unitario
+        </th>
+        <th>
+            Tiempo de vida(Meses)
+        </th>
+        <th>
+            Tiempo de vida(Dias)
         </th>
         <th>
             Subtotal
         </th>
-        <th>
-            Fecha de vencimiento
-        </th>
-        <th></th>
+       
     </tr>
     @if (ViewBag.Compra_detalles != null)
     {
         foreach (DetalleCompras item in ViewBag.Compra_detalles)
         {
             <tr>
-                <td>
-                    @item.Cantidad
-                </td>
+
                 <td>
                     @item.Productos.Nombre
                 </td>
                 <td>
-                    @item.SubTotal
+                    @item.Cantidad
                 </td>
                 <td>
-                    @item.Fecha_vencimiento
+                    @item.Productos.Costo_unitario
                 </td>
                 <td>
+                    @item.Productos.Time_Mount
                 </td>
+                <td>
+                    @item.Productos.Time_Day
+                </td>
+                <td>
+                    @(item.Productos.Costo_unitario * item.Cantidad)
+                </td>
+
+                
+
             </tr>
         }
     }
 
 
 </table>
-    <div class="form-horizontal">
-        @using (@Html.BeginForm("Comprar", "Proveedores", FormMethod.Post))
-        {
-            <input type="submit" value="Pagar" class="btn btn-success" />
-        }
+<div class="form-horizontal">
+    <div class="row">
+        <div class="col-md-1">
+            <label>Total:</label>
+        </div>
+        <div class="col-md-11">
+            @if (ViewBag.Compra_detalles != null)
+            {
+
+                List<DetalleCompras> carro = (List<DetalleCompras>)Session["detalle_compras"];
+                var total = carro.Sum(item => item.Productos.Costo_unitario * item.Cantidad);
+
+                @total
+            }
+        </div>
     </div>
+    @using (@Html.BeginForm("Comprar", "Proveedores", FormMethod.Post))
+    {
+        <button type="submit" class="btn btn-success">Pagar <i class="fas fa-money-check-alt"></i></button>
+    }
+
+</div>
+
+
