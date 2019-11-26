@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Ecommerce.Models.DetalleCompras>
+﻿@using Ecommerce.Models
 
 @{
     ViewBag.Title = "Details";
@@ -14,30 +14,35 @@
 </form>
 <table class="table">
     <tr>
-  
+  <th>
+      Producto
+  </th>
         <th>
-            @Html.DisplayNameFor(model => model.Cantidad)
+            Cantidad
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SubTotal)
+            Subtotal
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Fecha_vencimiento)
+            Fecha de vencimiento
         </th>
 
     </tr>
 
-@foreach (var item in Model) {
+@foreach (DetalleCompras item in ViewBag.Detalles_Compra) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Cantidad)
+            @item.Productos.Nombre
+        </td>
+        <td>
+            @item.Cantidad
         </td>
 
         <td>
-            @Html.DisplayFor(modelItem => item.SubTotal)
+            @item.SubTotal
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Fecha_vencimiento)
+            @item.Fecha_vencimiento
         </td>
     </tr>
 }

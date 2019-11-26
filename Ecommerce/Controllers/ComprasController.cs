@@ -164,7 +164,7 @@ namespace Ecommerce.Controllers
             return View(compras);
         }
         // GET: Compras/Details
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             ApplicationDbContext db = new ApplicationDbContext();
 
@@ -173,13 +173,15 @@ namespace Ecommerce.Controllers
                 db.Dispose();
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Compras compras = await db.Compras.FindAsync(id);
-            if (compras == null)
+            ViewBag.Detalles_Compra= db.Compras.Find(id).DetallesCompras.ToList();
+            db.Dispose();
+            if (ViewBag.Detalles_Compra == null)
             {
-                db.Dispose();
+                
                 return HttpNotFound();
             }
-            return View(compras.DetallesCompras.ToList());
+
+            return View();
         }
         
     }
