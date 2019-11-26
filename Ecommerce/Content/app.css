@@ -77,7 +77,7 @@ a {
   max-height: 300px;
 }
 .fas {
-  color: white;
+  color: #880e4f;
 }
 .bg-pan1 {
   background-image: url(img/pandaderia.jpg);
@@ -107,6 +107,9 @@ a {
 }
 .bg-semitanparente {
   background-color: rgba(240, 225, 172, 0.7);
+}
+.bg-nosotros {
+  background-color: rgba(255, 159, 11, 0.65);
 }
 .bg-tanparente {
   background-color: rgba(240, 225, 172, 0);

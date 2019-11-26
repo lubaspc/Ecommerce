@@ -6,8 +6,8 @@
 
 <div class="container-fluid">
     <div class="row m-5">
-        <table class="table shadow">
-            <thead class="thead-dark text-center">
+        <table class="table shadow table-dark">
+            <thead class="text-center">
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Producto</th>
@@ -21,7 +21,7 @@
                     <th scope="col"><input class="input-table" type="text" /></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="text-center">
                 @foreach (DetalleVenta Dventa in ViewBag.Detalle)
                 {
                     <tr>
