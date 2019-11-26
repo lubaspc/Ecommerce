@@ -60,7 +60,7 @@
     </tr>
     @if (ViewBag.Compra_detalles != null)
     {
-        foreach (DetalleCompras item in ViewBag.Compra_detalles)
+        foreach (Carrito item in ViewBag.Compra_detalles)
         {
             <tr>
 
@@ -100,7 +100,7 @@
             @if (ViewBag.Compra_detalles != null)
             {
 
-                List<DetalleCompras> carro = (List<DetalleCompras>)Session["detalle_compras"];
+                List<Carrito> carro = (List<Carrito>)Session["detalle_compras"];
                 var total = carro.Sum(item => item.Productos.Costo_unitario * item.Cantidad);
 
                 @total

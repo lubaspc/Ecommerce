@@ -18,8 +18,7 @@
 
         protected override void Seed(Ecommerce.Models.ApplicationDbContext context)
         {
-            SeedCatagoProductos(context);
-            SeedProveedores(context);
+            SeedCatagoProductos(context);           
             SeedEmpleados(context);
         }
 
