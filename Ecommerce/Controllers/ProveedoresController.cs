@@ -131,13 +131,17 @@ namespace Ecommerce.Controllers
         {
             ICollection<DetalleCompras> compras_list = new List<DetalleCompras>();
             double total = 0;
-            ICollection<DetalleCompras> detalle_proxy = (List<DetalleCompras>)Session["detalle_compras"];
+            List<DetalleCompras> detalle_proxy = (List<DetalleCompras>)Session["detalle_compras"];
             foreach (DetalleCompras det_proxy in detalle_proxy)
             {
                 Productos producto = db.Productos.Find(det_proxy.Productos.Id);
                 total += (det_proxy.Productos.Costo_unitario * det_proxy.Cantidad);
+                DateTime vencimiento = DateTime.Now;
+                vencimiento = vencimiento.AddMonths(producto.Time_Mount);
+                vencimiento = vencimiento.AddDays(producto.Time_Day);
                 DetalleCompras dcompra = new DetalleCompras
                 {
+                    Fecha_vencimiento= vencimiento,
                     Cantidad = det_proxy.Cantidad,
                     PorcentajeDescuento = 0,
                     PorcentajeIncremnto = 0,
@@ -146,23 +150,21 @@ namespace Ecommerce.Controllers
                 };
                 compras_list.Add(dcompra);
             }
+            Provedores prove = (Provedores)Session["proveedores"];
             Compras compras = new Compras {
                 DetallesCompras = compras_list,
-                Provedores = (Provedores)Session["proveedores"],
+                Provedores = prove,
                 FechaCompra = DateTime.Now,
                 Status= 1,
                 TipoPago=3,
-                Total=total,
-
-            };  
+                Total=total
+            };
             
             db.Compras.Add(compras);
-            db.SaveChangesAsync();
-            
+            db.SaveChanges();
             Session["proveedores"] = null;
             compras_list.Clear();
             Session["carro"] = compras_list;
-
             return Redirect("/Compras/Index");
         }
         //GET
