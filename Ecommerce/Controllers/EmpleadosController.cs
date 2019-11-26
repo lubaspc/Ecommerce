@@ -22,10 +22,12 @@ namespace Ecommerce.Controllers
         public async Task<ActionResult> Index()
         {
             //Administrador de recursos humanos Director Administrativo
+         
+
             ViewBag.Usuarios = db.Users.ToList();
             ViewBag.Roles = db.Roles.ToList();
 
-            return View(await db.Empleados.ToListAsync());
+            return View("indexRH",await db.Empleados.ToListAsync());
         }
 
         // GET: Empleados/Details/5
@@ -138,7 +140,7 @@ namespace Ecommerce.Controllers
             {
                 return HttpNotFound();
             }
-            return View(empleados);
+            return View("EditRH",empleados);
         }
 
         // POST: Empleados/Edit/5
@@ -150,34 +152,48 @@ namespace Ecommerce.Controllers
         {
             if (ModelState.IsValid)
             {
-                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+                if (Password != null && ConfirmPassword != null && UserName != null) {
+                    var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
 
-                var user = userManager.FindById(empleados.Id_users);
-                user.UserName = UserName;
+                    var user = userManager.FindById(empleados.Id_users);
+                    user.UserName = UserName;
 
-                if (!Password.Equals("") ) {
-                    if (Password.Equals(ConfirmPassword)) {
-                        userManager.RemovePassword(user.Id);
-                        userManager.AddPassword(user.Id, Password);
-                    }
-                }
-
-                if (roles != null)
-                {
-                    foreach (IdentityRole rol in  db.Roles.ToList()) {
-                        if (userManager.IsInRole(user.Id, rol.Name)) {
-                            userManager.RemoveFromRole(user.Id, rol.Name);
+                    if (!Password.Equals(""))
+                    {
+                        if (Password.Equals(ConfirmPassword))
+                        {
+                            userManager.RemovePassword(user.Id);
+                            userManager.AddPassword(user.Id, Password);
                         }
                     }
-                    
-                    for (int i = 0; i < roles.Length; i++)
+
+                    if (roles != null)
                     {
-                        
-                        userManager.AddToRole(user.Id, roles[i]);
+                        foreach (IdentityRole rol in db.Roles.ToList())
+                        {
+                            if (userManager.IsInRole(user.Id, rol.Name))
+                            {
+                                userManager.RemoveFromRole(user.Id, rol.Name);
+                            }
+                        }
+
+                        for (int i = 0; i < roles.Length; i++)
+                        {
+
+                            userManager.AddToRole(user.Id, roles[i]);
+                        }
                     }
+                }
+                
+
+                if (empleados.Salario != 0 && empleados.Puesto != null && empleados.Area != null && empleados.Estado != null && empleados.Municipio != null && empleados.CodigoPostal != 0 && empleados.Colonia != null && empleados.Calle != null)
+                {
+                    empleados.Registro_Completo = true;
                 }
 
                 db.Entry(empleados).State = EntityState.Modified;
+
+                
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
