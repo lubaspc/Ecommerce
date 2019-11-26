@@ -17,11 +17,14 @@ namespace Ecommerce.Controllers
         // GET: Carrito
         public ActionResult Index()
         {
-            
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
-            var user = userManager.FindById(User.Identity.GetUserId());
-            Cliente cliente = db.Cliente.Where(c => c.Id_users == user.Id).FirstOrDefault();
-            ViewBag.cliente = cliente;
+            if (User.Identity.IsAuthenticated)
+            {
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+                var user = userManager.FindById(User.Identity.GetUserId());
+                Cliente cliente = db.Cliente.Where(c => c.Id_users == user.Id).FirstOrDefault();
+                ViewBag.cliente = cliente;
+            }
+            ViewBag.message = TempData["Compra"];
             ViewBag.metodo = new MetodosPago().MetodoPago;
             return View();
         }
@@ -118,13 +121,15 @@ namespace Ecommerce.Controllers
                 Status = 1,
                 DetalleVentas = detalle,
                 FechaVenta = DateTime.Now,
+                Total = (decimal) total,
+                TipoPago = 1
 
             };
             carro.Clear();
             db.Ventas.Add(venta);
             db.SaveChangesAsync();
             Session["carro"] = carro;
-          
+            TempData["Compra"] = "Compra completa";
             return RedirectToAction("Index");
         }
 
