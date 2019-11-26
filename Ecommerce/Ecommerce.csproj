@@ -177,8 +177,6 @@
     <Compile Include="Controllers\EmpleadosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\ProductoController.cs" />
-    <Compile Include="Controllers\Productos1Controller.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
     <Compile Include="Controllers\VentasController.cs" />
@@ -354,6 +352,10 @@
     <Content Include="Views\Ventas\Index.cshtml" />
     <Content Include="Views\Ventas\DetalleVentas.cshtml" />
     <Content Include="Views\Empleados\DisplayTemplates\DateTime.cshtml" />
+    <Content Include="Views\Empleados\IndexRH.cshtml" />
+    <Content Include="Views\Empleados\EditRH.cshtml" />
+    <Content Include="Views\Empleados\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Views\Empleados\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
