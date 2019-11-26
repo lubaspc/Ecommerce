@@ -126,6 +126,14 @@ hr.style-two {
   position: absolute;
   width: 100%;
 }
+.link-catalog.active {
+  color: white;
+  background-color: orangered;
+}
+.link-catalog.active:hover {
+  color: black;
+  background-color: #c67000;
+}
 .color-white {
   color: white !important;
 }
