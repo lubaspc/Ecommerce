@@ -5,17 +5,8 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Seleccione los productos que desee comprar</h2>
+<h2>Seleccione el producto que desee comprar</h2>
 
-<div class="text-right">
-
-    <form>
-        <p>
-            <button class="btn btn-success" formaction="/Proveedores/Agregar_Producto">Listo</button>
-        </p>
-    </form>
-
-</div>
 <table class="table">
     <tr>
         <th>
@@ -25,33 +16,34 @@
             @Html.DisplayNameFor(model => model.Costo_unitario)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Fecha_caducidad)
+            Tiempo de vida(Meses)
         </th>
-
-
+        <th>
+            Tiempo de vida(Dias)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Costo_unitario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fecha_caducidad)
-        </td>
-
-        <td>
-
-            @using (@Html.BeginForm("Agregar_Producto", "Proveedores", FormMethod.Get))
-            {
-                <button type="submit" class="btn btn-success" ><i class="fas fa-plus"></i></button>
-            }
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nombre)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Costo_unitario)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Time_Mount)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Time_Day)
+    </td>
+    <td>
+        <a class="btn btn-success" href="@Url.Action("Agregar_Compra", "Proveedores", new { id = item.Id })">
+            <i class="fas fa-plus"></i>
+        </a>
+    </td>
+</tr>
 }
 
 </table>
