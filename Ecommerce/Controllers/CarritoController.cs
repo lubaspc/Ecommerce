@@ -17,6 +17,7 @@ namespace Ecommerce.Controllers
         // GET: Carrito
         public ActionResult Index()
         {
+            
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
             var user = userManager.FindById(User.Identity.GetUserId());
             Cliente cliente = db.Cliente.Where(c => c.Id_users == user.Id).FirstOrDefault();

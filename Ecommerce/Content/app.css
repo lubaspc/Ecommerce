@@ -129,6 +129,9 @@ hr.style-two {
 .color-blue {
   color: blue !important;
 }
+.color-primary {
+  color: #f0e1ab !important;
+}
 .c-black {
   color: black!important;
 }

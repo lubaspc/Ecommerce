@@ -10,7 +10,7 @@
     @Styles.Render("~/Content/app.css")
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-          crossorigin="anonymous">
+          crossorigin="anonymous" />
 
 </head>
 <body>
@@ -25,8 +25,18 @@
                 <li class="nav-item active">
                     @Html.ActionLink("Almacen", "Index", "Producto", new object { }, new { @class = "nav-link" })
                 </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Finanzas", "Index", "Proveedores", new object { }, new { @class = "nav-link" })
+                <li class="nav-item active">
+                    <div class="dropdown">
+                        <button class="btn nav-link dropdown-toggle" type="button" data-toggle="dropdown">
+                            Proveedores
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Ver Provedorees", "Index", "Proveedores", new object { }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Ver Historial", "Index", "Compras", new object { }, new { @class = "nav-link" })</li>
+                        </ul>
+                    </div>
+
                 </li>
                 <li class="nav-item">
                     @Html.ActionLink("Empleados", "Index", "Empleados", new object { }, new { @class = "nav-link" })

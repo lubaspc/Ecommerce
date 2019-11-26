@@ -19,14 +19,16 @@ namespace Ecommerce.Models
         [StringLength(120)]
         public string Sabor { get; set; }
         [Range(0,100000,ErrorMessage ="El numero debe ser mayor a cero")]
-        public int stock { get; set; }
+        public bool activo { get; set; }
         [StringLength(120)] 
         public string Marca { get; set; }
         public double Costo_unitario { get; set; }
         public int Porcentage_descuento { get; set; }
         public int Status { get; set; }
-        [Required]
-        public DateTime Fecha_caducidad { get; set; }
+        [Range(0,12,ErrorMessage = "El mes debe estar entre 1 y 12")]
+        public int Time_Mount { get; set; }
+        [Range(0,31,ErrorMessage ="El dia sdebe estar entre 1 y 31")]
+        public int Time_Day { get; set; }
         public double Precio_final { get; set; }
         public Int32 Cantidad_ventas { get; set; }
         public virtual ICollection<Catalogos> Catalogos { set; get; }

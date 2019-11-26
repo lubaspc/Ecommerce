@@ -54,8 +54,6 @@ namespace Ecommerce.Controllers
                 ViewBag.Offer = db.Productos.Where(p => p.Porcentage_descuento > 0).OrderBy(p => p.Porcentage_descuento).First();
                 return View();
             }
-
-            return View();
         }
 
         public ActionResult About()
