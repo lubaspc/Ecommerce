@@ -23,6 +23,7 @@ namespace Ecommerce.Controllers
 
                 if (userManager.IsInRole(iduser, "Empleado"))
                 {
+                    
                     return RedirectToAction("Home", "Empleados");
                 }
                 else
