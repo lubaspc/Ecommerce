@@ -104,6 +104,7 @@ namespace Ecommerce.Controllers
                 total += (car.Productos.Precio_final * car.Cantidad);
                 DetalleVenta dventa = new DetalleVenta
                 {
+                    
                     Cantidad = car.Cantidad,
                     Porcentaje_Descuento = 0,
                     Porcentaje_Incrmento = 0,

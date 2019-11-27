@@ -55,6 +55,12 @@
       <HintPath>..\packages\EntityFramework.6.4.0-preview2-19525-03\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -192,9 +198,7 @@
     <Compile Include="Models\DetalleVenta.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Empleados.cs" />
-    <Compile Include="Models\HistorialModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManagePerfilCliente.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MetodosPago.cs" />
     <Compile Include="Models\MixClienteUser.cs" />
@@ -223,7 +227,7 @@
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\modificar.jpg" />
     <Content Include="Content\img\panaderia2.jpg" />
-    <Content Include="Content\normalize.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -360,10 +364,9 @@
     <Content Include="Views\Empleados\EditRH.cshtml" />
     <Content Include="Views\Empleados\EditorTemplates\DateTime.cshtml" />
     <Content Include="Views\Empleados\Home.cshtml" />
-    <Content Include="Views\Manage\Edit.cshtml" />
     <Content Include="Views\Proveedores\Agregar_Producto.cshtml" />
-    <Content Include="Views\Manage\Historial.cshtml" />
-    <Content Include="Views\Manage\Details.cshtml" />
+    <Content Include="Views\Compras\Detalle_Compra.cshtml" />
+    <Content Include="Views\Proveedores\Editar_compra.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
