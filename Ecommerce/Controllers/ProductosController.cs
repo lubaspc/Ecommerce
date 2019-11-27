@@ -28,7 +28,7 @@ namespace Ecommerce.Controllers
                     return View(await db.Productos.ToListAsync());
 
                 }
-                return RedirectToAction("Denegado","Empleados",user);
+                return RedirectToAction("Denegate","Empleados",user);
             }
             return View();
            
@@ -124,6 +124,7 @@ namespace Ecommerce.Controllers
                 {
                     catalogosP.Add(db.Catalogos.Find(catalog));
                 }
+                productos.Catalogos = catalogosP;
             }
             if (file != null) {
                 string fileName = Path.GetFileNameWithoutExtension(file.FileName);
