@@ -142,6 +142,35 @@ namespace Ecommerce.Controllers
         }
 
         //
+        //GET: /Manage/Historial
+        public ActionResult Historial()
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            string usid = User.Identity.GetUserId();
+            var cliente = db.Cliente.Single(x => x.Id_users == usid);
+            var clienteId = cliente.Id;
+            var ventasCliente = (from a in db.Ventas
+                                 where a.Cliente.Id == clienteId
+                                 select a).ToList();
+            
+            ViewBag.ventas = ventasCliente;
+            return View();
+        }
+
+        //
+        //GET: /Manage/Details
+        public ActionResult Details(int id)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            ViewBag.id = id;
+            var detalleCompra = (from a in db.DetalleVentas
+                                 join p in db.Productos on a.Producto.Id equals p.Id
+                                 where a.Ventas.Id == id
+                                 select new VentaProductoDetalle() { detailVenta=a, detailProducto = p}).ToList();
+            ViewBag.detalleCompra = detalleCompra;
+            return View();
+        }
+        //
         // POST: /Manage/RemoveLogin
         [HttpPost]
         [ValidateAntiForgeryToken]

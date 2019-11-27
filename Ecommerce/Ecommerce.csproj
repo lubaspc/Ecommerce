@@ -192,6 +192,7 @@
     <Compile Include="Models\DetalleVenta.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Empleados.cs" />
+    <Compile Include="Models\HistorialModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManagePerfilCliente.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -200,6 +201,7 @@
     <Compile Include="Models\ProductoCatalogo.cs" />
     <Compile Include="Models\Productos.cs" />
     <Compile Include="Models\Provedores.cs" />
+    <Compile Include="Models\VentaProductoDetalle.cs" />
     <Compile Include="Models\Ventas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -360,6 +362,8 @@
     <Content Include="Views\Empleados\Home.cshtml" />
     <Content Include="Views\Manage\Edit.cshtml" />
     <Content Include="Views\Proveedores\Agregar_Producto.cshtml" />
+    <Content Include="Views\Manage\Historial.cshtml" />
+    <Content Include="Views\Manage\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
