@@ -93,7 +93,7 @@ namespace Ecommerce.Controllers
             return -1;
         }
 
-        public ActionResult TerminarCompra()
+        public ActionResult TerminarCompra(int tipoPago)
         {
             List<Carrito> carro = (List<Carrito>)Session["carro"];
             double total = 0;
@@ -115,6 +115,8 @@ namespace Ecommerce.Controllers
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
             var user = userManager.FindById(User.Identity.GetUserId());
             Cliente cliente = db.Cliente.Where(c => c.Id_users == user.Id).FirstOrDefault();
+            //int metodoPago = int.Parse(Request.Form["metodoPago"]);
+            //int metodoP = int.Parse(tipoPago);
             Ventas venta = new Ventas
             {
                 Cliente = cliente,
@@ -122,13 +124,13 @@ namespace Ecommerce.Controllers
                 DetalleVentas = detalle,
                 FechaVenta = DateTime.Now,
                 Total = (decimal) total,
-                TipoPago = 1
+                TipoPago = tipoPago
 
             };
             carro.Clear();
             db.Ventas.Add(venta);
             db.SaveChangesAsync();
-            Session["carro"] = carro;
+            Session["carro"] = null;
             TempData["Compra"] = "Compra completa";
             return RedirectToAction("Index");
         }
