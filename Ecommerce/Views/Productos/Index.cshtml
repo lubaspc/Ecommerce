@@ -5,12 +5,13 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
+<h2 class="text-center">Lista productos</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="@Url.Action("Create","Productos")" class="btn btn-primary">Crear nuevo producto</a>
+   
 </p>
-<table class="table-responsive">
+<table class="table-bordered">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Nombre)
@@ -34,11 +35,9 @@
             @Html.DisplayNameFor(model => model.Costo_unitario)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Porcentage_descuento)
+            Descuento
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
+        
         <th>
             @Html.DisplayNameFor(model => model.Time_Mount)
         </th>
@@ -70,7 +69,7 @@
                 @Html.DisplayFor(modelItem => item.Sabor)
             </td>
             <td>
-             <a href="@Url.Action("Index","Productos","Cambio")"><i class="fas @(item.activo ? "fa-toggle-on" : "fa-toggle-off")"></i></a>   
+             <a href="@Url.Action("Cambio","Productos",new { id=item.Id})"><i class="fas @(item.activo ? "fa-toggle-on" : "fa-toggle-off")"></i></a>   
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Marca)
@@ -80,9 +79,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Porcentage_descuento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Time_Mount)
@@ -97,9 +93,9 @@
                 @Html.DisplayFor(modelItem => item.Cantidad_ventas)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id } ,new { @class = "btn btn-warning"}) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id },new { @class="btn btn-info"}) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id },new { @class="btn btn-danger"})
             </td>
         </tr>
     }
