@@ -73,18 +73,48 @@ namespace Ecommerce.Controllers
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
             
-            //Cliente cliente = new Cliente { Nombre = "Sebastian"};
             //Se obtiene el cliente para desplegar todos los datos
             ApplicationDbContext db = new ApplicationDbContext();
             string usid = User.Identity.GetUserId();
             Cliente cliente = db.Cliente.Single(x => x.Id_users == usid);
+            var User1 = db.Users.Single(x => x.Id == usid);
+            var nac = cliente.Fecha_Nacimeinto.Date.ToString("d");
+            var gender = cliente.Sexo;
+            var genero="";
+            if (gender == true)
+            {
+                 genero = "M";
+            }
+            else
+            {
+                 genero = "F";
+            }
+            var credit = cliente.No_targeta;
+            var noTarjeta ="";
+            if (credit.Length > 4)
+            {
+                    noTarjeta=string.Concat("".PadLeft(12, '*'),
+                        credit.Substring(credit.Length - 4));
+            }
+            else
+            {
+                 noTarjeta = credit;
+            }
             ViewBag.cliente = cliente;
+            ViewBag.User1 = User1;
+            ViewBag.nac = nac;
+            ViewBag.gender = genero;
+            ViewBag.noTarjeta = noTarjeta;
             return View(model);
         }
         //
         //GET: /Manage/Edit
         public ActionResult Edit()
         {
+            ApplicationDbContext db = new ApplicationDbContext();
+            string usid = User.Identity.GetUserId();
+            Cliente cliente = db.Cliente.Single(x => x.Id_users == usid);
+            ViewBag.cliente = cliente;
             return View();
         }
         //
@@ -93,9 +123,53 @@ namespace Ecommerce.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Cliente cliente)
         {
+            string usid = User.Identity.GetUserId();
+            ApplicationDbContext db = new ApplicationDbContext();
+            var client = db.Cliente.Single(x => x.Id_users == usid);
+            client.Nombre = cliente.Nombre;
+            client.Estado = cliente.Estado;
+            client.Municipio = cliente.Municipio;
+            client.CodigoPostal = cliente.CodigoPostal;
+            client.Colonia = cliente.Colonia;
+            client.Calle = cliente.Calle;
+            client.NoInterior = cliente.NoInterior;
+            client.NoExterior = cliente.NoExterior;
+            client.Referencia = cliente.Referencia;
+            client.Tipo_targeta = cliente.Tipo_targeta;
+            client.No_targeta = cliente.No_targeta;
+            db.SaveChanges();
             return RedirectToAction("Index", "Manage");
         }
 
+        //
+        //GET: /Manage/Historial
+        public ActionResult Historial()
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            string usid = User.Identity.GetUserId();
+            var cliente = db.Cliente.Single(x => x.Id_users == usid);
+            var clienteId = cliente.Id;
+            var ventasCliente = (from a in db.Ventas
+                                 where a.Cliente.Id == clienteId
+                                 select a).ToList();
+            
+            ViewBag.ventas = ventasCliente;
+            return View();
+        }
+
+        //
+        //GET: /Manage/Details
+        public ActionResult Details(int id)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            ViewBag.id = id;
+            var detalleCompra = (from a in db.DetalleVentas
+                                 join p in db.Productos on a.Producto.Id equals p.Id
+                                 where a.Ventas.Id == id
+                                 select new VentaProductoDetalle() { detailVenta=a, detailProducto = p}).ToList();
+            ViewBag.detalleCompra = detalleCompra;
+            return View();
+        }
         //
         // POST: /Manage/RemoveLogin
         [HttpPost]

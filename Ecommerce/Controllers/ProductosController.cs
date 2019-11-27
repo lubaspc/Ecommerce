@@ -9,17 +9,29 @@ using System.Web;
 using System.Web.Mvc;
 using Ecommerce.Models;
 using System.IO;
+using Microsoft.AspNet.Identity;
 
 namespace Ecommerce.Controllers
 {
     public class ProductosController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        [Authorize(Roles ="Empleado")]
         // GET: Productos
         public async Task<ActionResult> Index()
         {
-            return View(await db.Productos.ToListAsync());
+            if (User.Identity.IsAuthenticated) {
+                var iduser = User.Identity.GetUserId();
+                Empleados user = db.Empleados.Where(p => p.Id_users.Equals(iduser)).First();
+
+                if (user.Active && (user.Puesto.Equals("Control de almacen" ) || user.Puesto.Equals("Director Administrativo"))) {
+                    return View(await db.Productos.ToListAsync());
+
+                }
+                return RedirectToAction("Denegado","Empleados",user);
+            }
+            return View();
+           
         }
 
         // GET: Productos/Details/5

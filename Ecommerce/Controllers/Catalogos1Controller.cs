@@ -8,17 +8,26 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Ecommerce.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Ecommerce.Controllers
 {
     public class Catalogos1Controller : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        [Authorize(Roles ="Empleado")]
         // GET: Catalogos1
         public async Task<ActionResult> Index()
         {
-            return View(await db.Catalogos.ToListAsync());
+            if (User.Identity.IsAuthenticated) {
+                var iduser = User.Identity.GetUserId();
+                Empleados user = db.Empleados.Where(p => p.Id_users.Equals(iduser)).First();
+                if (user.Active && (user.Puesto.Equals("Control de almacen") || user.Puesto.Equals("Director Administrativo"))) {
+                    return View(await db.Catalogos.ToListAsync());
+                }
+                return RedirectToAction("Denegate", "Empleados", user);
+            }
+            return View();
         }
 
         // GET: Catalogos1/Details/5

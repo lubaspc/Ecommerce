@@ -166,8 +166,11 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="control-label" for="cliente_Tipo_targeta">Tipo de Tarjeta</label>
-                                        @Html.TextBoxFor(model => model.cliente.Tipo_targeta, new { @class = "form-control" })
-                                   
+                                    @Html.DropDownListFor(model => model.cliente.Tipo_targeta,
+                                    new SelectList(new[] { "Crédito", "Débito" }),
+                                    null,
+                                    new { @class = "form-control" })
+
                                 </div>
                             </div>
                             <div class="col-md-4">
