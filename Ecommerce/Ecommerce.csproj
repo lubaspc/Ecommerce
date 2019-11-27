@@ -358,7 +358,7 @@
     <Content Include="Views\Empleados\EditorTemplates\DateTime.cshtml" />
     <Content Include="Views\Empleados\Home.cshtml" />
     <Content Include="Views\Manage\Edit.cshtml" />
-    <Content Include="Views\Empleados\Denegate.cshtml" />
+    <Content Include="Views\Proveedores\Agregar_Producto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
