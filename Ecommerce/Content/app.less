@@ -37,18 +37,16 @@ a{
     color: #880e4f;
 }
 
-.bg-pan1 {
+
+.bgimg {
     background-image: url(../Content/img/pandaderia.jpg);
-    background-position: center center;
+    height: 100vh;
+    position: relative;
+    min-height: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
     background-size: cover;
-    height: 100vh
-}
-
-
-.bg-pan2{
-    background-image: url(../Content/img/panaderia2.jpg);
-    background-position: center center;
-    background-size: cover
 }
 
 
@@ -74,7 +72,24 @@ a{
 
 .bg-semitanparente {
     background-color: rgba(240,225,172,0.7);
+    -webkit-box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.75);
 }
+
+//input:not([type="submit"]), select, select:hover,
+//input:not([type="submit"]):hover {
+//    background-color: transparent !important;
+//    border: 0 !important;
+//    border-bottom: 3px solid black !important;
+//    box-shadow: none;
+//    color: papayawhip;
+//}
+
+img{
+    max-width: 100%;
+}
+
 
 
 .bg-nosotros {
@@ -83,6 +98,7 @@ a{
 
 .bg-tanparente {
     background-color: rgba(240,225,172,0.0);
+  
 }
 
 hr.style-two {
@@ -96,13 +112,22 @@ hr.style-two {
 }
 
 .footer {
-    position: absolute;
-    width: 100%;
+    margin: 20px 30px;
+    -webkit-box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.75);
+    background-color: rgba(255,255,255,0.5);
 }
 
-
+.link-catalog.active{
+    color: white;
+    background-color: orangered; 
+}
+.link-catalog.active:hover {
+    color: black;
+    background-color: @oracleDark;
+}
 //Fonts
-
 .color-white {
     color: white !important;
 }
