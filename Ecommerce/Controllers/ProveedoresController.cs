@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Text.RegularExpressions;
 
 namespace Ecommerce.Controllers
 {
@@ -238,16 +239,7 @@ namespace Ecommerce.Controllers
           
             return RedirectToAction("Compra_proveedor");
         }
-        public ActionResult Cantidad(int Id, int cantidad)
-        {
-            List<Carrito> compras= (List<Carrito>)Session["detalle_compras"];
-            int index = isExist(Id);
-            if (index != -1)
-            {
-                    compras[index].Cantidad=cantidad;
-            }
-            return RedirectToAction("Index");
-        }
+
         private int isExist(int? id)
         {
             List<Carrito> carro = (List<Carrito>)Session["detalle_compras"];
@@ -257,6 +249,46 @@ namespace Ecommerce.Controllers
                     return i;
             }
             return -1;
+        }
+        public ActionResult Eliminar_compra(int id)
+        {
+            List<Carrito> carro = (List<Carrito>)Session["detalle_compras"];
+            int index = isExist(id);
+            carro.RemoveAt(index);
+            Session["detalle_compras"] = carro;
+            return RedirectToAction("Compra_proveedor");
+        }
+        public ActionResult Editar_compra(int? id)
+        {
+            List<Carrito> carro = (List<Carrito>)Session["detalle_compras"];
+            int index = isExist(id);
+            if (index == -1)
+            {
+                return HttpNotFound();
+            }
+            Session["editar"] = carro[index];
+            return View();
+        }
+        [HttpPost, ActionName("Editar_compra")]
+        public ActionResult Editar_compra(string cantidad)
+        {
+            Carrito carrito = (Carrito)Session["editar"];
+            List<Carrito> carro = (List<Carrito>)Session["detalle_compras"];
+            int index = isExist(carrito.Productos.Id);
+            int status;
+            if (Regex.IsMatch(cantidad, @"^\d+$"))
+            {
+              status = int.Parse(cantidad);
+            }
+            else
+            {
+                ViewBag.Error = "La cantidad debe ser numerico y no debe ser vacio";
+                return View();
+            }
+            carro[index].Cantidad = status;
+            Session["detalle_compras"] = carro;
+            Session["editar"] = null;
+            return RedirectToAction("Compra_proveedor");
         }
     }
 }

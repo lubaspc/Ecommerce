@@ -185,9 +185,10 @@ namespace Ecommerce.Controllers
 
             return View();
         }
-        public ActionResult Detalle_Compra(string searchBy, string search, string currentFilter, string sortBy, int? page)
+        public ActionResult Detalle_Compra(string searchBy,string currentsearch, string search, string currentFilter, string sortBy, int? page)
         {
             ApplicationDbContext db = new ApplicationDbContext();
+            
             ViewBag.CurrentSort = sortBy;
             ViewBag.NombreSort = String.IsNullOrEmpty(sortBy) ? "Nombre desc" : "";
             ViewBag.CostoUnitarioSort = sortBy == "CostoUnitario" ? "CostoUnitario desc" : "CostoUnitario";
@@ -202,12 +203,13 @@ namespace Ecommerce.Controllers
             else
             {
                 search = currentFilter;
+                searchBy= currentsearch;
             }
-
+            ViewBag.SearchBy = searchBy;
             ViewBag.CurrentFilter = search;
             if (searchBy == "Nombre")
             {
-                compras = compras.Where(x => x.Productos.Nombre.ToString().StartsWith(search) || search == null);
+                compras = compras.Where(x => x.Productos.Nombre.ToString()==search || search == null);
             }
             else if (searchBy == "Cantidad")
             {
@@ -222,11 +224,7 @@ namespace Ecommerce.Controllers
                 }
                 compras = compras.Where(x => x.Cantidad.ToString().StartsWith(status.ToString()) || status == null);
             }
-            else if (searchBy == "Fecha_vencimiento")
-            {
-                DateTime fecha = Convert.ToDateTime(search);
-                compras = compras.Where(x => x.Fecha_vencimiento==fecha || search == null);
-            }
+
 
             switch (sortBy)
             {

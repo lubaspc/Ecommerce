@@ -365,6 +365,7 @@
     <Content Include="Views\Empleados\Home.cshtml" />
     <Content Include="Views\Proveedores\Agregar_Producto.cshtml" />
     <Content Include="Views\Compras\Detalle_Compra.cshtml" />
+    <Content Include="Views\Proveedores\Editar_compra.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

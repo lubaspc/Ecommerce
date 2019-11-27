@@ -12,33 +12,31 @@
 @using (@Html.BeginForm("Detalle_Compra", "Compras", FormMethod.Get))
 {
     <b> Buscar por:</b>
-    @Html.RadioButton("searchBy", "Nombre", true, new { htmlAttributes = new { @class = "form-check-input" } }) <text>
+    @Html.RadioButton("searchBy", "Nombre", true, new { htmlAttributes = new{  @class = "form-check-input" } }) <text>
         Nombre</text>
-    @Html.RadioButton("searchBy", "Cantidad", new { htmlAttributes = new { @class = "form-check-input" } }) <text>
+    @Html.RadioButton("searchBy","Cantidad", new { htmlAttributes = new {@class = "form-check-input" } }) <text>
         Cantidad</text>
-    @Html.RadioButton("searchBy", "Fecha_vencimiento", new { htmlAttributes = new { @class = "form-check-input" } }) <text>
-        Fecha vencimiento</text>
     <br />
-    @Html.TextBox("search")
+    @Html.TextBox("search", ViewBag.CurrentFilter as string)
     <input type="submit" value="Buscar" class="btn btn-info" />
 }
 <table class="table">
     <tr>
         <th>
-            @Html.ActionLink("Nombre", "Detalle_Compra", new { sortBy = ViewBag.NombreSort, currentFilter = ViewBag.CurrentFilter, searchBy = Request["searchBy"], search = Request["search"] })
+            @Html.ActionLink("Nombre", "Detalle_Compra", new { sortBy = ViewBag.NombreSort, currentsearch=ViewBag.SearchBy,currentFilter = ViewBag.CurrentFilter, searchBy = Request["searchBy"], search = Request["search"] })
         </th>
         <th>
-            @Html.ActionLink("Costro Unitario", "Detalle_Compra", new { sortBy = ViewBag.CostoUnitarioSort, currentFilter = ViewBag.CurrentFilter, searchBy = Request["searchBy"], search = Request["search"] })
+            @Html.ActionLink("Costro Unitario", "Detalle_Compra", new { sortBy = ViewBag.CostoUnitarioSort, currentsearch=ViewBag.SearchBy,currentFilter = ViewBag.CurrentFilter, searchBy = Request["searchBy"], search = Request["search"] })
         </th>
         <th>
-            @Html.ActionLink("Costro Venta", "Detalle_Compra", new { sortBy = ViewBag.CostoVentaSort, currentFilter = ViewBag.CurrentFilter, searchBy = Request["searchBy"], search = Request["search"] })
+            @Html.ActionLink("Costro Venta", "Detalle_Compra", new { sortBy = ViewBag.CostoVentaSort,currentsearch=ViewBag.SearchBy, currentFilter = ViewBag.CurrentFilter, searchBy = Request["searchBy"], search = Request["search"] })
         </th>
         <th>
-            @Html.ActionLink("Cantidad", "Detalle_Compra", new { sortBy = ViewBag.CantidadSort, currentFilter = ViewBag.CurrentFilter, searchBy = Request["searchBy"], search = Request["search"] })
+            @Html.ActionLink("Cantidad", "Detalle_Compra", new { sortBy = ViewBag.CantidadSort,currentsearch=ViewBag.SearchBy, currentFilter = ViewBag.CurrentFilter, searchBy = Request["searchBy"], search = Request["search"] })
         </th>
 
         <th>
-            @Html.ActionLink("Fecha de vencimiento", "Detalle_Compra", new { sortBy = ViewBag.FechaSort, currentFilter = ViewBag.CurrentFilter, searchBy = Request["searchBy"], search = Request["search"] })
+            @Html.ActionLink("Fecha de vencimiento", "Detalle_Compra", new { sortBy = ViewBag.FechaSort,currentsearch=ViewBag.SearchBy, currentFilter = ViewBag.CurrentFilter, searchBy = Request["searchBy"], search = Request["search"] })
         </th>
     </tr>
 

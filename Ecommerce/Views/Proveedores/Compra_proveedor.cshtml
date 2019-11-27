@@ -56,7 +56,7 @@
         <th>
             Subtotal
         </th>
-       
+       <th></th>
     </tr>
     @if (ViewBag.Compra_detalles != null)
     {
@@ -82,7 +82,10 @@
                 <td>
                     @(item.Productos.Costo_unitario * item.Cantidad)
                 </td>
-
+                <td>
+                    @Html.ActionLink("Cambiar cantidad", "Editar_compra", new { id = item.Productos.Id }) |
+                    @Html.ActionLink("Eliminar compra", "Eliminar_compra", new { id = item.Productos.Id })
+                </td>
                 
 
             </tr>
