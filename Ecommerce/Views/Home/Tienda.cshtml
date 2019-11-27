@@ -10,8 +10,10 @@
                 {
                     <li class="nav-item">
                         <a href="@Url.Action("Tienda", "Home",
-                          new { Id = catalog.Id } )"
-                           class="navbar-brand link-catalog" title="List View">
+                new { Id = catalog.Id })"
+                           class="navbar-brand link-catalog 
+                           @(ViewBag.active == catalog.Id ? "active": "" ) " 
+                           title="List View">
                             <h5>@catalog.name</h5>
                         </a>
                     </li>

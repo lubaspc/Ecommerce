@@ -58,7 +58,7 @@ namespace Ecommerce.Controllers
             if (Id.HasValue)
             {
                 var catalog = db.Catalogos.Find(Id);
-                
+                ViewBag.active = Id;
                 productos = catalog.Productos;
             }
             else
