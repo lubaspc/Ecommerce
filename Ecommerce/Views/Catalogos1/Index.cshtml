@@ -2,13 +2,14 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_LayoutProducts.cshtml";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
+<h2 class="text-center">Categorias</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="@Url.Action("Create","Catalogos1")" class="btn btn-primary">Crear nueva categoria</a>
+   
 </p>
 <table class="table">
     <tr>
@@ -24,9 +25,8 @@
             @Html.DisplayFor(modelItem => item.name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }, new { @class="btn btn-warning"}) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id },new { @class="btn btn-danger"})
         </td>
     </tr>
 }
