@@ -13,7 +13,6 @@ namespace Ecommerce.Models
         public int STATUS_RECIBIDO => 3;
         public int Id { get; set; }
         public virtual ICollection<DetalleCompras> DetallesCompras { get; set; }
-        [Required]
         public virtual Provedores Provedores { get; set; }
         public DateTime FechaCompra { get; set; }
         public int Status { get; set; }

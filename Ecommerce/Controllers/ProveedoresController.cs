@@ -7,6 +7,8 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Ecommerce.Controllers
 {
@@ -18,7 +20,7 @@ namespace Ecommerce.Controllers
             ApplicationDbContext db = new ApplicationDbContext();
 
             ViewBag.proveedores = db.Provedores.ToList();
-            db.Dispose();
+           
             return View();
         }
         // GET: Proveedores
@@ -27,7 +29,7 @@ namespace Ecommerce.Controllers
             ApplicationDbContext db = new ApplicationDbContext();
 
             ViewBag.proveedores = db.Provedores.ToList();
-            db.Dispose();
+            
             return View();
         }
         [HttpPost]
@@ -40,10 +42,10 @@ namespace Ecommerce.Controllers
             {
                 db.Provedores.Add(proveedor);
                 await db.SaveChangesAsync();
-                db.Dispose();
+                
                 return RedirectToAction("Index");
             }
-            db.Dispose();
+            
             return View(proveedor);
         }
         public ActionResult Crear()
@@ -56,16 +58,16 @@ namespace Ecommerce.Controllers
             ApplicationDbContext db = new ApplicationDbContext();
             if (id == null)
             {
-                db.Dispose();
+              
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Provedores provedores = await db.Provedores.FindAsync(id);
             if (provedores == null)
             {
-                db.Dispose();
+               
                 return HttpNotFound();
             }
-            db.Dispose();
+          
             return View(provedores);
         }
         // POST: Productos/Edit/5
@@ -81,10 +83,10 @@ namespace Ecommerce.Controllers
             {
                 db.Entry(proveedor).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                db.Dispose();
+               
                 return RedirectToAction("Index");
             }
-            db.Dispose();
+            
             return View(proveedor);
         }
         // GET: Productos/Delete/5
@@ -94,16 +96,16 @@ namespace Ecommerce.Controllers
 
             if (id == null)
             {
-                db.Dispose();
+             
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Provedores provedor = await db.Provedores.FindAsync(id);
             if (provedor == null)
             {
-                db.Dispose();
+            
                 return HttpNotFound();
             }
-            db.Dispose();
+        
             return View(provedor);
         }
 
@@ -135,7 +137,7 @@ namespace Ecommerce.Controllers
                 Provedores provee = await db.Provedores.FindAsync(id);
                 Session["proveedores"] = provee;
                 ViewBag.Compra_proveedor = Session["proveedores"];
-                db.Dispose();
+      
                 if (provee == null)
                 {
                     return HttpNotFound();
@@ -181,7 +183,7 @@ namespace Ecommerce.Controllers
                 compras_list.Add(dcompra);
             }
             Provedores prove = (Provedores)Session["proveedores"];
-            Provedores prueba = db.Provedores.Where(x => x.Id == prove.Id).FirstOrDefault();
+            Provedores prueba = db.Provedores.Where(x => x.Id == prove.Id).FirstOrDefault();         
             Compras compras = new Compras {
                 DetallesCompras = compras_list,
                 Provedores = prueba,
@@ -190,13 +192,14 @@ namespace Ecommerce.Controllers
                 TipoPago=2,
                 Total=total
             };
-            compras_list.Clear();
+      
             db.Compras.Add(compras);
-            db.SaveChangesAsync();
-            Session["proveedores"] = null;
             
+            db.SaveChangesAsync();
+
+            Session["proveedores"] = null;
             Session["detalle_compras"] = null;
-            db.Dispose();
+          
             return Redirect("/Compras/Index");
         }
         //GET
@@ -207,7 +210,7 @@ namespace Ecommerce.Controllers
             var productos = db.Productos.AsQueryable();
             if (id == null)
             {
-                db.Dispose();
+                
                 return View(await productos.ToListAsync());
             }
 
@@ -232,7 +235,7 @@ namespace Ecommerce.Controllers
                 }
                 Session["detalle_compras"] = carrito;
             }
-            db.Dispose();
+          
             return RedirectToAction("Compra_proveedor");
         }
         public ActionResult Cantidad(int Id, int cantidad)

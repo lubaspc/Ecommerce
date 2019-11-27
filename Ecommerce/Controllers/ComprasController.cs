@@ -8,7 +8,8 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-
+using System.Web.UI;
+using PagedList;
 namespace Ecommerce.Controllers
 {
     public class ComprasController : Controller
@@ -17,7 +18,7 @@ namespace Ecommerce.Controllers
         public async Task<ActionResult> Index(string searchBy, string search,string sortBy)
         {
               ApplicationDbContext db = new ApplicationDbContext();
-        ViewBag.StatusSort = String.IsNullOrEmpty(sortBy) ? "Status desc" : "";
+            ViewBag.StatusSort = String.IsNullOrEmpty(sortBy) ? "Status desc" : "";
             ViewBag.TipoPagoSort = sortBy == "TipoPago" ? "TipoPago desc" : "TipoPago";
             ViewBag.FechaSort = sortBy == "Fecha" ? "Fecha desc" : "Fecha";
             ViewBag.ProveedorSort = sortBy == "Proveedor" ? "Proveedor desc" : "Proveedor";
@@ -27,16 +28,16 @@ namespace Ecommerce.Controllers
             {
                 int? status = null;
                 search = search.ToUpper();
-                if (search == "DEBITO" || search == "CREDITO")
+                if (search == "CONTADO" || search == "CREDITO")
                 {
 
                     switch (search)
                     {
-                        case "DEBITO":
-                            status = 1;
+                        case "CONTADO":
+                            status = 2;
                             break;
                         case "CREDITO":
-                            status = 2;
+                            status = 1;
                             break;
                     }
                 }
@@ -142,7 +143,7 @@ namespace Ecommerce.Controllers
             {
                 return HttpNotFound();
             }
-            db.Dispose();
+            
             return View(compras);
         }
         // POST: Productos/Edit/5
@@ -158,7 +159,7 @@ namespace Ecommerce.Controllers
             {
                 db.Entry(compras).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                db.Dispose();
+                
                 return RedirectToAction("Index");
             }
             return View(compras);
@@ -170,11 +171,12 @@ namespace Ecommerce.Controllers
 
             if (id == null)
             {
-                db.Dispose();
+                
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.Detalles_Compra= db.Compras.Find(id).DetallesCompras.ToList();
-            db.Dispose();
+            Compras compra= db.Compras.Find(id);
+            ViewBag.Detalles_Compra = compra.DetallesCompras.ToList();
+            
             if (ViewBag.Detalles_Compra == null)
             {
                 
@@ -183,6 +185,89 @@ namespace Ecommerce.Controllers
 
             return View();
         }
-        
+        public ActionResult Detalle_Compra(string searchBy, string search, string currentFilter, string sortBy, int? page)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            ViewBag.CurrentSort = sortBy;
+            ViewBag.NombreSort = String.IsNullOrEmpty(sortBy) ? "Nombre desc" : "";
+            ViewBag.CostoUnitarioSort = sortBy == "CostoUnitario" ? "CostoUnitario desc" : "CostoUnitario";
+            ViewBag.FechaSort = sortBy == "Fecha" ? "Fecha desc" : "Fecha";
+            ViewBag.CostoVentaSort = sortBy == "CostoVenta" ? "CostoVenta desc" : "CostoVenta";
+            ViewBag.CantidadSort = sortBy == "Cantidad" ? "Cantidad desc" : "Cantidad";
+            var compras = db.DetalleCompras.AsQueryable();
+            if (search != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                search = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = search;
+            if (searchBy == "Nombre")
+            {
+                compras = compras.Where(x => x.Productos.Nombre.ToString().StartsWith(search) || search == null);
+            }
+            else if (searchBy == "Cantidad")
+            {
+                int? status = null;
+                if (Regex.IsMatch(search, @"^\d+$"))
+                {
+                    status = int.Parse(search);
+                }
+                else
+                {
+                    status = 0;
+                }
+                compras = compras.Where(x => x.Cantidad.ToString().StartsWith(status.ToString()) || status == null);
+            }
+            else if (searchBy == "Fecha_vencimiento")
+            {
+                DateTime fecha = Convert.ToDateTime(search);
+                compras = compras.Where(x => x.Fecha_vencimiento==fecha || search == null);
+            }
+
+            switch (sortBy)
+            {
+                case "Nombre":
+                    compras = compras.OrderBy(x => x.Productos.Nombre);
+                    break;
+                case "Nombre desc":
+                    compras = compras.OrderByDescending(x => x.Productos.Nombre);
+                    break;
+                case "CostoUnitario":
+                    compras = compras.OrderBy(x => x.Productos.Costo_unitario);
+                    break;
+                case "CostoUnitario desc":
+                    compras = compras.OrderByDescending(x => x.Productos.Costo_unitario);
+                    break;
+                case "Fecha":
+                    compras = compras.OrderBy(x => x.Fecha_vencimiento);
+                    break;
+                case "Fecha desc":
+                    compras = compras.OrderByDescending(x => x.Fecha_vencimiento);
+                    break;
+                case "CostoVenta":
+                    compras = compras.OrderBy(x => x.Productos.Precio_final);
+                    break;
+                case "CostoVenta desc":
+                    compras = compras.OrderByDescending(x => x.Productos.Precio_final);
+                    break;
+                case "Cantidad":
+                    compras = compras.OrderBy(x => x.Cantidad);
+                    break;
+                case "Cantidad desc":
+                    compras = compras.OrderByDescending(x => x.Cantidad);
+                    break;
+                default:
+                    compras = compras.OrderBy(x => x.Id);
+                    break;
+            }
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            return View(compras.ToPagedList(pageNumber, pageSize));
+
+        }
     }
 }
