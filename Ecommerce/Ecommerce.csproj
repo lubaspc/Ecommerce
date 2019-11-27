@@ -221,6 +221,7 @@
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\modificar.jpg" />
     <Content Include="Content\img\panaderia2.jpg" />
+    <Content Include="Content\normalize.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
