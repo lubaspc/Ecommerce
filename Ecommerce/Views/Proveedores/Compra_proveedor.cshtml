@@ -107,13 +107,22 @@
                 var total = carro.Sum(item => item.Productos.Costo_unitario * item.Cantidad);
 
                 @total
+                
             }
         </div>
     </div>
-    @using (@Html.BeginForm("Comprar", "Proveedores", FormMethod.Post))
-    {
-        <button type="submit" class="btn btn-success">Pagar <i class="fas fa-money-check-alt"></i></button>
-    }
+    <div class="row">
+        <div class="col-md-10">
+            @if (ViewBag.Compra_detalles != null )
+            {
+                using (@Html.BeginForm("Comprar", "Proveedores", FormMethod.Post))
+                {
+                    <button type="submit" class="btn btn-success">Pagar <i class="fas fa-money-check-alt"></i></button>
+                }
+            }
+            </div>
+    </div>
+    
 
 </div>
 

@@ -11,6 +11,7 @@ using System.Web.Mvc;
 using System.Web.UI;
 using PagedList;
 using Microsoft.AspNet.Identity;
+using Ecommerce.Reportes;
 
 namespace Ecommerce.Controllers
 {
@@ -350,5 +351,31 @@ namespace Ecommerce.Controllers
 
 
         }
+        public ActionResult Reporte(int? id)
+        {
+            if(id != null)
+            {
+                ApplicationDbContext db = new ApplicationDbContext();
+                ComprasReport comprasreporte = new ComprasReport();
+                Compras compra = db.Compras.Find(id);
+                byte[] abytes = comprasreporte.PrepararReport(compra.DetallesCompras.ToList(),compra);
+                return File(abytes, "application/pdf");
+            }
+            else
+            {
+                return HttpNotFound();
+            }
+            
+        }
+
+        public ActionResult Reporte_Inventario()
+        {
+                ApplicationDbContext db = new ApplicationDbContext();
+            InventarioReport inventarioreporte = new InventarioReport();
+            List<DetalleCompras> inventario = db.DetalleCompras.ToList();
+            byte[] abytes = inventarioreporte.PrepararReport(inventario);
+            return File(abytes, "application/pdf");
+        }
+
     }
 }

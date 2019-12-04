@@ -12,31 +12,36 @@
 @using (@Html.BeginForm("Detalle_Compra", "Compras", FormMethod.Get))
 {
     <b> Buscar por:</b>
-    @Html.RadioButton("searchBy", "Nombre", true, new { htmlAttributes = new{  @class = "form-check-input" } }) <text>
+    @Html.RadioButton("searchBy", "Nombre", true, new { htmlAttributes = new { @class = "form-check-input" } }) <text>
         Nombre</text>
-    @Html.RadioButton("searchBy","Cantidad", new { htmlAttributes = new {@class = "form-check-input" } }) <text>
+    @Html.RadioButton("searchBy", "Cantidad", new { htmlAttributes = new { @class = "form-check-input" } }) <text>
         Cantidad</text>
     <br />
     @Html.TextBox("search", ViewBag.CurrentFilter as string)
     <input type="submit" value="Buscar" class="btn btn-info" />
 }
+
+@using (@Html.BeginForm("Reporte_Inventario", "Compras", FormMethod.Get))
+{
+    <button type="submit"  class="btn btn-danger">Generar PDF <i class="far fa-file-pdf"></i></button>
+}
 <table class="table">
     <tr>
         <th>
-            @Html.ActionLink("Nombre", "Detalle_Compra", new { sortBy = ViewBag.NombreSort, currentsearch=ViewBag.SearchBy,currentFilter = ViewBag.CurrentFilter, searchBy = Request["searchBy"], search = Request["search"] })
+            @Html.ActionLink("Nombre", "Detalle_Compra", new { sortBy = ViewBag.NombreSort, currentsearch = ViewBag.SearchBy, currentFilter = ViewBag.CurrentFilter, searchBy = Request["searchBy"], search = Request["search"] })
         </th>
         <th>
-            @Html.ActionLink("Costro Unitario", "Detalle_Compra", new { sortBy = ViewBag.CostoUnitarioSort, currentsearch=ViewBag.SearchBy,currentFilter = ViewBag.CurrentFilter, searchBy = Request["searchBy"], search = Request["search"] })
+            @Html.ActionLink("Costo Unitario", "Detalle_Compra", new { sortBy = ViewBag.CostoUnitarioSort, currentsearch = ViewBag.SearchBy, currentFilter = ViewBag.CurrentFilter, searchBy = Request["searchBy"], search = Request["search"] })
         </th>
         <th>
-            @Html.ActionLink("Costro Venta", "Detalle_Compra", new { sortBy = ViewBag.CostoVentaSort,currentsearch=ViewBag.SearchBy, currentFilter = ViewBag.CurrentFilter, searchBy = Request["searchBy"], search = Request["search"] })
+            @Html.ActionLink("Costo Venta", "Detalle_Compra", new { sortBy = ViewBag.CostoVentaSort, currentsearch = ViewBag.SearchBy, currentFilter = ViewBag.CurrentFilter, searchBy = Request["searchBy"], search = Request["search"] })
         </th>
         <th>
-            @Html.ActionLink("Cantidad", "Detalle_Compra", new { sortBy = ViewBag.CantidadSort,currentsearch=ViewBag.SearchBy, currentFilter = ViewBag.CurrentFilter, searchBy = Request["searchBy"], search = Request["search"] })
+            @Html.ActionLink("Cantidad", "Detalle_Compra", new { sortBy = ViewBag.CantidadSort, currentsearch = ViewBag.SearchBy, currentFilter = ViewBag.CurrentFilter, searchBy = Request["searchBy"], search = Request["search"] })
         </th>
 
         <th>
-            @Html.ActionLink("Fecha de vencimiento", "Detalle_Compra", new { sortBy = ViewBag.FechaSort,currentsearch=ViewBag.SearchBy, currentFilter = ViewBag.CurrentFilter, searchBy = Request["searchBy"], search = Request["search"] })
+            @Html.ActionLink("Fecha de vencimiento", "Detalle_Compra", new { sortBy = ViewBag.FechaSort, currentsearch = ViewBag.SearchBy, currentFilter = ViewBag.CurrentFilter, searchBy = Request["searchBy"], search = Request["search"] })
         </th>
     </tr>
 
@@ -68,7 +73,7 @@
 
 </table>
 <br />
-Pagina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+    Pagina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
 
-@Html.PagedListPager(Model, page => Url.Action("Detalle_Compra",
-    new { page, sortBy = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    @Html.PagedListPager(Model, page => Url.Action("Detalle_Compra",
+        new { page, sortBy = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
