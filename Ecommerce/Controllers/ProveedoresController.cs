@@ -227,8 +227,6 @@ namespace Ecommerce.Controllers
 
 
         }
-
-
         //GET
         [Authorize(Roles = "Empleado")]
         public async Task<ActionResult> Compra_proveedor(int? id)
@@ -327,6 +325,10 @@ namespace Ecommerce.Controllers
                     foreach (Carrito det_proxy in detalle_proxy)
                     {
                         Productos producto = db.Productos.Find(det_proxy.Productos.Id);
+                        int stocky = producto.stock + det_proxy.Cantidad;
+                        producto.stock += det_proxy.Cantidad;
+                        db.Productos.SqlQuery("UPDATE Productos SET stock",stocky);
+                        db.SaveChanges();
                         total += (det_proxy.Productos.Costo_unitario * det_proxy.Cantidad);
                         DateTime vencimiento = DateTime.Now;
                         vencimiento = vencimiento.AddMonths(producto.Time_Mount);
